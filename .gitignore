@@ -1,0 +1,12 @@
+# Survey downloads and derived products stay local (~7.6 GB); see README "Repository and local data".
+data/
+
+# Python and OS clutter
+__pycache__/
+*.pyc
+.DS_Store
+
+# The paper itself (Wu et al. 2026, arXiv:2610.13329) and its full-text copies / page renders stay local:
+# arXiv's default licence does not permit redistribution. Fetch it from https://arxiv.org/abs/2610.13329.
+sources/arxiv/
+sources/arxiv_2610.13329v1_html.md
