@@ -27,6 +27,20 @@ The section drafts are in `notes/dispute/`. Rebuild with:
 ~/.venvs/astro313/bin/python scripts/make_report_html.py DISPUTE
 ```
 
+## Velocity comparison
+
+[VELOCITY.md](VELOCITY.md) (English) and [VELOCITY_zh.md](VELOCITY_zh.md) (简体中文), together in the bilingual page [VELOCITY.html](VELOCITY.html), put every [O III], Hα, [N II] and [S II] velocity side by side, from the paper's Table 4, DESI, SDSS/BOSS, WHAM and GALFA-HI. The page:
+- defines V_topo, V_helio and V_LSR;
+- gives the Earth-motion (v_corr) and Sun-motion (LSR) corrections for each region, and explains why only the first decides who is right;
+- lists air and vacuum rest wavelengths and each dataset's native frame;
+- ends with a right/wrong verdict table.
+
+It supports Sections 2–4 of the comment. Rebuild with:
+
+```bash
+~/.venvs/astro313/bin/python scripts/make_report_html.py VELOCITY
+```
+
 ## Where things are
 
 | Path | Contents |

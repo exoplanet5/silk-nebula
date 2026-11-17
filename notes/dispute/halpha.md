@@ -8,7 +8,7 @@
 
 The paper is right that the red-arm lines trace a foreground/background WIM, the same on and off the filament (Sect. 4.2). This section concerns only the Hα velocity.
 
-**Why it is wrong.** Unless stated otherwise, numbers come from `scripts/dispute_halpha_analysis.py` → `data/derived/dispute_halpha_results.json`, plus `scripts/dispute_halpha_review.py` → `data/derived/dispute_halpha_review.json`.
+**Why it is wrong.** Unless stated otherwise, numbers come from `scripts/dispute_halpha_analysis.py` → `data/derived/dispute_halpha_results.json`, plus `scripts/dispute_halpha_review.py` → `data/derived/dispute_halpha_review.json`. The Hα, [N II], [S II] and WHAM velocities are also compared side by side in [VELOCITY.md](VELOCITY.md) §5–6.
 
 1. **The offset is internal to the paper's own red arm.** From Table 4, with errors added in quadrature:
    - Hα − [N II] = +4.5, +5.0, +6.7 and +6.4 km s⁻¹. The weighted mean is **+5.5 ± 1.1 km s⁻¹ (4.9σ)**, with χ² = 0.7 about the mean for 3 dof. The offset is consistent with a constant.

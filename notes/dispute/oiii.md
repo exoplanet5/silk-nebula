@@ -8,7 +8,7 @@
   - the "different layers of the same expanding shell" interpretation (Sect. 4.2, p. 17);
   - the [O III]-only kinematic distance (Abstract; Sect. 3.3; Sect. 5).
 
-**Why it is wrong.** The red-arm [N II]/[S II] velocities and the LAMOST stellar heliocentric correction are both sound (steps 5–6). The blue-arm [O III] velocities are not. Numbers come from `scripts/dispute_oiii_values.py` → `data/derived/dispute_oiii_values.json`, or from the project files named. "The paper's Table 4" is Wu et al.'s table; "Table 4" alone is ours, below.
+**Why it is wrong.** The red-arm [N II]/[S II] velocities and the LAMOST stellar heliocentric correction are both sound (steps 5–6). The blue-arm [O III] velocities are not. Numbers come from `scripts/dispute_oiii_values.py` → `data/derived/dispute_oiii_values.json`, or from the project files named. A side-by-side table of all [O III] and red-line velocities, with their frames, is in [VELOCITY.md](VELOCITY.md) §5. "The paper's Table 4" is Wu et al.'s table; "Table 4" alone is ours, below.
 
 1. **The paper's plotted wavelength scale is air and topocentric.**
    - The PDF stores Fig. 3 (p. 7) as vector data. The re-extracted Fig. 3a blue-arm spectrum has 3,590 samples at a median step of 0.106 Å, with the axes calibrated on the tick marks to 0.002 Å rms (`verify_velocity_fig3_measure.json`).

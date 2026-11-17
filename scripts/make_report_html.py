@@ -23,7 +23,8 @@ from markdown.extensions.toc import slugify_unicode   # only the slug helper is 
 ROOT = Path('/Users/mickey/astronomy/silk-nebula')
 DOC = sys.argv[1] if len(sys.argv) > 1 else 'REPORT'
 TITLES = {'REPORT': ('Silk Nebula Study', '丝绸星云研究报告'),
-          'DISPUTE': ('Comment on Wu et al. 2026 (Silk Nebula)', '对 Wu 等（2026）丝绸星云论文的评论')}
+          'DISPUTE': ('Comment on Wu et al. 2026 (Silk Nebula)', '对 Wu 等（2026）丝绸星云论文的评论'),
+          'VELOCITY': ('Silk Nebula velocities', '丝绸星云速度对比')}
 _t = TITLES.get(DOC, (DOC, DOC))
 LANGS = [  # (code, html lang, markdown file, page title, toc label)
     ('en', 'en', f'{DOC}.md', _t[0], 'Contents'),

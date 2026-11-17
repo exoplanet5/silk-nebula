@@ -7,6 +7,7 @@
 - "Table n", "Fig. n", "Sect. n" and "Eq. n" refer to Wu et al. (2026). Page numbers refer to arXiv:2610.13329v1. The AJ version has the same tables and footnotes, and Crossref lists no erratum as of 2026-11-17.
 - "Figure Cn", "Table Cn" and "Section n" refer to this Comment.
 - Velocities are heliocentric (V_helio) unless marked V_LSR. Surface brightness is given in rayleighs (R).
+- Every velocity discussed in Sections 2–4 is tabulated side by side, with its reference frame and the Earth-motion and LSR corrections, in the companion [VELOCITY.md](VELOCITY.md) ([VELOCITY.html](VELOCITY.html); 中文 [VELOCITY_zh.md](VELOCITY_zh.md)).
 - The Summary is given in English and Chinese (概要). In the HTML version, the EN | 中文 switch at the top right selects the language of the Summary; the rest of the document is in English.
 
 ---
@@ -281,7 +282,7 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
   - the "different layers of the same expanding shell" interpretation (Sect. 4.2, p. 17);
   - the [O III]-only kinematic distance (Abstract; Sect. 3.3; Sect. 5).
 
-**Why it is wrong.** The red-arm [N II]/[S II] velocities and the LAMOST stellar heliocentric correction are both sound (steps 5–6). The blue-arm [O III] velocities are not. Numbers come from `scripts/dispute_oiii_values.py` → `data/derived/dispute_oiii_values.json`, or from the project files named. 
+**Why it is wrong.** The red-arm [N II]/[S II] velocities and the LAMOST stellar heliocentric correction are both sound (steps 5–6). The blue-arm [O III] velocities are not. Numbers come from `scripts/dispute_oiii_values.py` → `data/derived/dispute_oiii_values.json`, or from the project files named. A side-by-side table of all [O III] and red-line velocities, with their frames, is in [VELOCITY.md](VELOCITY.md) §5. 
 
 1. **The paper's plotted wavelength scale is air and topocentric.**
    - The PDF stores Fig. 3 (p. 7) as vector data. The re-extracted Fig. 3a blue-arm spectrum has 3,590 samples at a median step of 0.106 Å, with the axes calibrated on the tick marks to 0.002 Å rms (`verify_velocity_fig3_measure.json`).
@@ -370,7 +371,7 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
 
 The paper is right that the red-arm lines trace a foreground/background WIM, the same on and off the filament (Sect. 4.2). This section concerns only the Hα velocity.
 
-**Why it is wrong.** Unless stated otherwise, numbers come from `scripts/dispute_halpha_analysis.py` → `data/derived/dispute_halpha_results.json`, plus `scripts/dispute_halpha_review.py` → `data/derived/dispute_halpha_review.json`.
+**Why it is wrong.** Unless stated otherwise, numbers come from `scripts/dispute_halpha_analysis.py` → `data/derived/dispute_halpha_results.json`, plus `scripts/dispute_halpha_review.py` → `data/derived/dispute_halpha_review.json`. The Hα, [N II], [S II] and WHAM velocities are also compared side by side in [VELOCITY.md](VELOCITY.md) §5–6.
 
 1. **The offset is internal to the paper's own red arm.** From Table 4, with errors added in quadrature:
    - Hα − [N II] = +4.5, +5.0, +6.7 and +6.4 km s⁻¹. The weighted mean is **+5.5 ± 1.1 km s⁻¹ (4.9σ)**, with χ² = 0.7 about the mean for 3 dof. The offset is consistent with a constant.
