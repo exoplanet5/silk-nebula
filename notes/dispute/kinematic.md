@@ -26,7 +26,7 @@
 
 5. **The velocity field along the filament does not follow rotation.**
    - At a common distance of 0.3–1.6 kpc, rotation predicts the northern spine (Dec +24°) to be 0.8–4.1 km s⁻¹ *lower* than P1.
-   - DESI measures it *higher*: ΔV_LSR ≈ +7…+11 (± ~2.5) km s⁻¹, i.e. +4…+9 km s⁻¹ heliocentric at 2–3.5σ per estimator (`notes/w3_northsouth.md`). SDSS gives a consistent but insignificant +6.7 ± 6.5 km s⁻¹, and the surveys disagree at Dec +17.6…+21°, so this is a ~2–3σ result.
+   - DESI measures it *higher*: ΔV_LSR ≈ +7…+11 (± ~2.5) km s⁻¹, i.e. +4…+9 km s⁻¹ heliocentric at 1.8–3.7σ across the six estimators (`notes/w3_northsouth.md`). SDSS gives a consistent but insignificant +6.7 ± 6.5 km s⁻¹, and the surveys disagree at Dec +17.6…+21°, so this is a ~2–3σ result.
    - Read kinematically, one continuous arc would lie at 0–0.12 kpc in the south (DESI −2.8…−0.2 has no solution; corrected P1 +1.2 gives 0.12) and at 0.86–1.68 kpc in the north.
 
 6. **The paper's own text implies the same.** Sect. 3.3 (p. 10) lists "non-circular motions" as a systematic. Sect. 4.2 (p. 17) proposes that the "∼5–15 km s⁻¹" [O III]/low-ionization offset arises in "different layers of the same expanding shell" (expanding at "∼140 km s⁻¹") or in an inhomogeneously expanding bubble. Section 3 shows the offset is an artefact, but on the paper's own reading either mechanism is a non-circular motion as large as the entire rotational V_LSR at 1.6 kpc toward P1 (14.1 km s⁻¹). Sect. 5 (p. 17) allows "certain systematic uncertainties" yet still adopts the kinematic value.
@@ -67,7 +67,7 @@
 - What can constrain the distance (`REPORT.md` §5.5–6; `notes/w4_distance.md` §3–4):
   - **High-ion (C IV, Si IV) absorption toward hot stars of known parallax at 120–800 pc.** Optical Ca II/Na I cannot isolate the Silk, because its corrected velocity equals that of the local gas.
   - **A two-epoch [O III] proper motion plus a shock velocity**: d (kpc) = v_s/(4.74 μ), μ in mas yr⁻¹.
-  - **A physical tie to the Monogem rim.** At Dec < 17.6° the spine lies 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, implying 252–318 pc (68 %) only if the association holds.
+  - **A physical tie to the Monogem rim.** At Dec < 17.6° the spine lies 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, implying 252–318 pc (68 %) only if the association holds and the shell is centred at the parallax distance of PSR B0656+14. The southern spine is straighter than the Monogem circle (radius of curvature ≈ 67°) and only tangent to it.
 
 **Requested correction.**
 1. Withdraw the kinematic distance as a result in the abstract, Sect. 3.3, Sects. 4.1–4.2 and Sect. 5. State instead:

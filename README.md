@@ -56,11 +56,14 @@ What the paper gets right: the [O III] detection is real, the Gaussian line fits
 - **Decisive observations:** far-ultraviolet and deep optical spectroscopy, a two-epoch proper motion, and high-ion absorption toward bracketing white dwarfs.
 - **Appendix A:** detection and line fitting in the individual DESI DR1 spectra within 0.5° of regions P1 and P3 (velocities, line strengths, line ratios). These are coadded spectra of galaxy and quasar targets with the redshift model subtracted, not DESI sky fibers.
 
-Where the paper and the earlier write-ups (`DISPUTE.md`, `REPORT.md`) differ, the paper is the later version. The main differences:
+The earlier write-ups (`DISPUTE.md`, `REPORT.md`, `REPORT_zh.md`, `VELOCITY.md`, `VELOCITY_zh.md` and their HTML pages) were reconciled with the manuscript on 2026-11-18. The main updates:
 - The Hβ limit behind the bound on a complete shock is 0.15 R (2σ), not 0.057 R.
 - The "+1" in the paper's printed age formula is treated as a misprint that does not affect its quoted age.
 - The DESI brightness near P1 and P3 carries about 20% calibration uncertainty, because two survey-validation tiles have no guide-camera fiber acceptance in DR1.
 - Near P3 the DESI [O III] velocity is 4–5 km/s below the adopted +13.3 ± 1.0 km/s.
+- The spectrum rejects photoionization *equilibrium*; photoionization with extra heating is disfavoured, not excluded.
+
+Two things were not redone. The dark figures in `figures/` were not regenerated, so a few still show earlier values that their captions or table notes flag; the light versions in `paper/figures/` are current. The hypothesis-panel scores in `REPORT.md` §5.5 are kept as recorded.
 
 ![Appendix figure: DESI DR1 fibers, single-fiber fits, fiber velocities, stacks and line ratios near P1 and P3](paper/figures/paper_appendix_desi.png)
 
@@ -82,7 +85,7 @@ The paper figures come from the same scripts as the report figures. With `SILK_T
 
 ## Comment on Wu et al. 2026
 
-[DISPUTE.md](DISPUTE.md) and [DISPUTE.html](DISPUTE.html) are the earlier, longer working version of the comment, superseded by the manuscript above where they differ. Its Summary is bilingual (English and 中文, with an EN | 中文 switch in the HTML); the rest is in English. It covers six disputed claims, each with dedicated figures (Figures C1–C6), tables (Tables C1–C7), requested corrections and a verified reference list. The claims are:
+[DISPUTE.md](DISPUTE.md) and [DISPUTE.html](DISPUTE.html) are the earlier, longer working version of the comment, reconciled with the manuscript above on 2026-11-18. Its Summary is bilingual (English and 中文, with an EN | 中文 switch in the HTML); the rest is in English. It covers six disputed claims, each with dedicated figures (Figures C1–C6), tables (Tables C1–C7), requested corrections and a verified reference list. The claims are:
 1. the Table 4 kpc/100-pc unit misreading;
 2. why no kinematic distance is possible;
 3. the [O III] wavelength-reference artefact;

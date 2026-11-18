@@ -3,6 +3,8 @@
 
 *Draft for discussion, 2026-11-17. Prepared from the Silk Nebula study in this folder (`REPORT.md`). Every number, figure and table can be reproduced from the scripts listed in Section 9.*
 
+*The journal-style version of this Comment is the manuscript [paper/silk_comment.pdf](paper/silk_comment.pdf), which is the latest and most carefully checked statement of the study. This document was reconciled with it on 2026-11-18.*
+
 **Conventions.**
 - "Table n", "Fig. n", "Sect. n" and "Eq. n" refer to Wu et al. (2026). Page numbers refer to arXiv:2610.13329v1. The AJ version has the same tables and footnotes, and Crossref lists no erratum as of 2026-11-17.
 - "Figure Cn", "Table Cn" and "Section n" refer to this Comment.
@@ -15,9 +17,9 @@
 <!-- lang:en -->
 ## Summary
 
-Wu et al. (2026) present LAMOST MRS-N spectroscopy of the Silk Nebula, a 17°-long [O III] filament in Gemini. From it they conclude that the filament is probably an old supernova remnant at ~160 pc, ~28 pc long, with E ≈ 2×10⁵¹ erg and an age of ~6.8×10⁴ yr. The [O III] detection is real and is confirmed by DESI, SDSS and narrow-band imaging. The paper is also right that the red-arm lines trace foreground/background diffuse ionized gas.
+Wu et al. (2026) present LAMOST MRS-N spectroscopy of the Silk Nebula, a 17°-long [O III] filament in Gemini. From it they conclude that the filament is possibly associated with an old supernova remnant at a fiducial ~160 pc, ~28 pc long, with E ≈ 2×10⁵¹ erg and an age of ~6.8×10⁴ yr, and note that a diffuse-ionized-gas or ionized-bubble origin cannot be fully excluded. The [O III] detection is real and is confirmed by DESI, SDSS and narrow-band imaging. The paper is also right that the red-arm lines trace foreground/background diffuse ionized gas.
 
-The quantitative chain behind the remnant interpretation does not survive inspection. Table C1 lists the disputed claims, and Sections 1–6 give the evidence:
+The quantitative results behind the remnant interpretation do not survive inspection. Table C1 lists the disputed claims, and Sections 1–6 give the evidence:
 - **Section 1.** The distance is a unit misreading of Table 4. It is shown from the paper's own numbers, not by appeal to software defaults.
 - **Section 2.** No kinematic distance is possible in this direction.
 - **Section 3.** The [O III] velocity offset is a wavelength-reference artefact.
@@ -33,18 +35,18 @@ None of this argues against shock excitation of the filament. Independent spectr
 |---|---|---|---|---|---|
 | 1 | Fiducial distance ~160 pc; Table 4 distances "in units of 100pc" (Table 4 footnotes; Sect. 3.3; Abstract; Sects. 4.1, 5) | **Wrong unit.** Table 4 is in kpc, so the paper's own fiducial value is ~1.6 kpc | The printed values reproduce as kpc (1.785 / 1.743–1.803 / 1.154 vs 1.79 / 1.85 / 1.20). At 160 pc, rotation gives only 1.5–1.7 km s⁻¹, not +15.5. Read as ×100 pc, the Monte-Carlo widths imply gradients of 37–47 km s⁻¹ kpc⁻¹ (rotation allows ≤ 10.7). The red-line lower bounds sit at the 0.01-kpc grid floor | All sizes ×10. Energy and age invalid | 1 |
 | 2 | A kinematic distance is usable near the anticentre boundary (Sect. 3.3) | **No.** Kinematics carry no distance information here | The rotation gradient is 7.6–9.1 km s⁻¹ kpc⁻¹ toward P1–P4 and 4.3–9.8 along the spine, 8.1° of which lies inside the 160° < ℓ < 200° anticentre band. Peculiar motions of 5–10 km s⁻¹ therefore mean Δd = 0.55–1.32 kpc. Rotation contributes ≤ 3.1 km s⁻¹ within 300 pc. The local clouds LIC and Gem (< 15 pc) would get 0.74 and 2.70 kpc | The distance is unconstrained by the paper's data | 2 |
-| 3 | [O III] V_helio +23.8…+26.8 km s⁻¹, 10–16 km s⁻¹ off the red lines; "two-layer shell" (Table 4; Sects. 3.2.3, 4.2) | **Artefact (−10.1 ± 1.0 km s⁻¹).** The blue-arm scale is air and topocentric | In the paper's Fig. 3a, the [N I] 5198/5200 airglow sits at its air rest wavelengths. [O III] measured against that airglow gives +13.6 ± 1.2. DESI, SDSS and Fig. 3a combine to +13.3 ± 1.0, equal to [N II], [S II] and WHAM | The offset, the two-layer interpretation and the [O III] kinematic distances all go | 3 |
-| 4 | Hα V_helio +16.3…+19.7 km s⁻¹; Hα used for velocities, maps and distances (Table 4; Fig. 5; Sect. 3.2.3) | **Red-biased by +4.5…+6.7 km s⁻¹** | Hα − [N II] = +5.5 ± 1.1 km s⁻¹ (4.9σ) and Hα − WHAM = +4.8 ± 0.7, while [N II] − WHAM = −0.8 ± 1.0. Geocoronal over-subtraction is plausible: a joint model explains one-half to three-quarters of the offset | The Hα velocities and Hα-based distances are unusable | 4 |
-| 5 | 23.60–23.87 mag arcsec⁻², i.e. ~10–13 R, "well above" the Fesen et al. (2024) limits (Table 3; Sect. 4.1) | **Overestimated 4.6–8.6×** | DESI gives 1.62 R; SDSS fibres 1.49 / 1.78 / 1.87 R; SDSS imaging 2.31 R; NSNS 2.0–2.2 R. No multiplicative systematic accounts for it; an additive background error of 7.9–11.3 R would | The brightness argument fails. The GALEX FUV/[O III] ratio contradicts Table 3 | 5 |
-| 6 | BPT/SMB and [S II]/Hα shock classification; n_e 64–150 cm⁻³; T_e, V_t, O/H; E, R_PDS, age; [O III] FWHM 43–49 km s⁻¹; radio non-detection (Sects. 3.4–4.1) | **Describe the WIM, or not supported by the data** | The ratios are the same in nebula-free P4. Table 2 gives n_e 225–631 cm⁻³ (169–400 with Eq. 5). T_e has σ_T 7,300–10,600 K. The age formula has "+1" where it should read "+1/3", and R_PDS is 17.1 pc. The widths are not recoverable at S/N 6. Interferometers resolve out a 17′ filament | The SNR classification is not supported by these diagnostics | 6 |
+| 3 | [O III] V_helio +23.8…+26.8 km s⁻¹, 5–15 km s⁻¹ off the red lines (10–16 in V_LSR); "two-layer shell" (Table 4; Sects. 3.2.3, 4.2) | **Artefact (−10.1 ± 1.0 km s⁻¹).** The blue-arm scale is air and topocentric | In the paper's Fig. 3a, the [N I] 5198/5200 airglow sits at its air rest wavelengths. [O III] measured against that airglow gives +13.6 ± 1.2. DESI, SDSS and Fig. 3a combine to +13.3 ± 1.0 (DESI and SDSS alone: +12.9 ± 1.6), equal to [N II], [S II] and WHAM | The offset, the two-layer interpretation and the [O III] kinematic distances all go | 3 |
+| 4 | Hα V_helio +16.3…+19.7 km s⁻¹; Hα used for velocities, maps and distances (Table 4; Fig. 5; Sect. 3.2.3) | **Red-biased by +4.5…+6.7 km s⁻¹** | Hα − [N II] = +5.5 ± 1.1 km s⁻¹ (4.9σ) and Hα − WHAM = +4.8 ± 0.7, while [N II] − WHAM = −0.8 ± 1.0. Geocoronal over-subtraction is plausible: a joint model explains one-half to three-quarters of the offset | The Hα velocities and Hα-based distances carry this bias and need confirmation | 4 |
+| 5 | 23.60–23.87 mag arcsec⁻², i.e. ~10–13 R, "well above" the Fesen et al. (2024) limits (Table 3; Sect. 4.1) | **Overestimated 4.6–8.6×** | DESI gives 1.62 R (calibration uncertain by about 20 %); SDSS fibres 1.49 / 1.78 / 1.87 R; SDSS imaging 2.31 R; NSNS 2.0–2.2 R. No identified multiplicative systematic accounts for it; an additive background error of 7.9–11.3 R would | The brightness argument fails. For a shock, published shock models make Table 3 inconsistent with the GALEX FUV/[O III] ratio | 5 |
+| 6 | BPT/SMB and [S II]/Hα shock classification; n_e 64–150 cm⁻³; T_e, V_t, O/H; E, R_PDS, age; [O III] FWHM 43–49 km s⁻¹; radio non-detection (Sects. 3.4–4.1) | **Describe the WIM, or not supported by the data** | The ratios are the same in nebula-free P4, as the paper itself notes (Sects. 4.1, 4.2). The 64 cm⁻³ is a mean of 107 per-fibre values; taken at face value, the regional Table 2 ratios give n_e 225–631 cm⁻³ (169–400 with Eq. 5), but within their ±0.02 intensity errors they constrain no density. T_e has σ_T 7,300–10,700 K. The paper's inputs reproduce E and, within the quoted uncertainties, R_PDS and the age (the "+1" in the printed age formula is a misprint for "+1/3"), but the inputs are unsupported. The [O III] widths are not established unless the tabulated S/N 6 is a peak value. Interferometers resolve out a 17′ filament | The SNR classification is not supported by these diagnostics | 6 |
 <!-- /lang -->
 
 <!-- lang:zh -->
 ## 概要
 
-Wu et al. (2026) 发表了丝绸星云（Silk Nebula）的 LAMOST MRS-N 光谱观测。丝绸星云是双子座中一条长 17° 的 [O III] 丝状结构（filament）。作者据此得出结论：该丝状结构很可能是一个年老的超新星遗迹（supernova remnant，SNR），距离 ~160 pc，长 ~28 pc，E ≈ 2×10⁵¹ erg，年龄 ~6.8×10⁴ yr。[O III] 探测是真实的，并已得到 DESI、SDSS 和窄带成像的证实。论文认为红端（red arm）谱线示踪的是前景/背景弥漫电离气体（diffuse ionized gas），这一点也是正确的。
+Wu et al. (2026) 发表了丝绸星云（Silk Nebula）的 LAMOST MRS-N 光谱观测。丝绸星云是双子座中一条长 17° 的 [O III] 丝状结构（filament）。作者据此得出结论：该丝状结构可能与一个年老的超新星遗迹（supernova remnant，SNR）相关联，基准距离（fiducial distance）为 ~160 pc，长 ~28 pc，E ≈ 2×10⁵¹ erg，年龄 ~6.8×10⁴ yr；作者同时指出，不能完全排除弥漫电离气体（diffuse ionized gas）或电离泡（ionized bubble）起源。[O III] 探测是真实的，并已得到 DESI、SDSS 和窄带成像的证实。论文认为红端（red arm）谱线示踪的是前景/背景弥漫电离气体，这一点也是正确的。
 
-支撑这一遗迹解释的定量论证链经不起检验。表 C1 列出了受质疑的论断，本文第 1–6 节给出证据：
+支撑这一遗迹解释的定量结果经不起检验。表 C1 列出了受质疑的论断，本文第 1–6 节给出证据：
 - **本文第 1 节：** 该距离源于对原文表 4 单位的误读。这一点依据论文自身的数值即可证明，而非诉诸软件的默认设置。
 - **本文第 2 节：** 在这一方向上无法得到运动学距离（kinematic distance）。
 - **本文第 3 节：** [O III] 速度偏移是波长参考假象（wavelength-reference artefact）。
@@ -60,10 +62,10 @@ Wu et al. (2026) 发表了丝绸星云（Silk Nebula）的 LAMOST MRS-N 光谱�
 |---|---|---|---|---|---|
 | 1 | 基准距离（fiducial distance）~160 pc；原文表 4 的距离“in units of 100pc”（原文表 4 脚注；原文第 3.3 节；原文摘要；原文第 4.1、5 节） | **单位错误。** 原文表 4 的单位是 kpc，因此论文自身的基准值实为 ~1.6 kpc | 按 kpc 解读，印出值可以复现（1.785 / 1.743–1.803 / 1.154，对比 1.79 / 1.85 / 1.20）。在 160 pc 处，银河系自转仅给出 1.5–1.7 km s⁻¹，而非 +15.5。若按 ×100 pc 解读，蒙特卡罗（Monte-Carlo）区间宽度所对应的隐含梯度（implied gradient）为 37–47 km s⁻¹ kpc⁻¹（自转仅允许 ≤ 10.7）。红端谱线的距离下限落在 0.01 kpc 的网格下限（grid floor）上 | 所有尺寸均 ×10。能量与年龄无效 | 1 |
 | 2 | 在反银心方向（anticentre）的边界附近，运动学距离可用（原文第 3.3 节） | **不可用。** 在此方向上，运动学不携带距离信息 | 朝 P1–P4 方向的自转速度梯度为 7.6–9.1 km s⁻¹ kpc⁻¹，沿主脊线（spine）为 4.3–9.8，其中有 8.1° 的主脊线位于 160° < ℓ < 200° 的反银心带内。因此，5–10 km s⁻¹ 的本动速度（peculiar motion）意味着 Δd = 0.55–1.32 kpc。在 300 pc 以内，自转的贡献 ≤ 3.1 km s⁻¹。本地星际云 LIC 和 Gem（< 15 pc）会被分别赋予 0.74 和 2.70 kpc | 论文的数据无法约束该距离 | 2 |
-| 3 | [O III] V_helio 为 +23.8…+26.8 km s⁻¹，与红端谱线相差 10–16 km s⁻¹；“two-layer shell”（原文表 4；原文第 3.2.3、4.2 节） | **假象（−10.1 ± 1.0 km s⁻¹）。** 蓝端（blue arm）波长标度为空气波长（air wavelength），且为站心（topocentric）参考系 | 在原文图 3a 中，[N I] 5198/5200 气辉（airglow）位于其空气静止波长（rest wavelength）处。以该气辉为参考测量，[O III] 为 +13.6 ± 1.2。DESI、SDSS 与原文图 3a 合并得到 +13.3 ± 1.0，与 [N II]、[S II] 及 WHAM 相同 | 该速度偏移、双层壳层解释以及基于 [O III] 的运动学距离均不再成立 | 3 |
-| 4 | Hα V_helio 为 +16.3…+19.7 km s⁻¹；Hα 被用于速度测量、分布图和距离估计（原文表 4；原文图 5；原文第 3.2.3 节） | **存在 +4.5…+6.7 km s⁻¹ 的偏红偏差** | Hα − [N II] = +5.5 ± 1.1 km s⁻¹（4.9σ），Hα − WHAM = +4.8 ± 0.7，而 [N II] − WHAM = −0.8 ± 1.0。地冕 Hα 的过度扣除（geocoronal over-subtraction）是一个合理的解释：联合模型可解释该偏移的一半至四分之三 | Hα 速度以及基于 Hα 的距离均不可用 | 4 |
-| 5 | 23.60–23.87 mag arcsec⁻²，即 ~10–13 R，“well above”（远高于）Fesen et al. (2024) 的极限（原文表 3；原文第 4.1 节） | **高估 4.6–8.6×** | DESI 给出 1.62 R；SDSS 光纤（fibre）1.49 / 1.78 / 1.87 R；SDSS 成像 2.31 R；NSNS 2.0–2.2 R。任何乘性系统误差（multiplicative systematic）都无法解释这一差异；7.9–11.3 R 的加性背景误差（additive background error）则可以 | 亮度论据不成立。GALEX FUV/[O III] 比值与原文表 3 相矛盾 | 5 |
-| 6 | 基于 BPT/SMB 与 [S II]/Hα 的激波分类；n_e 64–150 cm⁻³；T_e、V_t、O/H；E、R_PDS、年龄；[O III] FWHM 43–49 km s⁻¹；未探测到射电辐射（原文第 3.4–4.1 节） | **描述的是 WIM，或未得到数据支持** | 在无星云的 P4 中，这些谱线比与之相同。由原文表 2 得出 n_e 为 225–631 cm⁻³（若采用原文式 (5) 则为 169–400）。T_e 的不确定度 σ_T 为 7,300–10,600 K。年龄公式中写作“+1”之处应为“+1/3”，且 R_PDS 为 17.1 pc。在 S/N 6 下无法恢复谱线宽度。干涉阵列会将宽 17′ 的丝状结构滤除（resolve out） | 这些诊断并不支持将其归类为 SNR | 6 |
+| 3 | [O III] V_helio 为 +23.8…+26.8 km s⁻¹，与红端谱线相差 5–15 km s⁻¹（V_LSR 为 10–16）；“two-layer shell”（原文表 4；原文第 3.2.3、4.2 节） | **假象（−10.1 ± 1.0 km s⁻¹）。** 蓝端（blue arm）波长标度为空气波长（air wavelength），且为站心（topocentric）参考系 | 在原文图 3a 中，[N I] 5198/5200 气辉（airglow）位于其空气静止波长（rest wavelength）处。以该气辉为参考测量，[O III] 为 +13.6 ± 1.2。DESI、SDSS 与原文图 3a 合并得到 +13.3 ± 1.0（仅 DESI 与 SDSS：+12.9 ± 1.6），与 [N II]、[S II] 及 WHAM 相同 | 该速度偏移、双层壳层解释以及基于 [O III] 的运动学距离均不再成立 | 3 |
+| 4 | Hα V_helio 为 +16.3…+19.7 km s⁻¹；Hα 被用于速度测量、分布图和距离估计（原文表 4；原文图 5；原文第 3.2.3 节） | **存在 +4.5…+6.7 km s⁻¹ 的偏红偏差** | Hα − [N II] = +5.5 ± 1.1 km s⁻¹（4.9σ），Hα − WHAM = +4.8 ± 0.7，而 [N II] − WHAM = −0.8 ± 1.0。地冕 Hα 的过度扣除（geocoronal over-subtraction）是一个合理的解释：联合模型可解释该偏移的一半至四分之三 | Hα 速度以及基于 Hα 的距离均带有这一偏差，有待确认 | 4 |
+| 5 | 23.60–23.87 mag arcsec⁻²，即 ~10–13 R，“well above”（远高于）Fesen et al. (2024) 的极限（原文表 3；原文第 4.1 节） | **高估 4.6–8.6×** | DESI 给出 1.62 R（定标不确定度约 20 %）；SDSS 光纤（fibre）1.49 / 1.78 / 1.87 R；SDSS 成像 2.31 R；NSNS 2.0–2.2 R。已识别的乘性系统误差（multiplicative systematic）均无法解释这一差异；7.9–11.3 R 的加性背景误差（additive background error）则可以 | 亮度论据不成立。若为激波，已发表的激波模型表明原文表 3 与 GALEX FUV/[O III] 比值不相容 | 5 |
+| 6 | 基于 BPT/SMB 与 [S II]/Hα 的激波分类；n_e 64–150 cm⁻³；T_e、V_t、O/H；E、R_PDS、年龄；[O III] FWHM 43–49 km s⁻¹；未探测到射电辐射（原文第 3.4–4.1 节） | **描述的是 WIM，或未得到数据支持** | 在无星云的 P4 中，这些谱线比与之相同，论文自身也指出了这一点（原文第 4.1、4.2 节）。64 cm⁻³ 是 107 个单光纤（per-fibre）测量值的平均值；若按字面取值，原文表 2 的区域谱线比给出 n_e 为 225–631 cm⁻³（若采用原文式 (5) 则为 169–400），但在其 ±0.02 的强度误差范围内，它们无法约束密度。T_e 的不确定度 σ_T 为 7,300–10,700 K。论文的输入量可以复现 E，并在所引不确定度范围内复现 R_PDS 和年龄（印出的年龄公式中的“+1”是“+1/3”的印刷错误），但这些输入量缺乏依据。除非表中所列的 S/N 6 为峰值信噪比，否则 [O III] 谱线宽度无法确立。干涉阵列会将宽 17′ 的丝状结构滤除（resolve out） | 这些诊断并不支持将其归类为 SNR | 6 |
 <!-- /lang -->
 
 ---
@@ -218,7 +220,7 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
 
 5. **The velocity field along the filament does not follow rotation.**
    - At a common distance of 0.3–1.6 kpc, rotation predicts the northern spine (Dec +24°) to be 0.8–4.1 km s⁻¹ *lower* than P1.
-   - DESI measures it *higher*: ΔV_LSR ≈ +7…+11 (± ~2.5) km s⁻¹, i.e. +4…+9 km s⁻¹ heliocentric at 2–3.5σ per estimator (`notes/w3_northsouth.md`). SDSS gives a consistent but insignificant +6.7 ± 6.5 km s⁻¹, and the surveys disagree at Dec +17.6…+21°, so this is a ~2–3σ result.
+   - DESI measures it *higher*: ΔV_LSR ≈ +7…+11 (± ~2.5) km s⁻¹, i.e. +4…+9 km s⁻¹ heliocentric at 1.8–3.7σ across the six estimators (`notes/w3_northsouth.md`). SDSS gives a consistent but insignificant +6.7 ± 6.5 km s⁻¹, and the surveys disagree at Dec +17.6…+21°, so this is a ~2–3σ result.
    - Read kinematically, one continuous arc would lie at 0–0.12 kpc in the south (DESI −2.8…−0.2 has no solution; corrected P1 +1.2 gives 0.12) and at 0.86–1.68 kpc in the north.
 
 6. **The paper's own text implies the same.** Sect. 3.3 (p. 10) lists "non-circular motions" as a systematic. Sect. 4.2 (p. 17) proposes that the "∼5–15 km s⁻¹" [O III]/low-ionization offset arises in "different layers of the same expanding shell" (expanding at "∼140 km s⁻¹") or in an inhomogeneously expanding bubble. Section 3 shows the offset is an artefact, but on the paper's own reading either mechanism is a non-circular motion as large as the entire rotational V_LSR at 1.6 kpc toward P1 (14.1 km s⁻¹). Sect. 5 (p. 17) allows "certain systematic uncertainties" yet still adopts the kinematic value.
@@ -259,7 +261,7 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
 - What can constrain the distance (`REPORT.md` §5.5–6; `notes/w4_distance.md` §3–4):
   - **High-ion (C IV, Si IV) absorption toward hot stars of known parallax at 120–800 pc.** Optical Ca II/Na I cannot isolate the Silk, because its corrected velocity equals that of the local gas.
   - **A two-epoch [O III] proper motion plus a shock velocity**: d (kpc) = v_s/(4.74 μ), μ in mas yr⁻¹.
-  - **A physical tie to the Monogem rim.** At Dec < 17.6° the spine lies 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, implying 252–318 pc (68 %) only if the association holds.
+  - **A physical tie to the Monogem rim.** At Dec < 17.6° the spine lies 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, implying 252–318 pc (68 %) only if the association holds and the shell is centred at the parallax distance of PSR B0656+14. The southern spine is straighter than the Monogem circle (radius of curvature ≈ 67°) and only tangent to it.
 
 **Requested correction.**
 1. Withdraw the kinematic distance as a result in the abstract, Sect. 3.3, Sects. 4.1–4.2 and Sect. 5. State instead:
@@ -309,13 +311,14 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
    - *Air/vacuum mix-up.* This would produce 65–102 km s⁻¹ (Morton 2000 conversion).
    - *Solar blend.* It biases the centroid by only +0.4 km s⁻¹, and by at most +2.5 km s⁻¹ even for a purely solar continuum.
 6. **Independent spectra agree with the corrected value.**
-   - DESI DR1 (DESI Collaboration 2026) is vacuum and barycentric, with the correction applied to the wavelength grid before sky subtraction (desispec; Guy et al. 2023). Science-fibre residuals (flux − Redrock model) give +14.4 ± 1.9 km s⁻¹ from 390 on-ridge fibres (including a ±1.5 zero point) and +11.3 (16–84 %: 10.2–13.9) from a joint regression on both [O III] lines.
+   - DESI DR1 (DESI Collaboration 2026) is vacuum and barycentric, with the correction applied to the wavelength grid before sky subtraction (desispec; Guy et al. 2023). The spectra are DR1 coadds of galaxy and quasar targets, not sky fibres. Their residuals (flux − Redrock model) give +14.4 ± 1.9 km s⁻¹ from 390 on-ridge fibres (including a ±1.5 zero point) and +11.3 (16–84 %: 10.2–13.9) from a joint regression on both [O III] lines.
    - SDSS sky fibres (Abdurro'uf et al. 2022) give +9.6 ± 2.8 km s⁻¹ (all strands). A second re-analysis gives +12.3 ± 2.5 (all) and +10.0 ± 1.8 ± 0.8 km s⁻¹ at Dec < 20°, which contains P1–P3.
    - DESI and SDSS alone give **+12.9 ± 1.6 km s⁻¹**. The calibration-free Fig. 3a value lies +0.7 ± 2.0 above this. The paper's P1–P3 weighted mean (+25.5 ± 2.2) lies +12.6 ± 2.7 above it (4.6σ), and +2.5 ± 2.8 above it after correction.
    - Per region (Table C4), the paper minus DESI within 0.5° is +14.0 ± 2.4 km s⁻¹ (5.7σ), and +3.9 ± 2.5 (1.5σ) after correction.
+   - Region by region, DESI agrees with the adopted value at P1 and is lower at P3 (`notes/paper_appendix_desi.md`). At P1 it gives +11.9 ± 1.9 km s⁻¹ (61 fibres; ON−OFF stack +12.3 ± 1.1), which agrees with the adopted +13.3 ± 1.0. At P3 it gives +9.2 ± 1.0 (128 fibres; ON−OFF +8.0 ± 0.9), which lies 4–5 km s⁻¹ lower. Within P3 the ON−OFF velocity is +11.2 ± 1.1 east and +5.5 ± 1.0 west of the E spine (3–4σ). The ±1.5 km s⁻¹ zero point is additional.
    - The weighted mean of DESI, Fig. 3a and SDSS is **+13.3 ± 1.0 km s⁻¹** (χ² = 2.2 for 2 dof). Other estimator choices give +12.4 ± 0.9, hence a ±1 km s⁻¹ systematic. In V_LSR this is +1.2 ± 1.0, or +1.5 with Schönrich et al. (2010).
    - The velocity varies along the filament. DESI gives +9.7…+12.2 km s⁻¹ at Dec < 17.6° and +17…+23 at Dec 17.6–21°, where SDSS gives +10.0 ± 2.2 (`w3_northsouth.md`). P1 and P3 lie in the southern zone; P2 (Dec 17.74°) is at its edge, with a region-matched DESI value of +15.2 ± 2.9 (n = 9). The 10.1 km s⁻¹ error belongs to the wavelength scale and is unaffected.
-   - The corrected [O III] agrees with the paper's own [N II] (P1–P4 mean +12.2 ± 0.9) and with WIM Hα from WHAM (Haffner et al. 2003). WHAM gives +11.5…+13.4 in the nearest beams, and V_LSR +1.3 on the southern filament against +1.2 ± 1.0 for [O III] (`verify_hiwham.md`).
+   - The corrected [O III] agrees with the paper's own [N II] (P1–P4 mean +12.2 ± 0.9) and with WIM Hα from WHAM (Haffner et al. 2003). WHAM gives +11.6…+13.4 in the nearest beams, and V_LSR +1.3 on the southern filament against +1.2 ± 1.0 for [O III] (`verify_hiwham.md`).
    - [O III] − [N II] becomes **+1.1 ± 1.3 km s⁻¹** (+1.4 ± 1.5 from Fig. 3a alone), against +13.7 ± 2.4 from the paper's P1–P3 values.
 
 ![Three panels. (a) The [N I] 5198/5200 airglow doublet from the paper's Fig. 3a spectrum, with markers for the doublet positions on air or vacuum and topocentric or heliocentric scales; the data sit on the air-topocentric markers. (b) [O III] 5007 from Fig. 3a and the Fig. 3b P1-P3 spectra, with air and vacuum rest wavelengths and the plotted-scale positions of lines with true heliocentric velocity +13.3 and +25 km/s; the line peaks at the +13.3 position. (c) Velocity ladder: the paper's published Table 4 [O III], the paper's plotted-scale values, corrected values, DESI, SDSS, the paper's red lines, WHAM H-alpha and the paper's H-alpha, with the adopted +13.3 +- 1.0 km/s band.](figures/dispute_oiii_fig3.png)
@@ -333,19 +336,19 @@ Three tabulated [S II]/[N II] velocities are negative and have no outer-Galaxy s
 
 **Table C4.** [O III] velocities by region (km s⁻¹): the paper's Table 4, the paper's Fig. 3b re-measured, corrected, and compared with DESI, the red lines and WHAM.
 - "Corrected" = published − 10.1 ± 1.0. The solar-blend bias (+0.4 km s⁻¹ in Fig. 3a; it depends on each spectrum's continuum) is not removed. V_LSR uses our per-region astropy correction with the paper's solar motion (−12.10/−11.87/−12.58 for P1–P3).
-- DESI = weighted mean of positive-residual science fibres with S/N > 4 within 0.5°, without the ±1.5 km s⁻¹ zero point. P2 has only 9 fibres.
-- WHAM = main Hα component of the nearest 1° beam (0.27–0.48° away; wave-1 fits, fit errors only).
+- DESI = weighted mean of positive-residual science fibres with S/N > 4 within 0.5°, without the ±1.5 km s⁻¹ zero point. P2 has only 9 fibres. ON−OFF stacks give +12.3 ± 1.1 (P1) and +8.0 ± 0.9 (P3).
+- WHAM = main Hα component of the nearest 1° beam (0.27–0.48° away), as in Section 4; the error is the beam-to-beam scatter within 1°. Panel (c) of the figure above plots an earlier fit of the same beams, which differs by ≤ 0.3 km s⁻¹.
 - Differences are published → corrected, with errors added in quadrature. The "P1–P3 weighted" row treats the common ±1.0 correction as independent, so its errors are slightly understated.
 
 | Region | Paper Table 4 V_helio | Paper Fig. 3b, as plotted | Corrected V_helio (V_LSR) | DESI ≤ 0.5° (n) | Paper − DESI: published → corrected | Paper [N II] | [O III] − [N II]: published → corrected | WHAM Hα V_helio |
 |---|---|---|---|---|---|---|---|---|
-| P1 | +26.8 ± 4.3 | +24.9 ± 2.5 | +16.7 ± 4.4 (+4.6) | +11.9 ± 1.9 (61) | +14.9 ± 4.7 (3.2σ) → +4.8 ± 4.8 (1.0σ) | +11.8 ± 1.6 | +15.0 ± 4.6 → +4.9 ± 4.7 | +13.1 ± 0.2 |
-| P2 | +26.8 ± 4.1 | +28.6 ± 1.5 | +16.7 ± 4.2 (+4.8) | +15.2 ± 2.9 (9) | +11.6 ± 5.0 (2.3σ) → +1.5 ± 5.1 (0.3σ) | +12.0 ± 1.6 | +14.8 ± 4.4 → +4.7 ± 4.5 | +11.5 ± 0.1 |
-| P3 | +23.8 ± 3.3 | +20.3 ± 1.3 | +13.7 ± 3.5 (+1.1) | +9.2 ± 1.0 (128) | +14.6 ± 3.5 (4.2σ) → +4.5 ± 3.6 (1.2σ) | +11.7 ± 1.9 | +12.1 ± 3.8 → +2.0 ± 3.9 | +13.4 ± 0.4 |
-| P4 (background) | — | — | — | — | — | +13.3 ± 2.3 | — | +12.7 ± 0.2 |
+| P1 | +26.8 ± 4.3 | +24.9 ± 2.5 | +16.7 ± 4.4 (+4.6) | +11.9 ± 1.9 (61) | +14.9 ± 4.7 (3.2σ) → +4.8 ± 4.8 (1.0σ) | +11.8 ± 1.6 | +15.0 ± 4.6 → +4.9 ± 4.7 | +13.4 ± 0.4 |
+| P2 | +26.8 ± 4.1 | +28.6 ± 1.5 | +16.7 ± 4.2 (+4.8) | +15.2 ± 2.9 (9) | +11.6 ± 5.0 (2.3σ) → +1.5 ± 5.1 (0.3σ) | +12.0 ± 1.6 | +14.8 ± 4.4 → +4.7 ± 4.5 | +11.6 ± 1.1 |
+| P3 | +23.8 ± 3.3 | +20.3 ± 1.3 | +13.7 ± 3.5 (+1.1) | +9.2 ± 1.0 (128) | +14.6 ± 3.5 (4.2σ) → +4.5 ± 3.6 (1.2σ) | +11.7 ± 1.9 | +12.1 ± 3.8 → +2.0 ± 3.9 | +13.4 ± 0.3 |
+| P4 (background) | — | — | — | — | — | +13.3 ± 2.3 | — | +12.9 ± 0.5 |
 | P1–P3 weighted | +25.5 ± 2.2 | — | +15.4 ± 2.3 | — | +14.0 ± 2.4 (5.7σ) → +3.9 ± 2.5 (1.5σ) | — | +13.7 ± 2.4 → +3.7 ± 2.5 | — |
 | Fig. 3a (position not given) | — | +24.1 ± 0.9 | **+13.6 ± 1.2** (vs own [N I]) | — | — | +12.2 ± 0.9 (P1–P4 mean) | → +1.4 ± 1.5 | — |
-| All data, adopted | — | — | **+13.3 ± 1.0** (+1.2) | — | — | +12.2 ± 0.9 | → +1.1 ± 1.3 | +12.7 (mean) |
+| All data, adopted | — | — | **+13.3 ± 1.0** (+1.2) | — | — | +12.2 ± 0.9 | → +1.1 ± 1.3 | +12.8 (mean) |
 
 **Consequence.**
 - The corrected [O III] moves with the paper's own [N II]/[S II] and with the local WIM. The "∼5–15" (V_helio) and "10–16 km s⁻¹" (V_LSR) offsets are therefore not properties of the nebula. This removes the 100–150 pc blue/red distance discrepancy (Sect. 4.2, p. 16) and the motivation for the two-layer-shell and inhomogeneous-bubble scenarios (p. 17).
@@ -432,7 +435,7 @@ The paper is right that the red-arm lines trace a foreground/background WIM, the
 | Traditional distance (kpc) from Hα / [N II] / WHAM velocity | 0.43 / none / 0.13 | 0.56 / 0.01 / none | 0.57 / none / 0.08 | 0.77 / 0.09 / 0.05 | — |
 
 **Consequence.**
-- **The Hα velocities are red-biased.** The Hα V_helio and V_LSR in Table 4 and Fig. 5 carry a +4.5…+6.7 km s⁻¹ systematic error. Neither the quoted 1.2–1.4 km s⁻¹ errors nor the "< 1.5 km s⁻¹" precision covers it. The Hα velocity is no evidence of a separate nebular or DIG component, and it must not be used for distances.
+- **The Hα velocities are red-biased.** The Hα V_helio and V_LSR in Table 4 and Fig. 5 carry a +4.5…+6.7 km s⁻¹ systematic error. Neither the quoted 1.2–1.4 km s⁻¹ errors nor the "< 1.5 km s⁻¹" precision covers it. The Hα velocity is no evidence of a separate nebular or DIG component, and the Hα-based kinematic distances inherit the bias.
 - **The Hα distances come from the offset.** At the local gradient of 8.9–9.8 km s⁻¹ kpc⁻¹, the Hα − [N II] offset alone is worth 0.49–0.69 kpc. The printed Hα distances (0.31–0.80, in kpc per Section 1) owe their size to it. With the [N II] or WHAM velocity, the same rotation model gives no solution or 0.01–0.13 kpc, which carries no information here (Section 2).
 - **Widths, temperatures and line ratios are affected too (model only).** In the adopted fit, the residual changes the Hα widths by −3…+5 km s⁻¹ and the Hα flux by −19…−29 %.
   - The Eq. 2 temperatures shift by −4100…+7400 K. That is comparable to the 3200–7700 K that Eq. 2 gives from the Table 2 widths.
@@ -448,7 +451,7 @@ The paper is right that the red-arm lines trace a foreground/background WIM, the
    - Plot per-fibre Hα − [N II] against the sky/nebula ratio. A subtraction artefact grows with this ratio; a rest-wavelength error does not.
 4. **Release the spectra.** Publish the red-arm spectra of P1–P4 with the subtracted sky template.
 
-Suggested erratum: *"The Hα radial velocities in Table 4 and Fig. 5 are 4–7 km s⁻¹ redder than the simultaneously measured [N II] and [S II] lines and than WHAM Hα. On this plate the geocoronal Hα line lies within one resolution element of the nebular line and has comparable strength. The offset is most plausibly due to imperfect subtraction of the geocoronal line. The Hα velocities and Hα-based kinematic distances should not be used."*
+Suggested erratum: *"The Hα radial velocities in Table 4 and Fig. 5 are 4–7 km s⁻¹ redder than the simultaneously measured [N II] and [S II] lines and than WHAM Hα. On this plate the geocoronal Hα line lies within one resolution element of the nebular line and has comparable strength. The offset is most plausibly due to imperfect subtraction of the geocoronal line. The Hα velocities and Hα-based kinematic distances carry this systematic error and need confirmation."*
 
 ---
 
@@ -471,10 +474,12 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 
    Over these choices Table 3 spans 5.7–16.3 R [calc]. Even a 30 Å band gives 5.0–6.4 R. The paper does not say which instrument produced Table 3. With the 5 nm filter that QHYCCD (2024) reports for the f/2.8 follow-up, the values are 8.3–10.6 R.
 2. **Independent measurements give 1.4–2.5 R** (Table C6, Figure C5b). Like Table 3, these are excesses over the local background; the SDSS P-region means are absolute, but the off-strand level is only 0.07 R.
-   - DESI DR1 (DESI Collaboration 2026): 1.62 R.
+   - DESI DR1 (DESI Collaboration 2026): 1.62 R (southern-ridge median; calibration uncertain by about 20 %, see below).
    - SDSS/BOSS sky fibres (DR17, DR19; Abdurro'uf et al. 2022; SDSS Collaboration 2026): 1.49 / 1.78 / 1.87 R at P1 / P2 / P3.
    - SDSS imaging sky levels (DR18; Almeida et al. 2023): 2.31 ± 0.38 R on 17′ scales (3.9σ against coherent nulls).
    - NSNS DR0.2 maps (Ziegenbalg 2025; calibration not re-verified), measured here: 2.04 / 2.06 / 2.18 R, at a 51.5″ pixel scale.
+
+   The DESI calibration is less certain than the ±8 % of the measured fibre acceptances. DR1 has no guide-camera fibre acceptance for the two survey-validation tiles 80644 and 80683, which supply 85 % of the fibres within 0.5° of P1, all of those near P3 and 46 % of the usable fibres at Dec < 19.5°; programme medians were used instead (`notes/paper_appendix_desi.md`). The DESI brightness near P1 and P3, and the 1.62 R southern median, are therefore uncertain by about 20 %. The factor to Table 3 is unaffected: Table 3 is 6.2 and 6.6 times the DESI model sky brightness at P1 and P3 (2.07 ± 0.06 and 1.54 ± 0.04 R).
 
    Over the same regions Table 3 is **4.6–8.6× higher** [calc]. That is 1.7–2.3 mag, or 43–83 times its quoted errors. Without the star-affected P1 the factor is 4.6–6.2×.
 3. **Angular scale does not explain the gap.** The Table 3 subregion averages are 2.6–4.3× above even the brightest single measurements [calc]: the brightest SDSS fibre (3.65 R), the brightest DESI node (3.88 R) and the NSNS 1′ peaks (2.95–3.64 R).
@@ -490,7 +495,7 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
    As a deliberately generous bound we stacked the separate lowering extremes: 50 Å, +0.1 mag and full λ4959. No single filter satisfies these together, and the filter model already contains the width and λ4959 terms. We added ~0.3 mag of P1 starlight. The result, 5.5–5.8 R, is still **2.6–3.7×** above the independent values. Matching them needs a factor of 0.12–0.22.
 
    A common factor would also keep the regions in order, but they are not in order.
-   - Table 3 ranks P1 brightest, by 0.25–0.27 mag.
+   - Table 3 ranks P1 brightest, by 0.25–0.27 mag, which Sect. 3.1 attributes to starlight.
    - SDSS ranks P1 faintest, by 0.29–0.38 R (errors ≤ 0.09 R).
    - NSNS finds the three regions equal within 0.14 R.
    - The paper's own image shows P1 faintest.
@@ -512,7 +517,7 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 
 *Data: the paper's Sects. 2.1, 3.1, 4.1 and Table 3; DESI DR1; SDSS DR17/DR19 sky fibres and DR18 imaging-sky levels; NSNS DR0.2; Gaia DR3. Computed by `scripts/dispute_brightness_calc.py` and plotted by `scripts/dispute_brightness_fig.py`.*
 
-**Table C6.** [O III] λ5007 brightness of the southern Silk Nebula by method. The last column is the Table 3 value divided by the measurement, region-matched where possible. Values for P1 / P2 / P3 are separated by "/". Sources: the paper; `data/derived/dispute_brightness_calc.json`; the project notes `verify_desi.md`, `verify_sdss.md`, `verify_precovery.md`, `imaging_optical.md` and `spectra_sdss_lamost.md`.
+**Table C6.** [O III] λ5007 brightness of the southern Silk Nebula by method. The last column is the Table 3 value divided by the measurement, region-matched where possible. Values for P1 / P2 / P3 are separated by "/". Sources: the paper; `data/derived/dispute_brightness_calc.json`; the project notes `verify_desi.md`, `paper_appendix_desi.md`, `verify_sdss.md`, `verify_precovery.md`, `imaging_optical.md` and `spectra_sdss_lamost.md`.
 
 | Measurement | Method | Scale | I(5007) (R) | Table 3 / value |
 |---|---|---|---|---|
@@ -524,16 +529,16 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 | SDSS imaging sky, g (19 runs, 2002–07) | ridge-template fit to field sky levels; 3.9σ vs coherent nulls | 17′ | 2.31 ± 0.38 (2.39, 2.55 other estimators) | 3.9–5.5 |
 | SDSS/BOSS sky fibres | total sky, fibre-acceptance corrected, mean within 0.3° | 2–3″ fibres | 1.49 / 1.78 / 1.87 (±0.05–0.09; ±0.2 zero point); brightest 3.65 | 8.6 / 5.6 / 5.4 |
 | SDSS/BOSS south ON−OFF | strand vs 0.45–2° background | r_on 0.15° | 1.39 ± 0.10 | 7.2–9.2 |
-| DESI DR1 south ridge | flux-calibrated, GFA fibre acceptance | 1.5″ fibres | 1.62 (±8 % sys; nodes 1.4–2.3; W node 3.88) | 6.1–7.9 |
+| DESI DR1 south ridge | flux-calibrated, GFA fibre acceptance (programme medians for two tiles) | 1.5″ fibres | 1.62 (±20 % sys; nodes 1.4–2.3; W node 3.88) | 6.1–7.9 |
 | Fesen et al. 2024 limits (as quoted) | — | — | 0.5–5 | — |
 
 **Consequence.**
 - **The Sect. 4.1 comparison fails.** At 1.4–2.5 R the Silk Nebula lies *inside* the quoted 0.5–5 R range of Fesen et al. (2024), near its logarithmic midpoint of 1.6 R. It is not "well above" that range. Its appearance in Fesen et al. (2026) is consistent with this brightness and does not require a bright filament.
 - **Downstream quantities.** The paper's energy uses an adopted n₀ = 1.0 ± 0.3 cm⁻³, not Table 3. Anything scaled from Table 3 would be inflated [calc]: emission measure and [O III] luminosity by 4.6–8.6×, an emission-measure density by 2.2–2.9×, and the Sect. 4.1 energy (E ∝ n₀^1.16) by 6–12× if n₀ were tied to I. The "tenuous" of Sect. 3.1 is, if anything, strengthened.
-- **Under the paper's own shock interpretation, Table 3 conflicts with the GALEX FUV.**
+- **Under the paper's own shock interpretation, published shock models make Table 3 inconsistent with the GALEX FUV.**
   - Regressing GALEX FUV (Martin et al. 2005; Morrissey et al. 2007) on NSNS gives 92 ± 10 CU (photons s⁻¹ cm⁻² sr⁻¹ Å⁻¹) per NSNS rayleigh in the south (`verify_xrayfuv_galex_measure.json`).
   - If Table 3 were right, that would be 15–20 CU per true rayleigh [calc]. This is 2.9–3.8× below (2.6× at +1σ) the lowest non-resonant FUV floor of the tabulated shock models at E(B−V) = 0.03.
-  - That floor is 57 CU R⁻¹ for the incomplete shocks of Raymond et al. (1988). For the complete shocks of Raymond (1979), Cox & Raymond (1985) and Dopita & Sutherland (1996) it is 85–281 CU R⁻¹.
+  - That floor is 57 CU R⁻¹ for the incomplete shocks of Raymond et al. (1988). For the complete shocks of Raymond (1979), Cox & Raymond (1985) and Dopita & Sutherland (1996) it is 85–277 CU R⁻¹ (up to 281 with the magnetised Dopita & Sutherland runs).
   - Resonance scattering cannot remove non-resonant lines. Closing the gap would need E(B−V) ≳ 0.17–0.21 (a model-only extrapolation that ignores the [O III] attenuation, so the true requirement is higher). Schlegel et al. (1998) give 0.03–0.04.
 
 **Requested correction.**
@@ -554,7 +559,7 @@ Section numbers and page numbers (p.) refer to the arXiv v1 PDF of Wu et al. (20
 
 Several parts of the paper are correct and we reproduce them:
 - the coefficients of Eqs. 2 and 3 (23.5 vs 23.55 derived);
-- the energetics arithmetic;
+- the energetics arithmetic, including R_PDS and the age within the quoted uncertainties;
 - the statistical [O III] velocity errors of 3–4 km s⁻¹;
 - the caution in Sect. 4.2 that the red-arm lines are dominated by diffuse ionized gas (DIG).
 
@@ -562,7 +567,7 @@ The problems are in how these numbers are interpreted.
 
 **Claim in the paper.**
 1. The red-arm ratios establish shock excitation. The abstract (p. 1) says [S II]/Hα "significantly exceeds the shock-excitation threshold of 0.4"; Sect. 5 (p. 17) says it exceeds "the classical threshold of 0.4". Sect. 4.1 (p. 15) says the ratio "exceeds 0.5 in all four regions, confirming that the ionized gas is shock-excited". It adds that [N II]/Hα = 0.5–1.5 is "a condition satisfied by regions P1, P2, P3, and P4". Fig. 8 places the points in the SNR zone of the Sabin et al. (2013) and Kopsacheili et al. (2020) diagrams.
-2. The [S II] doublet gives a median n_e ≈ 64 cm⁻³, rising to ~150 cm⁻³ toward the centre, with "lower electron densities" in the background (Sect. 3.4, Eqs. 4–5, Fig. 7b, pp. 13–14). Sect. 4.1 calls this "the electron density of the [O iii]-emitting gas" (p. 15) and uses it as "the post-shock shell electron density" (p. 16).
+2. The [S II] doublet gives a mean n_e ≈ 64 cm⁻³ from 107 per-fibre values (the Fig. 7b caption calls it the median), rising to ~150 cm⁻³ toward the centre, with "lower electron densities" in the background (Sect. 3.4, Eqs. 4–5, Fig. 7b, pp. 13–14). Sect. 4.1 calls this "the electron density of the [O iii]-emitting gas" (p. 15) and uses it as "the post-shock shell electron density" (p. 16).
 3. Line widths give the following (Sect. 3.4, pp. 11–13; Table 4, p. 13):
    - T_e from Eq. 2 (the Reynolds et al. 1977 method): "about 9000 K", "1-2 ×10⁴ K" for most pixels on the [O III] structure against ≈ 7.5×10³ K in P4 (p. 12), and an adopted "approximately 10,000 K" (p. 13);
    - V_t = 29–33 km s⁻¹ from Eq. 3, attributed to "shock-driven gas flows" (p. 13).
@@ -576,7 +581,7 @@ The problems are in how these numbers are interpreted.
 1. **The red-line ratios are those of the nebula-free background and of the faint warm ionized medium (WIM).**
    - We recompute the ratios from the Table 2 intensities. On the filament, [S II](6716+6731)/Hα = 0.90 ± 0.11, 0.86 ± 0.09 and 0.81 ± 0.13 (P1–P3); in P4 it is 0.80 ± 0.13. For [N II]6583/Hα the values are 0.80, 0.70 and 0.77 (±0.09–0.10), against 0.80 ± 0.10 in P4.
    - The on-minus-P4 differences are +0.04 to +0.58σ for [S II] and −0.72 to 0.00σ for [N II] (Figure C6a).
-   - By the paper's own criteria, the nebula-free P4 is therefore "shock-excited" as well.
+   - By the paper's own criteria, the nebula-free P4 is therefore "shock-excited" as well. The paper notes this itself: Sect. 4.1 says the [S II]/Hα criterion is met "in all four regions" and the [N II]/Hα one by "P1, P2, P3, and P4", and Sect. 4.2 says "the [S II]/Hα ratios are comparably high in the background". It nevertheless concludes that "the SNR dominates" and that the DIG influence is "minor".
    - These are standard values for faint high-latitude WIM. Madsen et al. (2006) find [S II]6716/Hα ≳ 0.4 "in regions of faint Hα emission". That corresponds to ≳ 0.68 for the doublet sum at the low-density limit (derived). They also find [N II]/Hα ≳ 0.7 in the faintest WIM at l > 150°.
    - O-star H II regions average only 0.11 ([S II]) and 0.27 ([N II]) (Madsen et al. 2006). P1–P4 lie at l = 202.5–205.5°, b = +18.0° to +19.6° (Table 1 positions, converted), where the nearest WHAM-SS beams give just 2.9–4.4 R of Hα.
    - Independent data show no Hα filament on top of this WIM. WHAM Hα is the same on and off the strand (paired on−off ΔI = +0.04 ± 0.35 R south, +0.14 ± 0.27 R north; intrinsic FWHM 30.4–31.9 km s⁻¹ on and off). At fibre scale, SDSS sky fibres give an on−off Hα excess of 0.08 ± 0.22 R at Dec < 17.6° (`notes/verify_hiwham.md`).
@@ -585,6 +590,7 @@ The problems are in how these numbers are interpreted.
    - In all three panels of Fig. 8 the grey background points overlap the nebula points (visual inspection of the published figure). The Sabin et al. (2013) diagrams and the Kopsacheili et al. (2020) panel (log [N II]/Hα vs log [S II]/Hα) use the same red-line ratios and inherit the same limitation.
    - The paper's own Sect. 4.2 (pp. 16–17) lists three reasons why the red-arm lines are DIG. We agree with it, but it contradicts the use of these lines as shock evidence in Sect. 4.1 and the Conclusion.
 2. **The quoted densities do not follow from Table 2, and densities of this order are unphysical for this gas.**
+   - The two numbers are different statistics. The paper's 64 cm⁻³ is a mean of 107 per-fibre values (Fig. 7b), rising to ~150 cm⁻³ toward the centre; the values below come from the regional ratios of Table 2, taken at face value.
    - Table 2 gives R = I(6716)/I(6731) = 1.10, 1.14, 1.19 and 1.03 (P1–P4).
    - The paper's own Eq. 5 (Proxauf et al. 2014) gives 298, 247, 189 and 400 cm⁻³ at 10⁴ K, or down to 169 cm⁻³ with a √T scaling to 8000 K.
    - A 5-level S⁺ atom gives 243–631 cm⁻³ at 8000–10⁴ K, or 225–631 cm⁻³ including the Ramsbottom et al. (1996) Ω (Figure C6b). It uses Tayal & Zatsarinny (2010) collision strengths with TZ10, Mendoza & Zeippen (1982) or Rynkun et al. (2019) A-values.
@@ -604,37 +610,37 @@ The problems are in how these numbers are interpreted.
    - **Direct measurement on this sightline.** Our regressions of the WIM component give 6716/6731 = 1.40 (1.34–1.50) and 1.53 (1.42–1.67) from SDSS sky fibres, and 1.40 (1.33–1.49) from DESI (`w3_oii_summary.json`; `notes/w3_oii.md`). These are at the low-density limit.
    - The Table 2 ratios are therefore most plausibly a measurement systematic, not a gas density. We cannot identify its cause from the published information.
    - **The [O III] gas.** The paper assigns this density to "the [O iii]-emitting gas" (p. 15). We tested that with gas at 64 cm⁻³ filling the 0.28° strand (1.37 pc at 280 pc), with x(O²⁺) = 1 and solar O/H. It would emit 6×10³–2×10⁴ R in λ5007 at 1–2×10⁴ K, and 3.5×10⁴–1.2×10⁵ R at 150 cm⁻³. The measured brightness is ≈ 1.4–2.5 R (Section 5). A brightness of 2–4 R requires n_e ≈ 0.1–3 cm⁻³, for geometries from an edge-on sheet to a filament (`notes/w3_canon.md` §7).
-3. **T_e is unconstrained, and neither T_e nor V_t differs between the filament and the background.**
+3. **T_e is unconstrained, and the Table 2 widths show no difference in T_e or V_t between the filament and the background.**
    - Eq. 2 applied to the Table 2 region widths gives T = 6780, 6580, 3220 and 7660 K (P1–P4). The P4 value reproduces the paper's own ≈ 7.5×10³ K.
    - The 1σ errors are σ_T = 7300–10 700 K, and P(T < 0) = 18–38 % (Monte Carlo on the quoted width errors; Figure C6c).
-   - In Table 2 the on-filament regions are not hotter than P4. The "1–2×10⁴ K" versus "7.5×10³ K" contrast is therefore not supported by the paper's own widths.
+   - The regional Table 2 widths therefore do not show P1–P3 to be hotter than P4. The paper reports its "1–2×10⁴ K" versus "7.5×10³ K" contrast from per-fibre values (most pixels on the structure; a P4 median), which the regional widths cannot confirm.
    - The spread in Fig. 7a is no larger than this noise. Its legend gives a Gaussian σ = 6798 K. The caption's "σ ≃ 6.47×10³ K" matches the legend's μ = 6471 K instead.
    - Eq. 3 applied to the same widths gives V_t = 26.7, 25.7, 29.9 and 26.5 km s⁻¹. Table 4 lists 33.1, 32.9, 30.6 and 29.9, which are higher by +0.7 to +7.2 km s⁻¹. The paper does not say how the Table 4 values were obtained (for example, as per-fibre medians).
    - The nebula-free P4 has the same V_t (Table 4: 29.9 against 30.6–33.1). The broadening is therefore a property of the line-of-sight WIM, not of a shock.
 4. **The abundances describe the WIM excitation, not the filament.**
    - N2 = log([N II]6583/Hα) = −0.153 to −0.097.
    - This is outside the validity ranges of Pettini & Pagel (2004; −2.5 < N2 < −0.3) and Marino et al. (2013; −1.6 < N2 < −0.2).
-   - Eq. 6 is the *linear* Pettini & Pagel (2004) relation. It gives 8.81–8.85 (paper 8.82). PP04's third-order polynomial would give 9.09–9.18.
-   - Dopita et al. (2016) gives 8.64–8.75 (paper 8.70). The nebula-free P4 gives 8.85 and 8.75. The paper itself notes that the background "yields relatively consistent results" (p. 15).
+   - Eq. 6 is the *linear* Pettini & Pagel (2004) relation. It gives 8.81–8.84 for P1–P3 (paper 8.82). PP04's third-order polynomial would give 9.09–9.18.
+   - Dopita et al. (2016) gives 8.64–8.72 for P1–P3 (paper 8.70). The nebula-free P4 gives 8.84 and 8.75. The paper itself notes that the background "yields relatively consistent results" (p. 15).
    - Both calibrations assume gas photoionized by stars. In the WIM, a high [N II]/Hα traces a higher T_e (Haffner et al. 1999; Madsen et al. 2006), not a higher N/H.
-5. **The energetics arithmetic is reproduced, but the printed age formula is wrong and the inputs are invalid.**
+5. **The energetics arithmetic is reproduced, apart from a misprint in the printed age formula, but the inputs are unsupported.**
    - Reproduced: V_s = 119.3 km s⁻¹ (n_e = 64, n₀ = 1) and E = 2.01×10⁵¹ erg.
-   - R_PDS = 17.1 pc, not 18; 18 pc would require E = 2.41×10⁵¹ erg.
-   - The printed age formula ends in "+1" where Cioffi et al. (1988) has "+1/3". Ages below use V_s = 119.3 (`verify_paper_energetics.json`); V_s = 119 changes them by ≤ 0.01×10⁴ yr.
-     - With "+1/3" the age is 7.95×10⁴ yr.
-     - As printed, it is 8.72×10⁴ yr.
-     - The closest value to the quoted 6.8×10⁴ yr is 6.74–6.75×10⁴ yr, which requires both "+1/3" and the rounded R_PDS = 18 pc.
-   - Every input is invalid or unsupported:
+   - R_PDS = 17.1 pc, within the quoted 18 ± 2.8 pc (exactly 18 pc would require E = 2.41×10⁵¹ erg).
+   - The printed age formula ends in "+1" where Cioffi et al. (1988) has "+1/3". This is a misprint that does not affect the quoted age. Ages below use V_s = 119.3 (`verify_paper_energetics.json`); V_s = 119 changes them by ≤ 0.01×10⁴ yr.
+     - With "+1/3" the age is 7.95×10⁴ yr, within the quoted (6.8 ± 1.8)×10⁴ yr.
+     - As printed, it would be 8.72×10⁴ yr.
+     - The quoted 6.8×10⁴ yr is reproduced (6.74–6.75×10⁴ yr) with "+1/3" and the paper's R_PDS = 18 pc.
+   - Every input, however, is unsupported:
      - R_s = 30 pc follows from the 160 pc unit error (Section 1);
      - n₀ = 1.0 ± 0.3 is adopted, not measured;
-     - V_s comes from the WIM [S II] density, and that density is itself wrong (item 2).
+     - V_s comes from the WIM [S II] density, which is not a property of the filament (item 2).
    - With the paper's n₀ = 1 and V_s = 119 km s⁻¹, E = 1.2–1.7×10⁵² erg at ~280 pc (R_s = 52.5–59.1 pc) and 2.9–4.2×10⁵⁴ erg at 1.6 kpc.
-   - **Balmer bound.** A *complete* radiative shock yields at least 0.117 Hβ photons per swept-up H atom. The Hβ non-detection (≤ 0.057 R from SDSS at 2σ, up to a conservative 0.12 R from an older DESI estimate), with limb brightening of 3–18.6, then bounds n₀ ≤ 0.002–0.034 cm⁻³ and E ≤ 1.4×10⁴⁹–2.9×10⁵⁰ erg at 280 pc. These are model scalings, from `verify_paper_energetics.json`. The bound does not apply to an incomplete shock; our column-truncated shock models give n₀ ≈ 0.012–0.042 cm⁻³ (model only).
-6. **The [O III] width is not established, and λ4959 is below the paper's own threshold.**
+   - **Balmer bound.** A *complete* radiative shock yields at least 0.117 Hβ photons per swept-up H atom. The Hβ non-detection (I(Hβ) ≤ 0.15 R at 2σ, from [O III]/Hβ > 11 at 1.62 R in DESI), with limb brightening of 3–18.6, then bounds n₀ ≤ 0.005–0.043 cm⁻³ and E ≤ 4.2×10⁴⁹–3.8×10⁵⁰ erg at ~280 pc. These are model scalings with the relations of `scripts/verify_paper_energetics.py`; the stored `verify_paper_energetics.json` predates this Hβ limit and gives tighter, superseded bounds. The bound does not apply to an incomplete shock; our column-truncated shock models give n₀ ≈ 0.012–0.13 cm⁻³ at 282 pc (model only).
+6. **The [O III] width is not established unless the tabulated S/N is a peak value, and λ4959 is below the paper's own threshold.**
    - We simulated the paper's procedure at S/N 6.1: Gaussian fits, an instrumental FWHM of 40 ± 1.5 km s⁻¹ (R ≈ 7500) and the cut FWHM_obs − err > FWHM_inst + err (Sect. 3.2.2). Our fits use a linear continuum where the paper used a quadratic one.
    - Fits that pass the cut return medians of 35.8, 36.6, 40.0 and 46.9 km s⁻¹ for true widths of 5.4, 20, 30 and 45 km s⁻¹. The pass fractions are 10, 24, 48 and 82 % (Figure C6d).
    - At an integrated S/N of 6.1, a 43–49 km s⁻¹ result therefore cannot distinguish an unresolved line from a 45 km s⁻¹ one.
-   - The paper does not define its S/N. If it is a peak S/N, the integrated S/N is higher and the bias smaller: at S/N 15 the medians are 22.8–44.7 km s⁻¹, and 43–49 km s⁻¹ would then point to an intrinsic width of ≈ 45 km s⁻¹. DESI fibre spectra suggest ≤ 33 km s⁻¹, but that width has not been re-verified (`notes/w3_canon.md` §12, C7).
+   - The paper does not define its S/N. If it is a peak S/N, the integrated S/N is higher and the bias smaller: at S/N 15 the medians are 22.8–44.7 km s⁻¹, and 43–49 km s⁻¹ would then point to an intrinsic width of ≈ 45 km s⁻¹. In DESI stacks near P1 and P3 the line is unresolved (intrinsic FWHM < 40 km s⁻¹ at 97.5 %; `notes/paper_appendix_desi.md`), consistent with an earlier filament-wide estimate of ≤ 33 km s⁻¹ (`notes/w3_canon.md` §12, C7).
    - Table 2 gives λ4959 S/N = 1.8–2.3, below the "S/N > 3" usability criterion of Sect. 3.2.1 (p. 8). That is the value expected from λ5007 at S/N 6.1–6.6 and a ratio of 2.98 (Storey & Zeippen 2000), namely 2.05–2.21.
    - The resulting 5007/4959 = 2.29 ± 1.33, 2.44 ± 1.28 and 2.53 ± 1.17 carry no information.
    - λ4959 also lies only 9 Å inside the 4950 Å blue-arm edge (Sect. 2.2).
@@ -652,7 +658,7 @@ The problems are in how these numbers are interpreted.
      - Eq. 6 is called "third-order" but is linear.
      - Table 2's P3 doublet ratio is 1.19, whereas its intensities 0.11/0.10 give 1.10.
      - P4's [N II]/Hα = 0.95 matches neither the line sum (1.12) nor λ6583 alone (0.80). The P1–P3 values follow the sum.
-     - The age formula has "+1", and R_PDS = 18 vs 17.1 pc (item 5).
+     - The printed age formula has "+1" where Cioffi et al. (1988) has "+1/3" (a misprint; item 5).
      - The solar O/H of 8.66 is attributed to Allende Prieto et al. (2001), who give 8.69 ± 0.05. The value 8.66 is Asplund et al. (2004)'s; Pettini & Pagel (2004) cite the two together. This is immaterial (0.03 dex).
    - From `notes/geometry.md` §4.1:
      - Fig. 4 plots 173 [O III] fibres, against 279 in the text (p. 6).
@@ -678,17 +684,17 @@ The problems are in how these numbers are interpreted.
 
 | Claim (location) | Paper value | Reproduced / implied value | Verdict |
 |---|---|---|---|
-| [S II] n_e (Sect. 3.4, Fig. 7b, pp. 13–14) | median 64, up to 150 cm⁻³; background lower | Table 2 R = 1.03–1.19 (σ_R 0.03 or 0.2–0.3) → **169–400** (Eq. 5), **225–631** (5-level); P4 highest | Not supported by Table 2; unphysical for WIM (EM, sightline LDL) |
+| [S II] n_e (Sect. 3.4, Fig. 7b, pp. 13–14) | mean 64 (107 per-fibre values), up to 150 cm⁻³; background lower | Regional Table 2 R = 1.03–1.19 (σ_R 0.03 or 0.2–0.3), at face value → **169–400** (Eq. 5), **225–631** (5-level); P4 highest | Not supported by Table 2, which constrains no density within its ±0.02 intensity errors; unphysical for WIM (EM, sightline LDL) |
 | R for 64 / 150 cm⁻³; low-density limit (p. 14) | LDL ~1.42 | 64 → R 1.33 (Eq. 5) / 1.37 (5-level); 150 → 1.23 / 1.27–1.28; LDL 1.437–1.462 | Not reached by any region |
-| T_e, Eq. 2 (Sect. 3.4, p. 12) | ≈ 9000 K; 1–2×10⁴ K on filament vs 7.5×10³ K in P4 | 6780 / 6580 / 3220 / 7660 K; σ_T 7300–10 700 K; P(T<0) 18–38 % | Unconstrained; no on/off difference |
+| T_e, Eq. 2 (Sect. 3.4, p. 12) | ≈ 9000 K; 1–2×10⁴ K on filament vs 7.5×10³ K in P4 | 6780 / 6580 / 3220 / 7660 K; σ_T 7300–10 700 K; P(T<0) 18–38 % | Unconstrained; the regional widths show no on/off difference |
 | V_t, Eq. 3 (Table 4, p. 13) | 33.1 / 32.9 / 30.6 / 29.9 km s⁻¹ | 26.7 / 25.7 / 29.9 / 26.5 km s⁻¹ | Not reproduced from Table 2 widths; P4 equal (WIM) |
-| 12+log(O/H), N2, Eq. 6 (Sect. 3.5, p. 14) | 8.82, "third-order polynomial" | Linear PP04: 8.81–8.85 (cubic 9.09–9.18); N2 = −0.15…−0.10, outside calibration; P4 8.85 | Arithmetic OK; calibration invalid; WIM |
-| 12+log(O/H), N2S2Hα, Eqs. 7–8 | 8.70 | 8.64–8.75; P4 8.75 | Arithmetic OK; describes WIM |
-| V_s (Dopita 1979), Sect. 4.1 | 119 ± 5 km s⁻¹ | 119.3 km s⁻¹ (n_e 64, n₀ 1), but n_e is wrong and is WIM | Input invalid |
-| E (Boumis et al. 2022), Sect. 4.1 | (2.0 ± 0.7)×10⁵¹ erg | 2.01×10⁵¹ (160 pc); 1.2–1.7×10⁵² (280 pc, n₀ 1); 2.9–4.2×10⁵⁴ (1.6 kpc); complete-shock Balmer bound ≤ 1.4×10⁴⁹–2.9×10⁵⁰ (280 pc) | Arithmetic OK; inputs invalid |
-| R_PDS (Cioffi et al. 1988) | 18 ± 2.8 pc | 17.1 pc (18 needs E = 2.41×10⁵¹) | Minor error |
-| Age (Cioffi et al. 1988) | (6.8 ± 1.8)×10⁴ yr | 7.95×10⁴ ("+1/3"); 8.72×10⁴ (printed "+1"); 6.74–6.75×10⁴ only with "+1/3" and R_PDS = 18 | Formula misprinted; inputs invalid |
-| Intrinsic [O III] FWHM (Table 2) | 46.9 / 48.9 / 43.1 km s⁻¹ | Passing fits return 36–47 km s⁻¹ for true 5–45 km s⁻¹ (integrated S/N 6.1); 23–45 km s⁻¹ at S/N 15 | Not established; S/N undefined |
+| 12+log(O/H), N2, Eq. 6 (Sect. 3.5, p. 14) | 8.82, "third-order polynomial" | Linear PP04: 8.81–8.84 for P1–P3 (cubic 9.09–9.18); N2 = −0.15…−0.10, outside calibration; P4 8.84 | Arithmetic OK; calibration invalid; WIM |
+| 12+log(O/H), N2S2Hα, Eqs. 7–8 | 8.70 | 8.64–8.72 for P1–P3; P4 8.75 | Arithmetic OK; describes WIM |
+| V_s (Dopita 1979), Sect. 4.1 | 119 ± 5 km s⁻¹ | 119.3 km s⁻¹ (n_e 64, n₀ 1), but n_e is that of the WIM | Arithmetic OK; input unsupported |
+| E (Boumis et al. 2022), Sect. 4.1 | (2.0 ± 0.7)×10⁵¹ erg | 2.01×10⁵¹ (160 pc); 1.2–1.7×10⁵² (280 pc, n₀ 1); 2.9–4.2×10⁵⁴ (1.6 kpc); complete-shock Balmer bound ≤ 4.2×10⁴⁹–3.8×10⁵⁰ (~280 pc) | Arithmetic OK; inputs unsupported |
+| R_PDS (Cioffi et al. 1988) | 18 ± 2.8 pc | 17.1 pc (18 needs E = 2.41×10⁵¹) | Reproduced within the quoted uncertainty |
+| Age (Cioffi et al. 1988) | (6.8 ± 1.8)×10⁴ yr | 7.95×10⁴ ("+1/3"); 8.72×10⁴ (printed "+1"); 6.74–6.75×10⁴ with "+1/3" and R_PDS = 18 | Reproduced within the quoted uncertainty; "+1" is a misprint; inputs unsupported |
+| Intrinsic [O III] FWHM (Table 2) | 46.9 / 48.9 / 43.1 km s⁻¹ | Passing fits return 36–47 km s⁻¹ for true 5–45 km s⁻¹ (integrated S/N 6.1); 23–45 km s⁻¹ at S/N 15 | Not established unless the S/N is a peak value; S/N undefined |
 | [O III] λ4959 (Table 2; Sect. 4.1) | "strong λλ4959,5007"; S/N 1.8–2.3 | Expected S/N 2.05–2.21; 5007/4959 = 2.3–2.5 ± 1.2–1.3 | Below the paper's S/N > 3 cut; uninformative |
 
 **Consequence.**
@@ -697,17 +703,17 @@ The problems are in how these numbers are interpreted.
   - n_e;
   - T_e and V_t;
   - O/H.
-- The only filament-specific LAMOST observable is [O III] λ5007, at S/N ≈ 6. Its width is not established.
-- The shock velocity, explosion energy, PDS radius and age have no observational basis. With the paper's own n₀ = 1, E rises to 10⁵² erg at 280 pc and 10⁵⁴ erg at 1.6 kpc. For a complete shock, the Balmer limit allows at most ~3×10⁵⁰ erg at 280 pc.
+- The only filament-specific LAMOST observable is [O III] λ5007, at S/N ≈ 6. Its width is not established unless the tabulated S/N is a peak value.
+- The shock velocity, explosion energy, PDS radius and age have no observational basis. With the paper's own n₀ = 1, E rises to 10⁵² erg at 280 pc and 10⁵⁴ erg at 1.6 kpc. For a complete shock, the Balmer limit allows at most ~4×10⁵⁰ erg at ~280 pc.
 - The radio statement does not support an old SNR.
-- The paper's own fallback in Sect. 4.2 ("DIG or ionized bubble cannot be excluded") is correct for the red lines. A "possible SNR" interpretation must rest on other evidence, such as [O III]/Hβ or [O III]/Hα, not on the evidence presented in Sects. 3.4–4.1.
+- The paper's own fallback (Abstract and Sect. 5: a DIG or ionized-bubble origin "cannot be fully excluded") is correct for the red lines. A "possible SNR" interpretation must rest on other evidence, such as [O III]/Hβ or [O III]/Hα, not on the evidence presented in Sects. 3.4–4.1.
 
 **Requested correction.**
 1. **Shock criterion.** Delete "confirming that the ionized gas is shock-excited" (Sect. 4.1), and the threshold claim in the abstract and Sect. 5. Replace them with: *"The red-arm ratios are indistinguishable in the nebula-free region P4 and are typical of the faint WIM; they do not constrain the excitation of the [O III] filament."* Make the 0.4/0.45/0.5 threshold consistent throughout.
 2. **[S II] density.** Give the uncertainty of each Table 2 doublet ratio. Replace the density paragraph with the Table 2-implied values, or with a statement that the doublet ratios are not physically interpretable. Withdraw the [S II] density as a "post-shock" density and as the density of "the [O iii]-emitting gas" (p. 15). Correct the low-density limit to ≈ 1.45, and correct the background-density statement.
-3. **T_e and V_t.** Report T_e per region with its uncertainty and delete "1–2×10⁴ K". Recompute Table 4's V_t from Eq. 3, or state how it was derived.
+3. **T_e and V_t.** Report T_e per region with its uncertainty, and give the per-fibre uncertainty behind "1–2×10⁴ K" or withdraw it. Recompute Table 4's V_t from Eq. 3, or state how it was derived.
 4. **Abundances.** Call Eq. 6 the linear PP04 relation. State that N2 lies outside the calibrated range and that the abundances characterize the line-of-sight WIM.
-5. **Energetics.** Correct the age bracket to "+1/3" and R_PDS to 17.1 pc. Either remove E and the age, or present them as illustrative scalings with n₀ and the distance stated as unknown.
+5. **Energetics.** Correct the misprinted age bracket from "+1" to "+1/3". Either remove E and the age, or present them as illustrative scalings with n₀ and the distance stated as unknown.
 6. **[O III] widths.** Define the S/N in Table 2. Then either show by simulation that the widths survive the FWHM cut at that S/N, or replace them with "not constrained at this S/N". Flag λ4959 as below the S/N threshold, and remove "strong".
 7. **Radio.** Replace the radio sentence with *"Interferometric surveys are insensitive to smooth structures larger than ≈ 8′ (NVSS) or 10′–20′ (TGSS); they provide no constraint on smooth emission from a 17′-wide filament."*
 8. **Inconsistencies.** Correct the items listed in point 8.
@@ -719,8 +725,8 @@ The problems are in how these numbers are interpreted.
 - **The [O III] filament is real line emission, and P4 is free of it.** DESI DR1 detects it independently at ~30σ against empirical nulls. SDSS/BOSS sky fibres detect it along its whole length, and SDSS imaging sky levels show it from 2002 onward (`REPORT.md` §2, §4).
 - **The red-arm lines (Hα, [N II], [S II]) are foreground/background warm ionized gas** (Sect. 4.2). WHAM shows the same component on and off the filament.
 - **The red-arm [N II] and [S II] velocities agree with WHAM,** and the LAMOST stellar heliocentric correction for this plate is correct (Section 3).
-- **A shock origin of the [O III] is plausible.** DESI and SDSS spectra give [O III]/Hβ > 11 (2σ), [O II]/[O III] ≈ 1.1–1.2 and He II/[O III] < 0.026. That is a Balmer-dark, collisionally excited spectrum, best matched by an incompletely cooled radiative shock (`REPORT.md` §5). It rests on evidence the paper did not have, since MRS-N has no Hβ.
-- **Two conversions are arithmetically correct:** the energy formula (E = 2.01×10⁵¹ erg for the paper's inputs) and the magnitude-to-rayleigh conversion.
+- **A shock origin of the [O III] is plausible.** DESI gives [O III]/Hβ > 11 (2σ; SDSS ≈ 23, 13–48), and DESI and SDSS give [O II]/[O III] ≈ 1.1–1.2 in the south. He II is not detected (He II/[O III] < 0.026, a bootstrap limit that does not include the 0.02 rms scatter of line-free null windows). That is a Balmer-dark, collisionally excited spectrum, best matched by an incompletely cooled radiative shock (`REPORT.md` §5). The spectrum rejects photoionization equilibrium (p ≤ 0.007), and no ionizing source is known; photoionization with extra heating and a statically heated layer are disfavoured, not excluded. The shock model has no radiative transfer and overpredicts the NUV by a factor of 1.5–2. All of this rests on evidence the paper did not have, since MRS-N has no Hβ.
+- **The energetics and the magnitude-to-rayleigh conversion are arithmetically correct.** The paper's inputs reproduce V_s = 119.3 km s⁻¹ and E = 2.01×10⁵¹ erg and, within the quoted uncertainties, R_PDS (17.1 pc against 18 ± 2.8 pc) and the age (7.95×10⁴ yr against (6.8 ± 1.8)×10⁴ yr). The "+1" in the printed age formula, where Cioffi et al. (1988) has "+1/3", is a misprint that does not affect the quoted age (Section 6).
 
 ## 8. Consolidated requested corrections
 
@@ -731,7 +737,7 @@ Each item is detailed in the "Requested correction" paragraph of the section cit
 3. **[O III] velocities** (Section 3). Document the blue-arm wavelength frame. Re-measure the velocities in the vacuum heliocentric frame, or lower them by ≈ 10 km s⁻¹. Withdraw the [O III]/red-line offset, the two-layer-shell discussion and the [O III] distances.
 4. **Hα velocities** (Section 4). Flag the +4–7 km s⁻¹ Hα offset and remove the Hα distances. Report the sky-subtraction parameters, and plot per-fibre Hα − [N II] against the sky/nebula ratio.
 5. **Surface brightness** (Section 5). Correct or withdraw the Table 3 values and the Sect. 4.1 comparison. Document the photometry: instrument, filter curve, apertures, background model and zero-point units.
-6. **Diagnostics and energetics** (Section 6). Restate the red-line ratios as WIM properties, and correct the [S II] densities, T_e/V_t and abundance statements. Correct the age bracket ("+1/3") and R_PDS (17.1 pc), and present E and the age only as scalings with unknown d and n₀. Qualify the [O III] widths and λ4959, and remove the radio argument.
+6. **Diagnostics and energetics** (Section 6). Restate the red-line ratios as WIM properties, and correct the [S II] densities, T_e/V_t and abundance statements. Correct the misprinted age bracket ("+1" to "+1/3"), and present E and the age only as scalings with unknown d and n₀. Qualify the [O III] widths and λ4959, and remove the radio argument.
 7. **Data.** Release the MRS-N per-fibre spectra of plate MN074209N160100N01 (2024-02-01), red and blue arms, with the subtracted sky templates and wavelength-frame metadata. Our [O III] and Hα corrections are aggregate estimates, and per-fibre spectra are needed to confirm them.
 8. **Credit.** Make the AJ acknowledgment consistent with the text: "discovered and named by the SWONS team" and "detected for the first time to its full extent" should acknowledge the independent NSNS (Ziegenbalg 2025, RNAAS, published 14 months earlier) and Schaeffer/Fesen/Drechsler discoveries (`REPORT.md` §1.1).
 
@@ -749,7 +755,7 @@ Each item is detailed in the "Requested correction" paragraph of the section cit
   | 5 | `dispute_brightness_*.py` | `dispute_brightness_*.json` |
   | 6 | `dispute_other_fig6.py` | `dispute_other_values.json` |
 
-- **Independent data.** DESI DR1 came via NOIRLab Data Lab/SPARCL. Also used: SDSS DR17/DR18/DR19, WHAM-SS DR1, GALEX, eROSITA DR1 and NSNS DR0.2. Methods and caveats are in `notes/verify_*.md` and `notes/w3_*.md`.
+- **Independent data.** DESI DR1 came via NOIRLab Data Lab/SPARCL. The DESI spectra are DR1 coadds of galaxy and quasar targets minus the redshift-fitter model, not DESI sky fibres; the per-region analysis near P1 and P3 is in `notes/paper_appendix_desi.md`. Also used: SDSS DR17/DR18/DR19, WHAM-SS DR1, GALEX, eROSITA DR1 and NSNS DR0.2. Methods and caveats are in `notes/verify_*.md` and `notes/w3_*.md`.
 - **Assembly.** This document was assembled by `scripts/dispute_assemble.py` from `notes/dispute/*.md` and rendered by `scripts/make_report_html.py DISPUTE`.
 - **Not available to us.** The MRS-N nebular spectra are not public, and neither are the SWONS photometric inputs or DESI sky-fibre spectra (NERSC-hosted). Where these limit a conclusion, the relevant section says so.
 

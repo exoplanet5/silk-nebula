@@ -69,7 +69,7 @@ The paper is right that the red-arm lines trace a foreground/background WIM, the
 | Traditional distance (kpc) from Hα / [N II] / WHAM velocity | 0.43 / none / 0.13 | 0.56 / 0.01 / none | 0.57 / none / 0.08 | 0.77 / 0.09 / 0.05 | — |
 
 **Consequence.**
-- **The Hα velocities are red-biased.** The Hα V_helio and V_LSR in Table 4 and Fig. 5 carry a +4.5…+6.7 km s⁻¹ systematic error. Neither the quoted 1.2–1.4 km s⁻¹ errors nor the "< 1.5 km s⁻¹" precision covers it. The Hα velocity is no evidence of a separate nebular or DIG component, and it must not be used for distances.
+- **The Hα velocities are red-biased.** The Hα V_helio and V_LSR in Table 4 and Fig. 5 carry a +4.5…+6.7 km s⁻¹ systematic error. Neither the quoted 1.2–1.4 km s⁻¹ errors nor the "< 1.5 km s⁻¹" precision covers it. The Hα velocity is no evidence of a separate nebular or DIG component, and the Hα-based kinematic distances inherit the bias.
 - **The Hα distances come from the offset.** At the local gradient of 8.9–9.8 km s⁻¹ kpc⁻¹, the Hα − [N II] offset alone is worth 0.49–0.69 kpc. The printed Hα distances (0.31–0.80, in kpc per Sect. 1) owe their size to it. With the [N II] or WHAM velocity, the same rotation model gives no solution or 0.01–0.13 kpc, which carries no information here (Sect. 2).
 - **Widths, temperatures and line ratios are affected too (model only).** In the adopted fit, the residual changes the Hα widths by −3…+5 km s⁻¹ and the Hα flux by −19…−29 %.
   - The Eq. 2 temperatures shift by −4100…+7400 K. That is comparable to the 3200–7700 K that Eq. 2 gives from the Table 2 widths.
@@ -85,7 +85,7 @@ The paper is right that the red-arm lines trace a foreground/background WIM, the
    - Plot per-fibre Hα − [N II] against the sky/nebula ratio. A subtraction artefact grows with this ratio; a rest-wavelength error does not.
 4. **Release the spectra.** Publish the red-arm spectra of P1–P4 with the subtracted sky template.
 
-Suggested erratum: *"The Hα radial velocities in Table 4 and Fig. 5 are 4–7 km s⁻¹ redder than the simultaneously measured [N II] and [S II] lines and than WHAM Hα. On this plate the geocoronal Hα line lies within one resolution element of the nebular line and has comparable strength. The offset is most plausibly due to imperfect subtraction of the geocoronal line. The Hα velocities and Hα-based kinematic distances should not be used."*
+Suggested erratum: *"The Hα radial velocities in Table 4 and Fig. 5 are 4–7 km s⁻¹ redder than the simultaneously measured [N II] and [S II] lines and than WHAM Hα. On this plate the geocoronal Hα line lies within one resolution element of the nebular line and has comparable strength. The offset is most plausibly due to imperfect subtraction of the geocoronal line. The Hα velocities and Hα-based kinematic distances carry this systematic error and need confirmation."*
 
 **References used in this section.**
 - Wu, Y.-F., Jia, S.-Y., Wu, C.-J., Zhang, C., et al. (2026), The Silk Nebula: A Newly Discovered Giant [O III] Emission Filament, AJ 172, 298, doi:10.3847/1538-3881/aeb11c, arXiv:2610.13329 [verified via Crossref and arXiv API]

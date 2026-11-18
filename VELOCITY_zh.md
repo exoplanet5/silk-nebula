@@ -4,8 +4,10 @@
 
 *2026-11-17。本页把丝绸星云（Silk Nebula）的所有速度集中在一处：Wu et al.（2026，arXiv:2610.13329；下称“论文”）给出的 [O III]、Hα、[N II] 与 [S II]，以及 DESI、SDSS/BOSS、WHAM 和 GALFA-HI 的测量。本页注明每个数值的参考系（reference frame），并指出哪些数值正确。所有速度单位为 km/s，正值表示退行。推导见 [DISPUTE.md](DISPUTE.md) 第 1–4 节。*
 
+*2026-11-18 已与期刊格式的稿件 [paper/silk_comment.pdf](paper/silk_comment.pdf)（下称“稿件”）核对一致；该稿件是本研究最新、核查最仔细的表述。*
+
 **结论。**
-- 在南段丝状结构（filament，P1–P3）上，去除 LAMOST 的两处错误之后，所有数据集中的所有谱线都位于 **V_helio ≈ +12…+14，V_LSR ≈ 0…+2**。
+- 在南段丝状结构（filament，P1–P3）上，去除 LAMOST 的两处错误之后，所有数据集中的所有谱线都位于 **V_helio ≈ +12…+14，V_LSR ≈ 0…+2**。唯一的例外是 P3 附近的 DESI，为 +8…+9（§5.1）。
 - **论文的 [O III] 偏高 10.1 ± 1.0 km/s。** 高斯拟合没有问题，错的是波长标度：它采用空气波长（air wavelength），且处于望远镜自身的参考系（站心，topocentric），因此 −8.3 km/s 的地球运动改正从未施加，另外还多出 +1.8 km/s 的气辉（airglow）偏移。
 - **论文的 Hα 偏高 5.5 ± 1.1 km/s**（相对于论文自身的 [N II]、[S II] 以及 WHAM）。参考系没有问题，但谱线中心有偏差，最可能的原因是地冕（geocoronal）Hα 被过度扣除。
 - **论文的 [N II] 与 [S II] 是正确的。** **DESI、SDSS/BOSS、WHAM 和 GALFA-HI** 也都正确。
@@ -95,9 +97,11 @@ DESI 与 SDSS 测量的是丝状结构相对于周围天空的超出部分（exc
 
 P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 根光纤。
 
+DESI 一行是 S/N > 4 的正残差光纤的加权平均，不含 ±1.5 的零点。这些光谱是 DR1 中星系与类星体目标的合并光谱（coadd）减去红移拟合模型后的残差，并非天光光纤。ON−OFF 叠加可抵消焦面花瓣（petal）的天光平均值，在 P1 给出 +12.3 ± 1.1，在 P3 给出 +8.0 ± 0.9。P1 与采用值 +13.3 ± 1.0（§5.2）一致；P3 低 4–5 km/s。在 P3 内部，ON−OFF 速度在 E 主脊线以东为 +11.2 ± 1.1，以西为 +5.5 ± 1.0，相差 3–4σ（稿件附录 A）。
+
 ### 5.2 整条丝状结构
 
-此处 V_LSR 采用南段的平均改正 −12.2 km/s。
+此处 V_LSR 采用南段的平均改正 −12.2 km/s。WHAM 与 GALFA-HI 是在 V_LSR 中观测的，并逐个位置换算为 V_helio（6 个 WHAM 波束的平均改正为 −12.5），因此它们两列之差并不恰好等于 12.2。
 
 | 测量 | V_helio | V_LSR | 状态 |
 |---|---|---|---|
@@ -109,7 +113,7 @@ P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 �
 | **SDSS/BOSS，ON−OFF，全部分支** | **+9.6 ± 2.8** | −2.6 | 正确 |
 | SDSS/BOSS，第二次分析，全部分支 | +12.3 ± 2.5 | +0.1 | 正确 |
 | SDSS/BOSS，第二次分析，南段（Dec < 20°） | +10.0 ± 1.8 ± 0.8 | −2.2 | 正确 |
-| **采用值：三个粗体值的加权平均** | **+13.3 ± 1.0** | **+1.2 ± 1.0**（Schönrich 为 +1.5） | χ² = 2.2，自由度 2 |
+| **采用值：三个粗体值的加权平均** | **+13.3 ± 1.0** | **+1.2 ± 1.0**（Schönrich 为 +1.5） | χ² = 2.2，自由度 2；另有 ±1 的估计量系统误差。仅用 DESI 与 SDSS 得 +12.9 ± 1.6 |
 | WHAM Hα，丝状结构上，南段（6 个波束） | +13.8 ± 0.8 | +1.3 | 本地 WIM |
 | GALFA-HI 主脊线上的峰值，Dec +12…+22° | +14.2 (13.1–15.5) | +1.8 | 本地中性气体 |
 | Ca II / Na I 吸收，本地成分 | +6…+15 | — | 本地气体 |
@@ -143,7 +147,7 @@ P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 �
   - 相比之下，[N II] − [S II] = +0.1 ± 1.4，[N II] − WHAM = −0.8 ± 1.0。
   - 在无星云的 P4 中，偏移同样大。
 - **这不是参考系错误。** 参考系错误也会移动 [N II] 和 [S II]，但它们没有移动，因此任何参考系改正都无法修正 Hα。
-- **可能的原因是地冕 Hα。** 当晚地冕线位于 V_helio −10.7 至 −11.4，与 WIM 仅相距 22–25 km/s，小于一个分辨单元。被扣除的天光模板亮度为论文所给谱线的 0.86–1.27 倍。约 30 %（24–33 %）的过度扣除即可同时复现该偏移和谱线宽度。
+- **一个合理的解释是地冕 Hα。** 当晚地冕线位于 V_helio −10.7 至 −11.4，与 WIM 仅相距 22–25 km/s，小于一个分辨单元。被扣除的天光模板亮度为论文所给谱线的 0.86–1.27 倍。对 Hα 偏移和线宽的联合拟合需要约 30 %（24–33 %）的过度扣除。它能复现谱线宽度以及约四分之三的偏移；若把模板固定在流程给出的位置，则约为一半。
   - 这仅是模型：光谱尚未公开。
 - **应改用什么。** 采用 [N II] 与 [S II] 或 WHAM 的速度：V_helio ≈ +12…+13，V_LSR ≈ 0。论文给出的 +4…+6 偏高。
 
@@ -159,7 +163,7 @@ P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 �
 
 - **谱线偏移不是物理的。** [O III] 与红端谱线之间“∼5–15 km/s（V_helio）/ ∼10–16 km/s（V_LSR）”的偏移，就是 +10.1 的参考系错误，再加上 Hα 的 +5.5。没有需要解释的物理现象，因此“双层壳层”（two-layer shell）与“非均匀膨胀泡”两种解释都不再成立。
 - **没有可用的运动学距离。** 论文的 [O III] 距离使用 V_LSR = +11…+16；改正后 V_LSR 为 +1…+5（采用值 +1.2）。
-  - 在这条视线上，银河系自转在 160 pc 处仅给出 ~1.6 km/s，梯度约为每 kpc 9 km/s，而本动速度（peculiar motion）为 7–10 km/s。
+  - 在这条视线上，银河系自转在 160 pc 处仅给出 ~1.6 km/s，梯度约为每 kpc 8–9 km/s，而本动速度（peculiar motion）为 5–10 km/s。
   - 此外，印出的距离单位是 kpc，而不是 100 pc（DISPUTE.md 第 1–2 节）。
 
 ## 7. 孰是孰非
@@ -175,7 +179,7 @@ P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 �
 | 论文：V_LSR 列 | 算术不一致，且继承上述两项错误 | ±1–3，另加上述误差 |
 | 论文：[O III] 与红端谱线的偏移；双层壳层 | **错误**：假象（artefact） | — |
 | 论文：[O III] 运动学距离“∼160 pc” | **错误**：把 kpc 读作 100 pc，且该方法在此方向给不出距离 | ×10 |
-| DESI DR1 [O III] | 正确 | +11…+14 |
+| DESI DR1 [O III] | 正确 | +11…+14（P1 +12；P3 +8…+9） |
 | SDSS/BOSS [O III] | 在误差范围内正确 | +10…+12 |
 | WHAM Hα；GALFA-HI | 正确 | V_LSR ≈ +1…+2 |
 | 本项目的 −10.1 改正 | 与 DESI、SDSS 及气辉检验一致；无法逐根光纤核实 | ±1.0 |
@@ -185,14 +189,16 @@ P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 �
 - **−10.1 改正是整体施加的。** 图 3a（位置未注明）是唯一显示气辉的已发表光谱，而逐根光纤的 MRS-N 光谱尚未公开。观测板零点（0.2–4 km/s）无法核实。
 - **Hα 偏差的成因是模型推断。** 当晚的地冕强度未知，但偏差本身并不取决于成因。
 - **丝状结构的速度沿其长度变化。**
-  - DESI 在 Dec < 19.5° 给出 +10.6 (10.2–12.0)，在 Dec ≥ 19.5° 给出 +20.9 (18.5–23.1)。P2 恰在该边界上。
+  - DESI 的联合回归在 Dec < 19.5° 给出 +10.6 (10.2–12.0)，在 Dec ≥ 19.5° 给出 +20.9 (18.5–23.1)。这一对数值相差 10.3 km/s，处于各估计的高端：在六种估计量中，北段在 V_helio 中偏红 +4 至 +9 km/s（1.8–3.7σ；在 V_LSR 中为 +7 至 +11），因此偏移的大小取决于估计量。
   - 在北段，WHAM 给出 +10.3 ± 1.3，因此北段 [O III] 比当地 WIM 更红；它与北段的 HI 一致。
-  - SDSS 与 DESI 对 W 分支（W strand）的结果不一致：+9.7 ± 2.2 对 +18.5，相差 8.8 ± 2.5。
+  - SDSS 给出的南北偏移为 +6.7 ± 6.5，与 DESI 一致，但在 Dec 17.6–21° 与 DESI 不一致：+10.0 ± 2.2 对 +17 至 +23（2–3σ）。P2（Dec +17.7°）位于该区段的南缘。因此北段的偏移只由 DESI 支撑。E 分支与 W 分支（strand）的 DESI 速度相同：+12.0 (11.3–14.3) 与 +11.4 (8.6–15.6)。
+  - 在 P3 附近，DESI 比采用值低 4–5 km/s（§5.1）。
   - 这些都不影响 +10.1 的错误，该错误属于 LAMOST 的波长标度。
 
 ## 来源
 
+- 稿件：[paper/silk_comment.pdf](paper/silk_comment.pdf)，第 3.1–3.2 节、表 2 与附录 A。
 - [DISPUTE.md](DISPUTE.md)：第 1 节，单位；第 2 节，运动学距离；第 3 节，[O III]（表 C4、图 C3）；第 4 节，Hα（表 C5、图 C4）。
-- 笔记：`notes/verify_velocity.md`、`notes/verify_desi.md`、`notes/verify_sdss.md`、`notes/verify_hiwham.md`、`notes/spectra_ism.md`、`notes/paper_review.md`（V_LSR 列，第 6 项）。
+- 笔记：`notes/verify_velocity.md`、`notes/verify_desi.md`、`notes/verify_sdss.md`、`notes/verify_hiwham.md`、`notes/spectra_ism.md`、`notes/paper_review.md`（V_LSR 列，第 6 项）、`notes/w3_northsouth.md`、`notes/paper_appendix_desi.md`。
 - 代码：`scripts/dispute_oiii_values.py`、`scripts/dispute_halpha_analysis.py`、`scripts/verify_velocity_desi_sdss.py`、`scripts/verify_desi_velocity.py`、`scripts/w3_figs_f2_velocity.py`。
-- 数值：`data/derived/verify_velocity_summary.json`、`data/derived/dispute_oiii_values.json`、`data/derived/dispute_halpha_results.json`。
+- 数值：`data/derived/verify_velocity_summary.json`、`data/derived/dispute_oiii_values.json`、`data/derived/dispute_halpha_results.json`、`data/derived/paper_appendix_desi_summary.json`。

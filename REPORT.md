@@ -4,9 +4,12 @@
 
 *Study date 2026-11-16/17. Project folder `~/astronomy/silk-nebula`.*
 
+*The journal-style version of the comment on Wu et al. 2026 is the manuscript [paper/silk_comment.pdf](paper/silk_comment.pdf), which is the latest and most carefully checked statement of the study. This report was reconciled with it on 2026-11-18.*
+
 All numbers come from files in this folder:
 - the canonical table, `notes/w3_canon.md` and `data/derived/w3_canon_values.json`;
-- the later wave-3 notes `w3_oii` and `w3_northsouth`, and the wave-4 notes `w4_*`, which supersede it where needed.
+- the later wave-3 notes `w3_oii` and `w3_northsouth`, and the wave-4 notes `w4_*`, which supersede it where needed;
+- the manuscript and its per-region DESI analysis (`notes/paper_appendix_desi.md`, `data/derived/paper_appendix_desi_summary.json`), which supersede both where they differ.
 
 This was a multi-agent study in four waves:
 1. research;
@@ -41,11 +44,11 @@ The claim that Sergey Koposov found it in DESI data is second-hand. Public DESI 
 - **No detection:** photographic plates (DSS/POSS) and Hα surveys (SHASSA in the south, WHAM).
 - **No test possible:** Pan-STARRS stacks are blind to degree-scale emission by construction, and VTSS does not cover the spine.
 
-**The LAMOST paper.** Wu et al. 2026 (arXiv:2610.13329, AJ 172, 298) reaches a "possible supernova remnant" verdict. That verdict rests on three numerical errors and on a misattributed diagnostic:
+**The LAMOST paper.** Wu et al. 2026 (arXiv:2610.13329, AJ 172, 298) reaches a "possible supernova remnant" verdict. The paper contains three numerical errors (items 1–3), of which the first two underlie the size, energy and age given for the remnant and its "two shell layers", and the verdict itself rests on a misattributed diagnostic (item 4) and on the [O III] morphology:
 1. **The fiducial 160 pc is a units slip.** Table 4 lists the `kd` package's output, which is in kpc, under a "100 pc" label. The paper's own kinematic distance is therefore ~1.6 kpc. Kinematic distances are meaningless in this direction anyway.
-2. **The [O III] velocity is a calibration artefact.** The published +24 to +27 km/s comes from re-referencing the blue arm to air-wavelength airglow, which undid the heliocentric correction. The paper's own Fig. 3 spectrum, measured against its [N I] airglow, gives +13.6 ± 1.2 km/s. The combined value is V_helio = +13.3 ± 1.0 km/s (V_LSR ≈ +1; ±1 km/s estimator systematic), the same as the local warm ionized medium (WIM) and HI. The north is +4–9 km/s redder, following the northern HI. So the claimed [O III]/red-line velocity offset, and everything built on it, disappears.
-3. **The brightness is 4–8× too high.** Every flux-calibrated measurement gives ~1.4–2.5 R on the southern ridge, not 10–13 R.
-4. **Misattributed diagnostic.** The red-arm "shock" ratios ([S II]/Hα, [N II]/Hα, BPT) are identical in the nebula-free background region P4. They describe the foreground/background WIM, not the filament. The paper's own [S II] ratios imply n_e ≈ 225–631 cm⁻³, not the quoted 64–150. The energy and age use invalid inputs.
+2. **The [O III] velocity is a calibration artefact.** The published +24 to +27 km/s is on an air-wavelength, topocentric scale that lacks the heliocentric correction; the simplest explanation is that the blue arm was re-referenced to air-wavelength airglow. The paper's own Fig. 3 spectrum, measured against its [N I] airglow, gives +13.6 ± 1.2 km/s. The combined value is V_helio = +13.3 ± 1.0 km/s (V_LSR ≈ +1; ±1 km/s estimator systematic), the same as the local warm ionized medium (WIM) and HI. The north is +4–9 km/s redder, following the northern HI. So the claimed [O III]/red-line velocity offset, and everything built on it, disappears.
+3. **The brightness is 4.6–8.6× too high.** Every flux-calibrated measurement gives ~1.4–2.5 R on the southern ridge, not 10–13 R.
+4. **Misattributed diagnostic.** The red-arm "shock" ratios ([S II]/Hα, [N II]/Hα, BPT) are the same, within 1σ, in the nebula-free background region P4. The paper notes this itself (its Sects. 4.1, 4.2) but concludes that the remnant dominates. The ratios describe the foreground/background WIM, not the filament. Taken at face value, the paper's regional [S II] ratios (its Table 2) correspond to n_e ≈ 225–631 cm⁻³, not the quoted 64–150 (a mean of per-fibre values, rising toward the centre); within their tabulated intensity errors they constrain no density. The energy and age rest on unsupported inputs.
 
 **New spectroscopy.** We measured the filament's own spectrum in two ways:
 - **DESI DR1:** 7,620 public coadds, using the residuals left after DESI's per-petal sky subtraction.
@@ -53,20 +56,20 @@ The claim that Sergey Koposov found it in DESI data is second-hand. Public DESI 
 
 Results:
 - **Balmer-dark:** [O III]/Hβ > 11 (2σ; SDSS ≈ 23); [O III]/Hα ≳ 3.
-- **Ratios:** R23 > ~30 (2σ; DESI box > 29); [O II]3727/[O III] ≈ 1.1–1.2 in the south, rising to 4–8 in the north; He II 4686/[O III] < 0.026.
-- **Temperature hint:** [O III]4363/5007 ≈ 0.06–0.09 (2–3σ), giving T_e ≈ (3–6)×10⁴ K.
+- **Ratios:** R23 > ~30 (2σ; DESI box > 29); [O II]3727/[O III] ≈ 1.1–1.2 in the south, rising to 4–8 in the north; He II 4686 is not detected (He II/[O III] < 0.026).
+- **Temperature hint:** [O III]4363/5007 ≈ 0.06–0.09 (2–3σ), giving, if real, T_e ≈ (3–6)×10⁴ K.
 - **No other counterpart:** no Hα, HI, dust or X-ray filament.
 
 **What it probably is.**
-- **Excluded by the spectrum itself:** photoionized gas, whether diffuse ionized gas (DIG), hot white dwarfs or Monogem's own EUV. Complete radiative shocks are excluded too.
+- **Excluded by the spectrum, with the lack of an ionizing source:** photoionization equilibrium, whether diffuse ionized gas (DIG) or gas ionized by hot white dwarfs or Monogem's own EUV. The spectrum rejects it at p ≤ 0.007, and no adequate ionizing source exists. Complete radiative shocks are excluded by the spectrum itself.
 - **Ruled out on physical grounds:**
   - **Conduction fronts:** their far-UV floor is too high, the width needs too much pressure, and they predict the wrong ionization order.
   - **Mixing layers and cooling of the hot gas:** both predict an X-ray filament, and none is seen.
 - **Disfavoured but not excluded:**
-  - **A heated warm layer, or photoionization plus extra heating:** these need an unidentified, shock-sized heat source and predict too little C IV.
+  - **A heated warm layer, or photoionization plus extra heating:** these fit the optical ratios, but they need an unidentified, shock-sized heat source and predict too little C IV.
   - **A hot-start fossil:** it needs heating within the last ~1.5–4×10³ yr, which is effectively a shock.
   - **C IV evidence:** the C IV level is implied by the GALEX FUV/[O III] ratio and by the digitised Kim et al. (2007) FIMS/SPEAR C IV map. The FIMS part assumes its region R1 is the Silk, a ~2σ spatial match.
-- **What fits:** the cooling zone of an incompletely cooled ("column-truncated") radiative shock of ~80–150 km/s, seen edge-on as a sheet. In such a shock, gas has been heated and is radiating [O III] and [O II], but has not yet cooled far enough for hydrogen to recombine.
+- **What fits:** the cooling zone of an incompletely cooled ("column-truncated") radiative shock of ~80–120 km/s (≲ 150), seen edge-on as a sheet. In such a shock, gas has been heated and is radiating [O III] and [O II], but has not yet cooled far enough for hydrogen to recombine. It reproduces the line ratios and the far-UV level; the near-UV level, the [O II]–[O III] ridge offset and the [O II] doublet ratio remain in tension with it (§5.2).
 - **Location:** the southern spine lies at the radius of the Monogem Ring's shell, on the local outer edge of its soft-X-ray emission.
 - **Panel verdict:** three independent judges favour the Monogem-limb version at ~250–320 pc (posterior 0.50–0.64). The same shock driven by a different, unidentified source gets 0.26–0.29. The paper's 160-pc, 2×10⁵¹-erg SNR gets ≤ 0.01. Wave-4 close-out tests leave P(shock) ≈ 0.9 but make the Monogem registration only modest (likelihood ratio ~4–10). The balance stays at roughly H1 0.5–0.6 against H2 ~0.3.
 
@@ -122,18 +125,18 @@ The AJ version adds an acknowledgment that the Fesen/Drechsler/Schaeffer and Zie
 
 **Curvature.** A single circle (R = 21.3°, centre (94.5°, +16.8°)) describes both halves to rms 0.12–0.19°, with no geometric break. The formal χ² is poor only because the arc wiggles on small scales. Taken alone, the southern section is straighter (R ≈ 67°) and runs tangent to the Monogem circle. The north bends west.
 
-**[O III] brightness (adopted).** About 2 R on the southern ridge (range 1.4–2.5 R; DESI reference 1.62 R) and 0.4–0.9 R in the north.
+**[O III] brightness (adopted).** About 2 R on the southern ridge (range 1.4–2.5 R; DESI reference 1.62 R, with about 20 % calibration uncertainty, §4.1) and 0.4–0.9 R in the north.
 
 | Measurement | [O III]5007 (rayleigh) |
 |---|---|
-| DESI DR1 (corrected for true fibre acceptance) | 1.62 south; 0.56–0.71 north |
+| DESI DR1 (corrected for true fibre acceptance; southern value uncertain by about 20 %, §4.1) | 1.62 south; 0.56–0.71 north |
 | SDSS/BOSS sky fibres, total sky ON−OFF | 1.39 ± 0.10 south (W strand 1.93); plate peaks 1.6–2.5 S / 0.4–0.8 N |
 | SDSS imaging sky levels (17′ scale) | 2.3–2.6 |
 | NSNS DR0.2 map | ~2.0–2.2 (1′ peaks 3.0–3.6) |
 | QHYCCD note (24.3 mag/arcsec²) | 3.3–6.7 |
 | **Wu et al. Table 3** (23.6–23.9 mag/arcsec²) | **10–13** |
 
-The paper's conversion arithmetic is right. No multiplicative systematic can inflate the true value 4–8×. The candidates checked were AB/Vega, filter bandwidth, the f/0.95 filter geometry and λ4959 leakage, and the f/0.95 shift would in fact bias it low. Only an additive error could: a background or flat-field error of 7–20 % of the sky, or a background aperture cleaner of faint starlight than the nebula aperture. The SWONS inputs needed to check this are not public. The GALEX FUV/[O III] ratio also rules out 10–13 R under any shock model.
+The paper's conversion arithmetic is right. Region by region, Table 3 is 4.6–8.6× the independent values. No identified multiplicative systematic accounts for such a factor. The candidates checked were AB/Vega, filter bandwidth, the f/0.95 filter geometry and λ4959 leakage, and the f/0.95 shift would in fact bias it low. An additive error of 7.9–11.3 R would: a background or flat-field error of 6–20 % of the sky, or a background aperture cleaner of faint starlight than the nebula aperture. The paper (its Sect. 3.1) itself notes that P1 looks faintest in the image yet measures brightest, and attributes this to starlight. The SWONS inputs needed to check this are not public. For a shock, the GALEX FUV/[O III] ratio also makes 10–13 R inconsistent with published shock models.
 
 ![Brightness](figures/w3_figs_f3_brightness.png)
 *Figure 3. [O III] brightness by dataset, with the angular scale of each measurement. (`figures/w3_figs_f3_brightness.png`)*
@@ -181,15 +184,15 @@ Wu et al. observed one LAMOST MRS-N plate centred on HIP 37797 (2024-02-01, 3 ×
 | Paper claim | Verdict | Evidence |
 |---|---|---|
 | Distance ~160 pc ("Table 4 in units of 100 pc") | **Wrong: unit slip** | Our Reid+14 rotation curve gives 1.785 / 1.743 / 1.154 kpc for P1/P2/P3 (printed 1.79 / 1.85 / 1.20). χ² is 0.05 if the column is kpc and 28.9 (p = 2×10⁻⁶) if it is ×100 pc. The Monte-Carlo lower bounds sit at `kd`'s 0.01-kpc grid floor. The `kd` source documents kpc throughout. The AJ text is unchanged and Crossref lists no erratum |
-| A kinematic distance is usable | **Wrong** | The rotation gradient is 7.4–9.5 km/s/kpc, so ±7 km/s of peculiar motion means ±0.8–0.9 kpc. With the corrected V_LSR ≈ +1 the "distance" is 0–0.2 kpc |
-| [O III] V_helio +23.8…+26.8, 10–16 km/s off the red lines ("two shell layers") | **Wrong: artefact** | The paper's Fig. 3 is stored as vector data. On its plotted scale the [N I] 5198/5200 airglow sits at its air rest wavelengths: the blue arm was re-referenced to air airglow, removing the −8.3 km/s heliocentric correction plus a 1.8 km/s offset. Correction **−10.1 ± 1.0 km/s**; [O III] against the spectrum's own airglow is **+13.6 ± 1.2**; [O III] − [N II] = +1.1 ± 1.0 km/s. LAMOST stellar blue- and red-arm velocities agree with each other and with Gaia, so the arc-lamp calibration is fine |
-| LAMOST Hα +16…+20 km/s | **Plausibly an artefact (model only)** | Hα − [N II] = +5.5 ± 1.1 km/s (4.9σ) and Hα − WHAM = +4.8 ± 0.7, while [N II] agrees with WHAM. On this plate the geocoronal line lies within one resolution element of the nebular line and is about as bright. A forward model with ~30 % over-subtraction explains one-half to three-quarters of the offset when the line widths are fitted too (model only; `DISPUTE.md` §4) |
-| Surface brightness 10–13 R | **~4–8× too high** | See §1.2 |
-| [S II]/Hα > 0.4, [N II]/Hα, BPT/SMB ⇒ shock | **Misattributed** | The same ratios hold in nebula-free P4 (\|Δ\| ≤ 0.6σ) and match faint high-latitude WIM (WHAM, Madsen+06). The red lines are foreground/background WIM, and the criterion would classify the background as "shocked" too |
-| n_e ≈ 64–150 cm⁻³ from [S II] | **Wrong** | The paper's own Table 2 ratios (1.03–1.19) give **225–631 cm⁻³** with a 5-level S⁺ atom (169–400 with its eq. 5). Neither number describes the [O III] gas, which needs n_e ~0.1–3 at its brightness |
-| T_e ~9000–10⁴ K, V_t 29–33 km/s, near-solar O/H | **Uninformative** | Line-width temperatures have σ_T ≈ 7,300–10,600 K, with P(T < 0) = 17–38 %. N2/N2S2Hα are H II-region calibrations applied outside their validity range (eq. 6 is the linear Pettini & Pagel relation, not "third-order"). P4 gives the same values: these describe the WIM |
-| Intrinsic [O III] FWHM 43–49 km/s | **Not measured** | At S/N ≈ 6 with the paper's width cut, fits return ~36–47 km/s for any true width |
-| V_s 119 km/s, E 2×10⁵¹ erg, R_PDS 18 pc, age 6.8×10⁴ yr | **Arithmetic OK, inputs invalid** | E = 2.01×10⁵¹ reproduces, but R_PDS is 17.1 pc. The printed age formula has a "+1" typo for "+1/3", and the age recomputes to 7.95×10⁴ yr; 6.8×10⁴ needs the rounded R_PDS = 18 pc. The inputs are wrong: 160 pc, an assumed n₀ = 1, V_s from the WIM [S II] density, and 10 R. The Hβ upper limit bounds any complete (Balmer-emitting) shock at 280 pc to n₀ ≤ 0.002–0.034 and E ≤ 1.4×10⁴⁹–2.9×10⁵⁰ erg |
+| A kinematic distance is usable | **Wrong** | The rotation gradient toward P1–P4 is 7.6–9.1 km/s/kpc (mean over 0–2 kpc), so ±7 km/s of peculiar motion means ±0.8–0.9 kpc. With the corrected V_LSR ≈ +1 the "distance" is 0–0.2 kpc. The paper (its Sect. 3.3) itself notes that the nebula lies near the boundary of the anticentre zone excluded from kinematic analysis, and that this makes the distance uncertain |
+| [O III] V_helio +23.8…+26.8, 10–16 km/s off the red lines ("two shell layers") | **Wrong: artefact** | The paper's Fig. 3 is stored as vector data. On its plotted scale the [N I] 5198/5200 airglow sits at its air rest wavelengths: the blue-arm scale is air and topocentric (most simply, the blue arm was re-referenced to air airglow after the pipeline), so it lacks the −8.3 km/s heliocentric correction and carries a 1.8 km/s offset. Correction **−10.1 ± 1.0 km/s**; [O III] against the spectrum's own airglow is **+13.6 ± 1.2**; [O III] − [N II] = +1.1 ± 1.3 km/s. LAMOST stellar blue- and red-arm velocities agree with each other and with Gaia, so the arc-lamp calibration is fine |
+| LAMOST Hα +16…+20 km/s | **Red-biased by +4.5…+6.7 km/s; cause plausible (model only)** | Hα − [N II] = +5.5 ± 1.1 km/s (4.9σ) and Hα − WHAM = +4.8 ± 0.7, while [N II] agrees with WHAM. On this plate the geocoronal line lies within one resolution element of the nebular line and is about as bright. A forward model with ~30 % over-subtraction explains one-half to three-quarters of the offset when the line widths are fitted too (model only; `DISPUTE.md` §4) |
+| Surface brightness 10–13 R | **4.6–8.6× too high** | See §1.2 |
+| [S II]/Hα > 0.4, [N II]/Hα, BPT/SMB ⇒ shock | **Misattributed** | The same ratios hold in nebula-free P4 (\|Δ\| ≤ 0.6σ for [S II]/Hα, ≤ 0.72σ for [N II]/Hα) and match faint high-latitude WIM (WHAM, Madsen+06). The paper itself notes that P4 meets its criteria and that [S II]/Hα is comparably high in the background (its Sects. 4.1, 4.2), yet concludes that the remnant dominates. The red lines are foreground/background WIM, and the criterion would classify the background as "shocked" too |
+| n_e ≈ 64–150 cm⁻³ from [S II] | **Not supported by Table 2; describes the WIM** | The 64 cm⁻³ is a mean of 107 per-fibre values (the paper's Fig. 7b), rising to ~150 toward the centre. Taken at face value, the regional Table 2 ratios (1.03–1.19) give **225–631 cm⁻³** with a 5-level S⁺ atom (169–400 with its eq. 5); within the tabulated ±0.02 intensity errors they constrain no density. Neither number describes the [O III] gas, which needs n_e ~0.1–3 at its brightness |
+| T_e ~9000–10⁴ K, V_t 29–33 km/s, near-solar O/H | **Uninformative** | Line-width temperatures from the regional Table 2 widths have σ_T ≈ 7,300–10,700 K, with P(T < 0) = 18–38 %, so they do not show P1–P3 to be hotter than P4 (the paper reports hotter values on the structure from per-fibre data). N2/N2S2Hα are H II-region calibrations applied outside their validity range (eq. 6 is the linear Pettini & Pagel relation, not "third-order"). Eq. 6 gives 12 + log(O/H) = 8.81–8.84 for P1–P3 and 8.84 for P4: these describe the WIM |
+| Intrinsic [O III] FWHM 43–49 km/s | **Not established** | If the tabulated S/N ≈ 6 is an integrated value, fits that pass the paper's width cut return ~36–47 km/s for any true width of 5–45 km/s. The paper does not define its S/N; for a peak S/N the bias is smaller and the widths would indicate ≈ 45 km/s |
+| V_s 119 km/s, E 2×10⁵¹ erg, R_PDS 18 pc, age 6.8×10⁴ yr | **Arithmetic OK, inputs unsupported** | The paper's inputs reproduce V_s = 119.3 km/s, E = 2.01×10⁵¹ erg and, within its quoted uncertainties, R_PDS (17.1 pc against 18 ± 2.8 pc) and the age (7.95×10⁴ yr against (6.8 ± 1.8)×10⁴ yr). The "+1" in the printed age formula, where Cioffi et al. (1988) has "+1/3", is a misprint that does not affect the quoted age: 6.8×10⁴ yr is reproduced with "+1/3" and R_PDS = 18 pc. The inputs are unsupported: the 30-pc shell radius follows from the 160 pc distance, n₀ = 1.0 ± 0.3 cm⁻³ is adopted, and V_s derives from the WIM [S II] density. The Hβ non-detection (I(Hβ) ≤ 0.15 R at 2σ, from [O III]/Hβ > 11 at 1.62 R in DESI) bounds any complete (Balmer-emitting) shock at ~280 pc to n₀ ≤ 0.005–0.043 cm⁻³ and E ≤ 4.2×10⁴⁹–3.8×10⁵⁰ erg (model scalings) |
 | No NVSS/TGSS radio ⇒ old SNR | **Uninformative** | Interferometers resolve out a 17′-wide filament |
 | Part of Monogem (via Fesen) while at 160 pc | **Internally inconsistent** | Monogem is at ~288–300 pc |
 | [O III] filament detected along the structure, absent in P4 | **Right** | Confirmed by DESI, SDSS fibres, SDSS imaging and NSNS |
@@ -213,15 +216,15 @@ Details are in `notes/paper_review.md`, `notes/verify_paper.md` and `notes/verif
 
 **DESI DR1** (public; spectra via NOIRLab SPARCL, catalogues via Data Lab TAP).
 - **Principle:** DESI subtracts a mean sky per petal. A smooth nebula is removed, but structure on scales below a petal leaves positive residuals on the filament and negative residuals nearby.
-- **Data:** 7,620 galaxy/QSO coadds in a strip around the trace plus controls. Only ±40 Å line windows were kept.
+- **Data:** 7,620 galaxy/QSO coadds in a strip around the trace plus controls. Only ±40 Å line windows were kept. These are DR1 coadds of galaxy and quasar targets, from which the redshift-fitter model is subtracted; they are not DESI sky fibres.
 - **Analysis:** a petal forward model and template regressions on [O III] give the filament's own line ratios, free of the smooth DIG.
-- **Calibration:** a wave-1 error in the fibre-acceptance factor (the Legacy-Surveys normalisation was used instead of the guide-camera (GFA) acceptance) was found and corrected (×0.736).
+- **Calibration:** a wave-1 error in the fibre-acceptance factor (the Legacy-Surveys normalisation was used instead of the guide-camera (GFA) acceptance) was found and corrected (×0.736). DR1 lists no guide-camera acceptance for the two survey-validation tiles 80644 and 80683, which supply 85 % of the fibres within 0.5° of P1, all of those near P3 and 46 % of the usable fibres at Dec < 19.5°; programme medians were used instead (`notes/paper_appendix_desi.md`). The DESI brightness near P1 and P3, and the 1.62 R southern median, are therefore uncertain by about 20 %, not the ±8 % of the measured acceptances. The factor to the paper's Table 3 is unaffected: Table 3 is 6.2 and 6.6 times the DESI model sky brightness at P1 and P3 (4.6–8.6× against all independent data).
 - **Not available:** DESI sky fibres and per-petal sky models live at NERSC (`data.desi.lbl.gov`), which this machine cannot reach.
 
 **SDSS-I/II, BOSS/eBOSS and SDSS-V DR19 sky fibres.**
-- **Data:** 9,092 spectra in 256 plate–spectrograph groups.
+- **Data:** 9,092 spectra in 302 plate–night–spectrograph groups (250 dark).
 - **Principle:** Galactic [O III] and Hβ have no significant airglow, so the total sky spectrum (residual + sky model) measures the nebula absolutely.
-- **Analysis:** ON−OFF stacks within each plate; zero points from [O I]5577; diffuse-light correction tied to the imaging sky. A wave-1 error (using the pipeline residual, whose fibre-dependent sky model absorbs ~40–50 % of the signal) was corrected.
+- **Analysis:** ON−OFF stacks within each group; zero points from [O I]5577; diffuse-light correction tied to the imaging sky. A wave-1 error (using the pipeline residual, whose fibre-dependent sky model absorbs ~40–50 % of the signal) was corrected.
 
 **LAMOST LRS DR12** stellar residual stacks (2,500 ON / 1,500 OFF stars) give an independent detection: [O III] 0.88 ± 0.13 R, with no Hβ. This is a wave-1 value that was not re-verified. It averages over |d| < 0.2° and Dec 12–28, so it is diluted relative to the ridge values.
 
@@ -230,30 +233,31 @@ Details are in `notes/paper_review.md`, `notes/verify_paper.md` and `notes/verif
 **Detection.** DESI traces the filament on its own from Dec +14 to +28 at ~30σ against empirical nulls. The detection holds in every Dec band, programme, target class and tile/HEALPix jackknife. SDSS sky fibres detect it along its whole length.
 
 **Velocity.**
-- **All data:** V_helio = **+13.3 ± 1.0 km/s** (V_LSR +1.2 ± 1.0; ±1 km/s estimator systematic), from DESI, SDSS and the paper's Fig. 3a.
+- **All data:** V_helio = **+13.3 ± 1.0 km/s** (V_LSR +1.2 ± 1.0; ±1 km/s estimator systematic), from DESI, SDSS and the paper's Fig. 3a. DESI and SDSS alone give +12.9 ± 1.6 km/s.
+- **By region (DESI, within 0.5° of P1 and P3; `notes/paper_appendix_desi.md`):** P1 gives +11.9 ± 1.9 km/s (61 fibres; ON−OFF stack +12.3 ± 1.1), in agreement with the adopted value. P3 gives +9.2 ± 1.0 km/s (128 fibres; ON−OFF +8.0 ± 0.9), 4–5 km/s lower. Within P3 the ON−OFF velocity is +11.2 ± 1.1 km/s east and +5.5 ± 1.0 km/s west of the E spine (3–4σ). The ±1.5 km/s DESI zero-point uncertainty is additional.
 - **E vs W strand:** no significant difference.
 - **North vs south:** the north is +4 to +9 km/s redder (ΔV_LSR +7 to +11).
-  - This is DESI only, estimator-dependent, and 2–3.5σ per estimator. DESI and SDSS disagree at Dec 17.6–21.
+  - This rests on DESI, with an estimator-dependent amplitude, at 1.8–3.7σ across the six estimators. DESI and SDSS disagree at Dec 17.6–21.
   - The northern HI component (V_LSR +8.5…+11.3) is at a similar velocity; treating it as the pre-shock gas is an assumption.
 
 **Line ratios of the filament** (energy ratios; south unless stated):
 
 | Ratio | DESI DR1 | SDSS/BOSS | Adopted |
 |---|---|---|---|
-| [O III]5007/Hβ | > 11 (box) / > 18 (Gaussian), 2σ | ≈ 23 (13–48); > 5–7.5 at 2σ with placebo systematics | **> 11 (2σ); plausibly 15–25** |
+| [O III]5007/Hβ | > 11 (box) / > 18 (Gaussian), 2σ | ≈ 23 (13–48; photon ratio); > 5–7.5 at 2σ with placebo systematics | **> 11 (2σ); plausibly 15–25** |
 | R23 | > 29–34 (2σ) | ≈ 76 (> 20) | **> ~30** |
 | [O II]3727/[O III] | 1.11–1.16 (Dec < 19.5) | 1.17 (Dec < 17.6) | **≈ 1.1–1.2 south → 4–8 north** |
-| He II 4686/[O III] | < 0.026 (97.5 %) | < 0.04 | **< 0.026** |
-| [O III]4363/5007 | 0.06–0.09 (2–3σ); line at 4364.6–4364.7 Å, so the Hg I 4358 street-lamp line is excluded | not constraining | **hint; T_e ≈ (3–6)×10⁴ K** |
+| He II 4686/[O III] | < 0.026 (97.5 %; a bootstrap percentile that does not include the null-window scatter, rms 0.02, largest 0.05) | < 0.04 | **< 0.026 (not detected)** |
+| [O III]4363/5007 | 0.06–0.09 (2–3σ); line at 4364.6–4364.7 Å, so the Hg I 4358 street-lamp line is excluded | 0.04 ± 0.04 (not constraining) | **2–3σ hint; if real, T_e ≈ (3–6)×10⁴ K** |
 | [O II]7320+7330/3727 | 0.060 (0.055–0.073; south 0.064), ±0.015 OH systematic, after fixing a ×1.8 normalisation bug | — | **T(O II) ≈ (2.4–5.5)×10⁴ K** |
 | [O II]3729/3726 | 1.31 ± 0.07 (2σ from the low-density limit) | instrumental (blended doublet, blue-end calibration) | **inconclusive** |
 | [Ne III]3869/[O III] | 0.07–0.10 | — | measurement (low confidence) |
-| [N II]/Hα, [S II]/Hα | ~1.0–1.2, 0.5–0.75 | 0.7, 0.6 (south) | **systematics-limited (×2)** |
+| [N II]/Hα, [S II]/Hα | ~1.0–1.2, 0.5–0.75 | 0.7, 0.6 (south) | **systematics-limited (×2); not separable from WIM contrast between ridge and off-ridge fibres** |
 | [O III]/Hα | > 3.4 (direct) | > 3.0 (Dec < 17.6, placebo) | **≳ 3 (photon, 2σ)** |
 
 **North and the Hα patch.**
-- **Northern arc:** fainter, with lower [O III]/Hβ (~7) and higher [O II]/[O III] (4–8): a lower-excitation spectrum.
-- **Hα patch:** has a shock-like low-ionization spectrum: [S II]/Hα ≈ 1.06, [N II]/Hα ≈ 0.78, [O II]/Hβ ≈ 13 and an unreddened case-B Balmer decrement. It lies 0.35° from the Planck cold clump PGCC G199.09+19.95 (CNM at V_LSR −0.7 and +6.5 km/s).
+- **Northern arc:** fainter, with lower [O III]/Hβ (~6–8, SDSS central values) and higher [O II]/[O III] (4–8): a lower-excitation spectrum.
+- **Hα patch:** has a shock-like low-ionization spectrum in an SDSS ON−OFF stack, from which the smooth WIM cancels: [S II]/Hα = 1.04, [N II]/Hα = 0.78, [O II]/Hβ ≈ 13, [O III]/Hβ = 1.7 (energy ratios; the photon values of [S II]/Hα and [O III]/Hβ are 1.06 and 1.8) and an unreddened case-B Balmer decrement. It lies 0.35° from the Planck cold clump PGCC G199.09+19.95 (CNM at V_LSR −0.7 and +6.5 km/s).
 
 ![Spectra](figures/w3_figs_f4_spectra.png)
 *Figure 6. The filament's own spectrum (DESI regression and SDSS/BOSS total-sky ON−OFF), normalised to [O III]5007: [O II] as strong as [O III], weak Hβ (the reference curves show [O III]/Hβ = 3 and 11), and [O III]4363 at the [O III] wavelength rather than at Hg I. The SDSS [O II] panel uses the wave-2 BOSS stack, which gives [O II]/[O III] ≈ 1.8. The current southern value is 1.17 at Dec < 17.6 (see §4.2). (`figures/w3_figs_f4_spectra.png`)*
@@ -265,25 +269,25 @@ Details are in `notes/paper_review.md`, `notes/verify_paper.md` and `notes/verif
 ### 5.1 What the spectrum rules out
 
 ![Excitation diagnostics](figures/w3_figs_f5_diagnostics.png)
-*Figure 7. Observed ratios against model loci: truncated-shock tracks (100–160 km/s), complete shocks, photoionization at any ionization parameter (hot white dwarf, 150 kK, 0.14 keV gas, DIG), cooling flows, warm-CIE layers, conduction fronts and fossil gas. Two caveats: the shock tracks are the wave-2 runs (100–160 km/s, fitted before the withdrawn [O III]/Hβ ≈ 46 was corrected), and the SDSS-south point shows the superseded [O II]/[O III] = 1.84. The wave-4 refit prefers v_s ≈ 80–120 km/s. (`figures/w3_figs_f5_diagnostics.png`)*
+*Figure 7. Observed ratios against model loci: truncated-shock tracks (100–160 km/s), complete shocks, photoionization equilibrium at any ionization parameter (hot white dwarf, 150 kK, 0.14 keV gas, DIG), cooling flows, warm-CIE layers, conduction fronts and fossil gas. Two caveats: the shock tracks are the wave-2 runs (100–160 km/s, fitted before the withdrawn [O III]/Hβ ≈ 46 was corrected), and the SDSS-south point shows the superseded [O II]/[O III] = 1.84. The wave-4 refit prefers v_s ≈ 80–120 km/s. (`figures/w3_figs_f5_diagnostics.png`)*
 
 Wave 4 refitted every scenario with the corrected inputs (`notes/w4_refit.md`). Two levels of exclusion emerge.
 
-**Excluded by the spectrum itself**
-- **Photoionized gas.** This covers DIG, an "ionized bubble", hot white dwarfs and the EUV of Monogem or the Local Bubble. The fit gives χ² of 21–51 for 8 terms (p ≤ 0.02).
-  - Photoionized gas reaches only [O III]/Hβ ≲ 10–14 and 4363/5007 ≲ 0.012–0.034, and DIG reaches [O III]/Hβ ≤ 1.3.
+**Excluded by the spectrum (for photoionization, together with the missing ionizing source)**
+- **Photoionization equilibrium.** This covers DIG, an "ionized bubble", hot white dwarfs and the EUV of Monogem or the Local Bubble. The spectrum rejects it at p ≤ 0.007 (χ² = 21–51 for 8 terms; χ² = 18–25, p ≤ 0.02, if 4363 is floor-limited).
+  - Gas in photoionization equilibrium reaches only [O III]/Hβ ≲ 10–14 and 4363/5007 ≲ 0.012–0.034, and DIG reaches [O III]/Hβ ≤ 1.3.
   - He II/[O III] would be 0.06 for a hot-gas spectrum, against < 0.026 observed.
-  - Independently, the ionization parameter falls short by 18–30× to 10⁴× even for the best catalogued source, the 81 kK DOZ white dwarf WD J0736+1444 at 150 pc.
-- **Complete radiative shocks.** χ² ≥ 37.
+  - The firm exclusion also rests on the missing ionizing source: the ionization parameter falls short by 18–30× to 10⁴× even for the best catalogued source, the 81 kK DOZ white dwarf WD J0736+1444 at 150 pc.
+- **Complete radiative shocks.** χ² ≥ 37 for 10 terms.
   - They reach only [O III]/Hβ ≤ 5 (own code 2.4–5.0; published grids 1.2–4.5).
   - They would produce an Hα filament and cooled HI, neither of which is seen.
-  - The GALEX FUV level is below their non-resonant line floor.
+  - Their non-resonant ultraviolet lines alone (85–277 CU per R) reach or exceed the measured GALEX FUV level.
 
 **Spectrally acceptable but physically excluded or disfavoured**
 - **Turbulent mixing layers and non-equilibrium cooling of Monogem's hot gas.** Both predict a soft-X-ray filament 10³–10⁴× brighter than Monogem, and none is seen. A mixing layer would also need a near-transonic inflow: ~380 km/s at limb gain G ≈ 19, and still ~140 km/s at G = 50.
 - **Conduction fronts.** Their non-resonant FUV floor (179–213 CU/R) is too high, the 1.4-pc width needs P/k ~10⁶, and they predict C IV/[O III] 1.6–16 against FIMS 0.15–0.4.
 - **A statically heated ~6×10⁴ K warm layer: disfavoured, not excluded.** It fits the optical ratios (χ² 6/9). It needs an unidentified, shock-sized heating flux (0.5–2.6×10⁻⁵ erg cm⁻² s⁻¹) at a thermally unstable temperature. It predicts too little C IV (4–10× below the FIMS-implied level) and no far-UV/[O III] offset. The judges' ~5 % share for it should stand until a far-UV spectrum, Hβ depth or proper motion is measured.
-- **Photoionization plus extra heating: disfavoured.** It needs 78–350× the photo-heating and an ionizing source that does not exist.
+- **Photoionization plus extra heating to 4×10⁴ K: disfavoured, not excluded.** It fits the optical ratios (χ² = 1.0–2.4 for 9 terms), but it needs 78–350× the photo-heating and the same missing ionizing source.
 - **A hot-start fossil: disfavoured.** It needs a heating event within the last ~1.5–4×10³ yr, which is itself a shock.
 
 ### 5.2 What fits
@@ -291,18 +295,18 @@ Wave 4 refitted every scenario with the corrected inputs (`notes/w4_refit.md`). 
 The spectrum is that of collisionally heated gas, at roughly 3–6×10⁴ K, whose hydrogen has not yet recombined:
 - Balmer-dark;
 - [O II] about as strong as [O III];
-- weak He II;
-- a 4363 temperature hint;
+- no detected He II (an upper limit only);
+- a 2–3σ 4363 temperature hint;
 - far- and near-UV line emission.
 
-A **column-truncated (incomplete) radiative shock** reproduces all of it. The model is our own non-equilibrium shock code, validated against published grids, and refitted with the corrected inputs (`notes/verify_shockmodel.md`, `notes/w4_refit.md`).
-- **Fit quality:** best χ² 0.3 for 10 terms; 279 of 480 runs acceptable.
+A **column-truncated (incomplete) radiative shock** reproduces the line ratios and the far-UV level, but overpredicts the near-UV by a factor of 1.5–2 (79–99 against 36–57 CU per R), comparable to the model systematic. The model is our own non-equilibrium shock code, validated against published grids, and refitted with the corrected inputs (`notes/verify_shockmodel.md`, `notes/w4_refit.md`). The code has no radiative transfer, so its Hβ at intermediate columns is about half that of Raymond et al. (1988); each fit was therefore repeated with the model Hβ × 2.3.
+- **Fit quality:** best χ² 0.3 for 10 terms and four parameters; 279 of the 480 grid models lie within Δχ² = 4.
 - **Shock:** v_s ≥ 80 km/s. With the full far-UV line budget, ~80–120 km/s is preferred (≲ 150).
 - **Truncation:** log N* ≈ 17.4–18.7 cm⁻², i.e. the cut falls before hydrogen recombines, at T* ≈ 1–3×10⁴ K.
 - **Predicted ratios:** [O III]/Hβ 13–62; [O II]/[O III] 1.0–1.8; 4363/5007 0.08–0.10; [O II]7325/[O III] 0.06–0.12.
 - **Geometry:**
   - A smooth curved 58-pc limb is disfavoured at about 2σ (p ≈ 0.04–0.09), not excluded. It predicts a lopsided cross-profile (σ_W/σ_E ≈ 2–6), whereas the southern profile is nearly symmetric: 1.07 (1.00–1.16), with ±0.17 real-sky scatter. This shape does not separate H1 from H2.
-  - An **edge-on flat or gently curved/rippled sheet** works (line-of-sight sagitta ≲ depth, limb gain ≲ 15): pre-shock n₀ ≈ 0.01–0.13 cm⁻³ (median 0.024), ram pressure P/k ≈ 1×10⁴–5×10⁵ (median 5.5×10⁴ K cm⁻³, ∝ 1/d), and a line-of-sight depth of 3.5–59 pc.
+  - An **edge-on flat or gently curved/rippled sheet** works (line-of-sight sagitta ≲ depth, limb gain ≲ 15): pre-shock n₀ ≈ 0.012–0.13 cm⁻³ (median 0.024), ram pressure P/k ≈ 1.2×10⁴–5.5×10⁵ (median 5.5×10⁴ K cm⁻³, ∝ 1/d), and a line-of-sight depth of 3.5–59 pc.
   - The pressure is comparable to Monogem's interior, but in this geometry the "pressure match" is no longer independent evidence: the brightness sets only the depth.
 - **Line width:** FWHM ≈ 11–13 km/s (thermal) for a flat edge-on sheet, with the centroid at the pre-shock gas velocity. A 5–10° tilt shifts the centroid by 5–19 km/s without broadening it; only a rippled sheet gives 20–50 km/s.
 - **Timescale:** the shock has run for 2–11×10⁴ yr, less than its cooling time, so truncation is natural.
@@ -313,7 +317,7 @@ A **column-truncated (incomplete) radiative shock** reproduces all of it. The mo
 
 This is the same physics as the incomplete-shock [O III] filaments of the Cygnus Loop (Raymond et al. 1988), but at ~35–370× lower pre-shock density (median ~180×).
 
-**Remaining tensions.** Neither is decisive:
+**Remaining tensions.** Besides the near-UV level above, two remain. Neither is decisive:
 - The DESI [O II] ridge lies slightly *east* of [O III] (+0.04–0.05°). A 1-D shock predicts the opposite, which is disfavoured at p ≈ 0.003–0.07. Two components or a WIM/petal systematic could explain it.
 - DESI's [O II] 3729/3726 = 1.31 ± 0.07 sits 2.1–2.7σ from the low-density value 1.46 that every low-density scenario predicts.
 
@@ -340,14 +344,14 @@ The diagnostic content is **thermal and ionization structure** (Balmer darkness,
 
 ### 5.5 Where is it, and what drives it?
 
-**Distance.** If the southern spine is the Monogem limb, the distance is **252–318 pc (68 %; median 282)**. That rests on the spine lying 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, which matches Monogem's radius; PSR B0656+14 is at 288 pc. Nothing measures the distance directly:
+**Distance.** If the southern spine is the Monogem limb, the distance is **252–318 pc (68 %; median 282)**. That rests on the spine lying 12.10 ± 0.12° from the Knies et al. (2024) two-remnant centre, close to Monogem's shell radius (11.0 ± 1.1°), and on the assumption that the shell is centred at the parallax distance of PSR B0656+14 (288 pc). The southern spine is straighter than the Monogem circle (radius of curvature ≈ 67°) and only tangent to it. Nothing measures the distance directly:
 - no absorption line brackets the ionized gas;
 - there is no dust;
 - the kinematics are uninformative.
 
 Anything from ~100 pc to ~1 kpc is allowed. 160 pc (on the Local Bubble wall at 161–171 pc) is not excluded by measurement. ~1.6 kpc is disfavoured: the filament would be 470 pc long at z ≈ 0.55 kpc, and the north–south velocity gradient has the opposite sign to Galactic rotation.
 
-**Hypothesis panel** (`notes/w3_judge_{obs,phys,skeptic}.md`). Three independent judges scored each hypothesis, each through a different lens:
+**Hypothesis panel** (`notes/w3_judge_{obs,phys,skeptic}.md`). Three independent judges scored each hypothesis, each through a different lens. The scores are kept as recorded; they were not re-run for the 2026-11-18 reconciliation with the manuscript:
 
 | Hypothesis | Observational | Physical consistency | Devil's advocate |
 |---|---|---|---|
@@ -392,7 +396,7 @@ All three put P(shock-heated, any driver) at ≈ 0.84–0.95. The weakest links 
 | [O II] doublet | ≈ 1.46 | ≈ 1.46 |
 
 3. **Two-epoch [O III] proper motion.** Expected at 282 pc: ~60–90 mas yr⁻¹ for the preferred v_s of 80–120 km/s (60–120 for all flat-sheet survivors; 75–112 if v_s = 100–150). Expected at other distances: about 1.8× larger at 160 pc and 3.5× smaller at 1 kpc. Zero for any static layer.
-   - **Epoch 1:** the raw SWONS ε-180ED + QHY600 frames from Jan 2024 (1.55″/px).
+   - **Epoch 1:** the raw SWONS follow-up frames (ε-180ED + QHY600, 1.55″/px). They have no published date and stem from the discovery period, 2023–2024.
    - **Epoch 1b:** ≤ 1″/px imaging in 2026–27 on the south core (Dec 13–16), the junction (Dec 17–19) and the sharp northern edge (Dec 21–26).
    - **Epoch 2:** 2034–36.
    - **Precision:** detecting motion at 282 pc within 10–12 yr needs a per-epoch edge precision of ≲ 0.1–0.15″.
@@ -400,7 +404,7 @@ All three put P(shock-heated, any driver) at ≈ 0.84–0.95. The weakest links 
 4. **HST/COS high-ion absorption bracket** (C IV, Si IV). `notes/w4_distance.md` lists 52 hot stars within 0.3° of the ridge at 120–800 pc. None has archival UV spectra; 18 reach S/N 15 at C IV in ≤ 5 orbits.
    - **Recommended white dwarfs:** 154, 234 (DA 29.7 kK), 294, 389, 445 and 594 (DO 84 kK) pc in the south; 407 and 588 pc in the north.
    - **Prediction under H1:** Silk-velocity C IV appears only beyond ~250–320 pc.
-   - **Quick archival step:** analyse the existing COS G130M spectrum of QSO 2MASS J07452815+1919525, 0.34° from the W strand.
+   - **Quick archival step:** analyse the existing COS G130M spectrum of QSO 2MASS J07452815+1919525, 0.34° from the W strand. It covers Si IV and N V, not C IV.
 5. **Spectroscopy of the southern Monogem limb "S1"** (e.g. (106.0°, +3.47°), (112.5°, +4.05°)). It lies on the same circle as the southern Silk. H1 predicts the same Balmer-dark spectrum at V_LSR ≈ 0 ± 5 km/s.
 6. **An R ≥ 30,000 [O III] profile.** A flat edge-on sheet gives ~11–13 km/s (thermal) with a possible 5–19 km/s centroid shift if tilted; a rippled or curved sheet gives 20–50 km/s.
 7. **Deeper eROSITA/XMM spectroscopy** of the X-ray-bright side: the interior pressure profile and the local edge in the Silk sector.
@@ -417,7 +421,8 @@ All three put P(shock-heated, any driver) at ≈ 0.84–0.95. The weakest links 
 - SWONS photometric inputs (filter curve, apertures, zero points) are unpublished.
 
 **Measurement limits**
-- Several key ratios are at the 2–3σ level. DESI's template-correlated systematic floor is ~0.05 of [O III], so DESI ratios below that are upper limits.
+- Several key ratios are at the 2–3σ level. DESI's template-correlated systematic floor is ~0.05 of [O III] (line-free null windows scatter by 0.02 rms, 0.05 at most), so DESI ratios below that are upper limits. The He II limit is a bootstrap percentile that does not include this scatter.
+- The DESI surface brightness near P1 and P3, and the 1.62 R southern median, are uncertain by about 20 %, because DR1 has no guide-camera fibre acceptance for two survey-validation tiles (§4.1).
 - The absolute [O III] scale differs by 1.5 ± 0.25 between SDSS imaging and DESI (C3 in `notes/w3_canon.md`).
 - `notes/w3_canon.md` §12–13 lists 15 inter-agent conflicts and 20 file-level inconsistencies. Several conflicts were later resolved or revised by `w3_oii` and `w3_northsouth` (C2, C5, C6, C8). Its superseded-value register (§15) predates the wave-3/4 corrections.
 
@@ -428,7 +433,8 @@ All three put P(shock-heated, any driver) at ≈ 0.84–0.95. The weakest links 
 - the X-ray "edge" significance;
 - the HI-wall artefact;
 - a withdrawn first-pass [O III]/Hβ ≈ 47;
-- stale catalogue values for PSR J0751+1807.
+- stale catalogue values for PSR J0751+1807;
+- the superseded Hβ limit behind the complete-shock bound, and the missing guide-camera acceptance of two DESI survey-validation tiles (both found while preparing and reviewing the manuscript, 2026-11-18).
 
 The register of superseded values is `notes/w3_canon.md` §15.
 

@@ -4,8 +4,10 @@
 
 *2026-11-17. This page puts every velocity for the Silk Nebula in one place: [O III], Hα, [N II] and [S II] from Wu et al. (2026, arXiv:2610.13329; "the paper"), DESI, SDSS/BOSS, WHAM and GALFA-HI. It states the reference frame of each value and says which values are right. All velocities are in km/s; positive means receding. The derivations are in [DISPUTE.md](DISPUTE.md) §1–4.*
 
+*Reconciled on 2026-11-18 with the journal-style manuscript [paper/silk_comment.pdf](paper/silk_comment.pdf) ("the manuscript"), which is the latest and most carefully checked statement of this study.*
+
 **Bottom line.**
-- On the southern filament (P1–P3), every line in every dataset sits at **V_helio ≈ +12…+14, V_LSR ≈ 0…+2**, once two LAMOST errors are removed.
+- On the southern filament (P1–P3), every line in every dataset sits at **V_helio ≈ +12…+14, V_LSR ≈ 0…+2**, once two LAMOST errors are removed. The one exception is DESI near P3, at +8…+9 (§5.1).
 - **The paper's [O III] is 10.1 ± 1.0 km/s too high.** The Gaussian fits are fine; the wavelength scale is wrong. It is in air wavelengths and in the telescope's frame, so the −8.3 km/s Earth-motion correction was never applied, and a +1.8 km/s airglow offset was added.
 - **The paper's Hα is 5.5 ± 1.1 km/s too high** compared with its own [N II] and [S II] and with WHAM. The frame is fine, but the line centre is biased, most plausibly by over-subtracted geocoronal Hα.
 - **The paper's [N II] and [S II] are right.** So are **DESI, SDSS/BOSS, WHAM and GALFA-HI.**
@@ -95,9 +97,11 @@ V_helio, with V_LSR in brackets. The V_LSR values are recomputed from V_helio wi
 
 P2 lies at the edge of the redder northern zone (§8), and its DESI value rests on only 9 fibres.
 
+The DESI row is the weighted mean of the positive-residual fibres with S/N > 4, without the ±1.5 zero point. The spectra are DR1 coadds of galaxy and quasar targets minus the redshift-fitter model, not sky fibres. ON−OFF stacks, in which the petal sky mean cancels, give +12.3 ± 1.1 at P1 and +8.0 ± 0.9 at P3. P1 agrees with the adopted +13.3 ± 1.0 (§5.2); P3 lies 4–5 km/s lower. Within P3, the ON−OFF velocity is +11.2 ± 1.1 east and +5.5 ± 1.0 west of the E spine, a 3–4σ difference (manuscript Appendix A).
+
 ### 5.2 Whole filament
 
-V_LSR here uses the mean southern correction, −12.2 km/s.
+V_LSR here uses the mean southern correction, −12.2 km/s. WHAM and GALFA-HI are observed in V_LSR and converted to V_helio position by position (mean correction −12.5 for the six WHAM beams), so their two columns do not differ by exactly 12.2.
 
 | Measurement | V_helio | V_LSR | Status |
 |---|---|---|---|
@@ -109,7 +113,7 @@ V_LSR here uses the mean southern correction, −12.2 km/s.
 | **SDSS/BOSS, ON−OFF, all strands** | **+9.6 ± 2.8** | −2.6 | right |
 | SDSS/BOSS, second analysis, all strands | +12.3 ± 2.5 | +0.1 | right |
 | SDSS/BOSS, second analysis, south (Dec < 20°) | +10.0 ± 1.8 ± 0.8 | −2.2 | right |
-| **Adopted: weighted mean of the three bold values** | **+13.3 ± 1.0** | **+1.2 ± 1.0** (+1.5 with Schönrich) | χ² = 2.2 for 2 dof |
+| **Adopted: weighted mean of the three bold values** | **+13.3 ± 1.0** | **+1.2 ± 1.0** (+1.5 with Schönrich) | χ² = 2.2 for 2 dof; a further ±1 estimator systematic. DESI and SDSS alone give +12.9 ± 1.6 |
 | WHAM Hα, on-filament, south (6 beams) | +13.8 ± 0.8 | +1.3 | local WIM |
 | GALFA-HI on-spine peak, Dec +12…+22° | +14.2 (13.1–15.5) | +1.8 | local neutral gas |
 | Ca II / Na I absorption, local group | +6…+15 | — | local gas |
@@ -143,7 +147,7 @@ where δ_sky is the airglow offset on the plotted scale. The evidence:
   - By contrast, [N II] − [S II] = +0.1 ± 1.4 and [N II] − WHAM = −0.8 ± 1.0.
   - The offset is just as large in the nebula-free P4.
 - **It is not a frame error.** A frame error would move [N II] and [S II] as well. It does not, so no frame correction can fix Hα.
-- **The likely cause is geocoronal Hα.** On this night the geocoronal line sits at V_helio −10.7 to −11.4, only 22–25 km/s from the WIM, which is less than one resolution element. The sky template subtracted from it is 0.86–1.27× as bright as the published line. A model with about 30 % (24–33 %) over-subtraction reproduces both the shift and the line widths.
+- **A plausible cause is geocoronal Hα.** On this night the geocoronal line sits at V_helio −10.7 to −11.4, only 22–25 km/s from the WIM, which is less than one resolution element. The sky template subtracted from it is 0.86–1.27× as bright as the published line. A joint fit to the Hα offsets and widths needs about 30 % (24–33 %) over-subtraction. It reproduces the line widths and about three-quarters of the shift, or about one-half with the template fixed at the pipeline position.
   - This is a model only: the spectra are unreleased.
 - **What to use instead.** Take the [N II] and [S II] or WHAM velocity: V_helio ≈ +12…+13, V_LSR ≈ 0. The paper's +4…+6 is too high.
 
@@ -159,7 +163,7 @@ where δ_sky is the airglow offset on the plotted scale. The evidence:
 
 - **The line offset is not physical.** The "∼5–15 km/s (V_helio) / ∼10–16 km/s (V_LSR)" offset between [O III] and the red lines is the +10.1 frame error, with Hα's +5.5 on top. Nothing physical needs explaining, so the two-layer shell and the inhomogeneous bubble fall away.
 - **No usable kinematic distance.** The paper's [O III] distances used V_LSR = +11…+16; corrected, V_LSR is +1…+5 (adopted +1.2).
-  - Galactic rotation gives only ~1.6 km/s at 160 pc and ~9 km/s per kpc on this sightline, while peculiar motions are 7–10 km/s.
+  - Galactic rotation gives only ~1.6 km/s at 160 pc and ~8–9 km/s per kpc on this sightline, while peculiar motions are 5–10 km/s.
   - The printed distances are also in kpc, not units of 100 pc (DISPUTE.md §1–2).
 
 ## 7. Who is right and who is wrong
@@ -175,7 +179,7 @@ where δ_sky is the airglow offset on the plotted scale. The evidence:
 | Paper: V_LSR column | Inconsistent arithmetic, and inherits both errors above | ±1–3, plus the above |
 | Paper: [O III]-to-red-line offset; two-layer shell | **Wrong**: artefact | — |
 | Paper: [O III] kinematic distance, "∼160 pc" | **Wrong**: kpc read as 100 pc, and the method gives no distance here | ×10 |
-| DESI DR1 [O III] | Right | +11…+14 |
+| DESI DR1 [O III] | Right | +11…+14 (P1 +12; P3 +8…+9) |
 | SDSS/BOSS [O III] | Right, within errors | +10…+12 |
 | WHAM Hα; GALFA-HI | Right | V_LSR ≈ +1…+2 |
 | This project's −10.1 correction | Agrees with DESI, SDSS and the airglow test; cannot be checked per fibre | ±1.0 |
@@ -185,14 +189,16 @@ where δ_sky is the airglow offset on the plotted scale. The evidence:
 - **The −10.1 correction is applied in aggregate.** Fig. 3a, whose position is not stated, is the only published spectrum that shows the airglow, and the per-fibre MRS-N spectra are unreleased. Plate zero points (0.2–4 km/s) cannot be checked.
 - **The Hα cause is a model.** The geocoronal intensity on this night is unknown. The bias itself does not depend on the cause.
 - **The filament's velocity changes along its length.**
-  - DESI gives +10.6 (10.2–12.0) at Dec < 19.5° and +20.9 (18.5–23.1) at Dec ≥ 19.5°. P2 sits at that edge.
+  - DESI's joint regression gives +10.6 (10.2–12.0) at Dec < 19.5° and +20.9 (18.5–23.1) at Dec ≥ 19.5°. That pair, 10.3 km/s apart, is at the high end: across six estimators the north is redder by +4 to +9 km/s in V_helio (1.8–3.7σ; +7 to +11 in V_LSR), so the size of the shift depends on the estimator.
   - In the north, WHAM gives +10.3 ± 1.3, so the northern [O III] is redder than the WIM there; it follows the northern HI.
-  - SDSS and DESI disagree on the W strand: +9.7 ± 2.2 against +18.5, a difference of 8.8 ± 2.5.
+  - SDSS gives a consistent north–south shift, +6.7 ± 6.5, but disagrees with DESI at Dec 17.6–21°: +10.0 ± 2.2 against +17 to +23 (2–3σ). P2 (Dec +17.7°) lies at the southern edge of that zone. The northern shift therefore rests on DESI. The E and W strands have the same DESI velocity: +12.0 (11.3–14.3) and +11.4 (8.6–15.6).
+  - Near P3, DESI lies 4–5 km/s below the adopted value (§5.1).
   - None of this affects the +10.1 error, which belongs to the LAMOST wavelength scale.
 
 ## Sources
 
+- Manuscript: [paper/silk_comment.pdf](paper/silk_comment.pdf), Sections 3.1–3.2, Table 2 and Appendix A.
 - [DISPUTE.md](DISPUTE.md): §1 units, §2 kinematic distance, §3 [O III] (Table C4, Figure C3), §4 Hα (Table C5, Figure C4).
-- Notes: `notes/verify_velocity.md`, `notes/verify_desi.md`, `notes/verify_sdss.md`, `notes/verify_hiwham.md`, `notes/spectra_ism.md`, `notes/paper_review.md` (V_LSR column, item 6).
+- Notes: `notes/verify_velocity.md`, `notes/verify_desi.md`, `notes/verify_sdss.md`, `notes/verify_hiwham.md`, `notes/spectra_ism.md`, `notes/paper_review.md` (V_LSR column, item 6), `notes/w3_northsouth.md`, `notes/paper_appendix_desi.md`.
 - Code: `scripts/dispute_oiii_values.py`, `scripts/dispute_halpha_analysis.py`, `scripts/verify_velocity_desi_sdss.py`, `scripts/verify_desi_velocity.py`, `scripts/w3_figs_f2_velocity.py`.
-- Values: `data/derived/verify_velocity_summary.json`, `data/derived/dispute_oiii_values.json`, `data/derived/dispute_halpha_results.json`.
+- Values: `data/derived/verify_velocity_summary.json`, `data/derived/dispute_oiii_values.json`, `data/derived/dispute_halpha_results.json`, `data/derived/paper_appendix_desi_summary.json`.

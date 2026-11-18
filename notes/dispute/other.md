@@ -4,7 +4,7 @@ Section numbers and page numbers (p.) refer to the arXiv v1 PDF of Wu et al. (20
 
 Several parts of the paper are correct and we reproduce them:
 - the coefficients of Eqs. 2 and 3 (23.5 vs 23.55 derived);
-- the energetics arithmetic;
+- the energetics arithmetic, including R_PDS and the age within the quoted uncertainties;
 - the statistical [O III] velocity errors of 3–4 km s⁻¹;
 - the caution in Sect. 4.2 that the red-arm lines are dominated by diffuse ionized gas (DIG).
 
@@ -12,7 +12,7 @@ The problems are in how these numbers are interpreted.
 
 **Claim in the paper.**
 1. The red-arm ratios establish shock excitation. The abstract (p. 1) says [S II]/Hα "significantly exceeds the shock-excitation threshold of 0.4"; Sect. 5 (p. 17) says it exceeds "the classical threshold of 0.4". Sect. 4.1 (p. 15) says the ratio "exceeds 0.5 in all four regions, confirming that the ionized gas is shock-excited". It adds that [N II]/Hα = 0.5–1.5 is "a condition satisfied by regions P1, P2, P3, and P4". Fig. 8 places the points in the SNR zone of the Sabin et al. (2013) and Kopsacheili et al. (2020) diagrams.
-2. The [S II] doublet gives a median n_e ≈ 64 cm⁻³, rising to ~150 cm⁻³ toward the centre, with "lower electron densities" in the background (Sect. 3.4, Eqs. 4–5, Fig. 7b, pp. 13–14). Sect. 4.1 calls this "the electron density of the [O iii]-emitting gas" (p. 15) and uses it as "the post-shock shell electron density" (p. 16).
+2. The [S II] doublet gives a mean n_e ≈ 64 cm⁻³ from 107 per-fibre values (the Fig. 7b caption calls it the median), rising to ~150 cm⁻³ toward the centre, with "lower electron densities" in the background (Sect. 3.4, Eqs. 4–5, Fig. 7b, pp. 13–14). Sect. 4.1 calls this "the electron density of the [O iii]-emitting gas" (p. 15) and uses it as "the post-shock shell electron density" (p. 16).
 3. Line widths give the following (Sect. 3.4, pp. 11–13; Table 4, p. 13):
    - T_e from Eq. 2 (the Reynolds et al. 1977 method): "about 9000 K", "1-2 ×10⁴ K" for most pixels on the [O III] structure against ≈ 7.5×10³ K in P4 (p. 12), and an adopted "approximately 10,000 K" (p. 13);
    - V_t = 29–33 km s⁻¹ from Eq. 3, attributed to "shock-driven gas flows" (p. 13).
@@ -26,7 +26,7 @@ The problems are in how these numbers are interpreted.
 1. **The red-line ratios are those of the nebula-free background and of the faint warm ionized medium (WIM).**
    - We recompute the ratios from the Table 2 intensities. On the filament, [S II](6716+6731)/Hα = 0.90 ± 0.11, 0.86 ± 0.09 and 0.81 ± 0.13 (P1–P3); in P4 it is 0.80 ± 0.13. For [N II]6583/Hα the values are 0.80, 0.70 and 0.77 (±0.09–0.10), against 0.80 ± 0.10 in P4.
    - The on-minus-P4 differences are +0.04 to +0.58σ for [S II] and −0.72 to 0.00σ for [N II] (Fig. 6a).
-   - By the paper's own criteria, the nebula-free P4 is therefore "shock-excited" as well.
+   - By the paper's own criteria, the nebula-free P4 is therefore "shock-excited" as well. The paper notes this itself: Sect. 4.1 says the [S II]/Hα criterion is met "in all four regions" and the [N II]/Hα one by "P1, P2, P3, and P4", and Sect. 4.2 says "the [S II]/Hα ratios are comparably high in the background". It nevertheless concludes that "the SNR dominates" and that the DIG influence is "minor".
    - These are standard values for faint high-latitude WIM. Madsen et al. (2006) find [S II]6716/Hα ≳ 0.4 "in regions of faint Hα emission". That corresponds to ≳ 0.68 for the doublet sum at the low-density limit (derived). They also find [N II]/Hα ≳ 0.7 in the faintest WIM at l > 150°.
    - O-star H II regions average only 0.11 ([S II]) and 0.27 ([N II]) (Madsen et al. 2006). P1–P4 lie at l = 202.5–205.5°, b = +18.0° to +19.6° (Table 1 positions, converted), where the nearest WHAM-SS beams give just 2.9–4.4 R of Hα.
    - Independent data show no Hα filament on top of this WIM. WHAM Hα is the same on and off the strand (paired on−off ΔI = +0.04 ± 0.35 R south, +0.14 ± 0.27 R north; intrinsic FWHM 30.4–31.9 km s⁻¹ on and off). At fibre scale, SDSS sky fibres give an on−off Hα excess of 0.08 ± 0.22 R at Dec < 17.6° (`notes/verify_hiwham.md`).
@@ -35,6 +35,7 @@ The problems are in how these numbers are interpreted.
    - In all three panels of Fig. 8 the grey background points overlap the nebula points (visual inspection of the published figure). The Sabin et al. (2013) diagrams and the Kopsacheili et al. (2020) panel (log [N II]/Hα vs log [S II]/Hα) use the same red-line ratios and inherit the same limitation.
    - The paper's own Sect. 4.2 (pp. 16–17) lists three reasons why the red-arm lines are DIG. We agree with it, but it contradicts the use of these lines as shock evidence in Sect. 4.1 and the Conclusion.
 2. **The quoted densities do not follow from Table 2, and densities of this order are unphysical for this gas.**
+   - The two numbers are different statistics. The paper's 64 cm⁻³ is a mean of 107 per-fibre values (Fig. 7b), rising to ~150 cm⁻³ toward the centre; the values below come from the regional ratios of Table 2, taken at face value.
    - Table 2 gives R = I(6716)/I(6731) = 1.10, 1.14, 1.19 and 1.03 (P1–P4).
    - The paper's own Eq. 5 (Proxauf et al. 2014) gives 298, 247, 189 and 400 cm⁻³ at 10⁴ K, or down to 169 cm⁻³ with a √T scaling to 8000 K.
    - A 5-level S⁺ atom gives 243–631 cm⁻³ at 8000–10⁴ K, or 225–631 cm⁻³ including the Ramsbottom et al. (1996) Ω (Fig. 6b). It uses Tayal & Zatsarinny (2010) collision strengths with TZ10, Mendoza & Zeippen (1982) or Rynkun et al. (2019) A-values.
@@ -54,37 +55,37 @@ The problems are in how these numbers are interpreted.
    - **Direct measurement on this sightline.** Our regressions of the WIM component give 6716/6731 = 1.40 (1.34–1.50) and 1.53 (1.42–1.67) from SDSS sky fibres, and 1.40 (1.33–1.49) from DESI (`w3_oii_summary.json`; `notes/w3_oii.md`). These are at the low-density limit.
    - The Table 2 ratios are therefore most plausibly a measurement systematic, not a gas density. We cannot identify its cause from the published information.
    - **The [O III] gas.** The paper assigns this density to "the [O iii]-emitting gas" (p. 15). We tested that with gas at 64 cm⁻³ filling the 0.28° strand (1.37 pc at 280 pc), with x(O²⁺) = 1 and solar O/H. It would emit 6×10³–2×10⁴ R in λ5007 at 1–2×10⁴ K, and 3.5×10⁴–1.2×10⁵ R at 150 cm⁻³. The measured brightness is ≈ 1.4–2.5 R (Section 5). A brightness of 2–4 R requires n_e ≈ 0.1–3 cm⁻³, for geometries from an edge-on sheet to a filament (`notes/w3_canon.md` §7).
-3. **T_e is unconstrained, and neither T_e nor V_t differs between the filament and the background.**
+3. **T_e is unconstrained, and the Table 2 widths show no difference in T_e or V_t between the filament and the background.**
    - Eq. 2 applied to the Table 2 region widths gives T = 6780, 6580, 3220 and 7660 K (P1–P4). The P4 value reproduces the paper's own ≈ 7.5×10³ K.
    - The 1σ errors are σ_T = 7300–10 700 K, and P(T < 0) = 18–38 % (Monte Carlo on the quoted width errors; Fig. 6c).
-   - In Table 2 the on-filament regions are not hotter than P4. The "1–2×10⁴ K" versus "7.5×10³ K" contrast is therefore not supported by the paper's own widths.
+   - The regional Table 2 widths therefore do not show P1–P3 to be hotter than P4. The paper reports its "1–2×10⁴ K" versus "7.5×10³ K" contrast from per-fibre values (most pixels on the structure; a P4 median), which the regional widths cannot confirm.
    - The spread in Fig. 7a is no larger than this noise. Its legend gives a Gaussian σ = 6798 K. The caption's "σ ≃ 6.47×10³ K" matches the legend's μ = 6471 K instead.
    - Eq. 3 applied to the same widths gives V_t = 26.7, 25.7, 29.9 and 26.5 km s⁻¹. Table 4 lists 33.1, 32.9, 30.6 and 29.9, which are higher by +0.7 to +7.2 km s⁻¹. The paper does not say how the Table 4 values were obtained (for example, as per-fibre medians).
    - The nebula-free P4 has the same V_t (Table 4: 29.9 against 30.6–33.1). The broadening is therefore a property of the line-of-sight WIM, not of a shock.
 4. **The abundances describe the WIM excitation, not the filament.**
    - N2 = log([N II]6583/Hα) = −0.153 to −0.097.
    - This is outside the validity ranges of Pettini & Pagel (2004; −2.5 < N2 < −0.3) and Marino et al. (2013; −1.6 < N2 < −0.2).
-   - Eq. 6 is the *linear* Pettini & Pagel (2004) relation. It gives 8.81–8.85 (paper 8.82). PP04's third-order polynomial would give 9.09–9.18.
-   - Dopita et al. (2016) gives 8.64–8.75 (paper 8.70). The nebula-free P4 gives 8.85 and 8.75. The paper itself notes that the background "yields relatively consistent results" (p. 15).
+   - Eq. 6 is the *linear* Pettini & Pagel (2004) relation. It gives 8.81–8.84 for P1–P3 (paper 8.82). PP04's third-order polynomial would give 9.09–9.18.
+   - Dopita et al. (2016) gives 8.64–8.72 for P1–P3 (paper 8.70). The nebula-free P4 gives 8.84 and 8.75. The paper itself notes that the background "yields relatively consistent results" (p. 15).
    - Both calibrations assume gas photoionized by stars. In the WIM, a high [N II]/Hα traces a higher T_e (Haffner et al. 1999; Madsen et al. 2006), not a higher N/H.
-5. **The energetics arithmetic is reproduced, but the printed age formula is wrong and the inputs are invalid.**
+5. **The energetics arithmetic is reproduced, apart from a misprint in the printed age formula, but the inputs are unsupported.**
    - Reproduced: V_s = 119.3 km s⁻¹ (n_e = 64, n₀ = 1) and E = 2.01×10⁵¹ erg.
-   - R_PDS = 17.1 pc, not 18; 18 pc would require E = 2.41×10⁵¹ erg.
-   - The printed age formula ends in "+1" where Cioffi et al. (1988) has "+1/3". Ages below use V_s = 119.3 (`verify_paper_energetics.json`); V_s = 119 changes them by ≤ 0.01×10⁴ yr.
-     - With "+1/3" the age is 7.95×10⁴ yr.
-     - As printed, it is 8.72×10⁴ yr.
-     - The closest value to the quoted 6.8×10⁴ yr is 6.74–6.75×10⁴ yr, which requires both "+1/3" and the rounded R_PDS = 18 pc.
-   - Every input is invalid or unsupported:
+   - R_PDS = 17.1 pc, within the quoted 18 ± 2.8 pc (exactly 18 pc would require E = 2.41×10⁵¹ erg).
+   - The printed age formula ends in "+1" where Cioffi et al. (1988) has "+1/3". This is a misprint that does not affect the quoted age. Ages below use V_s = 119.3 (`verify_paper_energetics.json`); V_s = 119 changes them by ≤ 0.01×10⁴ yr.
+     - With "+1/3" the age is 7.95×10⁴ yr, within the quoted (6.8 ± 1.8)×10⁴ yr.
+     - As printed, it would be 8.72×10⁴ yr.
+     - The quoted 6.8×10⁴ yr is reproduced (6.74–6.75×10⁴ yr) with "+1/3" and the paper's R_PDS = 18 pc.
+   - Every input, however, is unsupported:
      - R_s = 30 pc follows from the 160 pc unit error (Section 1);
      - n₀ = 1.0 ± 0.3 is adopted, not measured;
-     - V_s comes from the WIM [S II] density, and that density is itself wrong (item 2).
+     - V_s comes from the WIM [S II] density, which is not a property of the filament (item 2).
    - With the paper's n₀ = 1 and V_s = 119 km s⁻¹, E = 1.2–1.7×10⁵² erg at ~280 pc (R_s = 52.5–59.1 pc) and 2.9–4.2×10⁵⁴ erg at 1.6 kpc.
-   - **Balmer bound.** A *complete* radiative shock yields at least 0.117 Hβ photons per swept-up H atom. The Hβ non-detection (≤ 0.057 R from SDSS at 2σ, up to a conservative 0.12 R from an older DESI estimate), with limb brightening of 3–18.6, then bounds n₀ ≤ 0.002–0.034 cm⁻³ and E ≤ 1.4×10⁴⁹–2.9×10⁵⁰ erg at 280 pc. These are model scalings, from `verify_paper_energetics.json`. The bound does not apply to an incomplete shock; our column-truncated shock models give n₀ ≈ 0.012–0.042 cm⁻³ (model only).
-6. **The [O III] width is not established, and λ4959 is below the paper's own threshold.**
+   - **Balmer bound.** A *complete* radiative shock yields at least 0.117 Hβ photons per swept-up H atom. The Hβ non-detection (I(Hβ) ≤ 0.15 R at 2σ, from [O III]/Hβ > 11 at 1.62 R in DESI), with limb brightening of 3–18.6, then bounds n₀ ≤ 0.005–0.043 cm⁻³ and E ≤ 4.2×10⁴⁹–3.8×10⁵⁰ erg at ~280 pc. These are model scalings with the relations of `scripts/verify_paper_energetics.py`; the stored `verify_paper_energetics.json` predates this Hβ limit and gives tighter, superseded bounds. The bound does not apply to an incomplete shock; our column-truncated shock models give n₀ ≈ 0.012–0.13 cm⁻³ at 282 pc (model only).
+6. **The [O III] width is not established unless the tabulated S/N is a peak value, and λ4959 is below the paper's own threshold.**
    - We simulated the paper's procedure at S/N 6.1: Gaussian fits, an instrumental FWHM of 40 ± 1.5 km s⁻¹ (R ≈ 7500) and the cut FWHM_obs − err > FWHM_inst + err (Sect. 3.2.2). Our fits use a linear continuum where the paper used a quadratic one.
    - Fits that pass the cut return medians of 35.8, 36.6, 40.0 and 46.9 km s⁻¹ for true widths of 5.4, 20, 30 and 45 km s⁻¹. The pass fractions are 10, 24, 48 and 82 % (Fig. 6d).
    - At an integrated S/N of 6.1, a 43–49 km s⁻¹ result therefore cannot distinguish an unresolved line from a 45 km s⁻¹ one.
-   - The paper does not define its S/N. If it is a peak S/N, the integrated S/N is higher and the bias smaller: at S/N 15 the medians are 22.8–44.7 km s⁻¹, and 43–49 km s⁻¹ would then point to an intrinsic width of ≈ 45 km s⁻¹. DESI fibre spectra suggest ≤ 33 km s⁻¹, but that width has not been re-verified (`notes/w3_canon.md` §12, C7).
+   - The paper does not define its S/N. If it is a peak S/N, the integrated S/N is higher and the bias smaller: at S/N 15 the medians are 22.8–44.7 km s⁻¹, and 43–49 km s⁻¹ would then point to an intrinsic width of ≈ 45 km s⁻¹. In DESI stacks near P1 and P3 the line is unresolved (intrinsic FWHM < 40 km s⁻¹ at 97.5 %; `notes/paper_appendix_desi.md`), consistent with an earlier filament-wide estimate of ≤ 33 km s⁻¹ (`notes/w3_canon.md` §12, C7).
    - Table 2 gives λ4959 S/N = 1.8–2.3, below the "S/N > 3" usability criterion of Sect. 3.2.1 (p. 8). That is the value expected from λ5007 at S/N 6.1–6.6 and a ratio of 2.98 (Storey & Zeippen 2000), namely 2.05–2.21.
    - The resulting 5007/4959 = 2.29 ± 1.33, 2.44 ± 1.28 and 2.53 ± 1.17 carry no information.
    - λ4959 also lies only 9 Å inside the 4950 Å blue-arm edge (Sect. 2.2).
@@ -102,7 +103,7 @@ The problems are in how these numbers are interpreted.
      - Eq. 6 is called "third-order" but is linear.
      - Table 2's P3 doublet ratio is 1.19, whereas its intensities 0.11/0.10 give 1.10.
      - P4's [N II]/Hα = 0.95 matches neither the line sum (1.12) nor λ6583 alone (0.80). The P1–P3 values follow the sum.
-     - The age formula has "+1", and R_PDS = 18 vs 17.1 pc (item 5).
+     - The printed age formula has "+1" where Cioffi et al. (1988) has "+1/3" (a misprint; item 5).
      - The solar O/H of 8.66 is attributed to Allende Prieto et al. (2001), who give 8.69 ± 0.05. The value 8.66 is Asplund et al. (2004)'s; Pettini & Pagel (2004) cite the two together. This is immaterial (0.03 dex).
    - From `notes/geometry.md` §4.1:
      - Fig. 4 plots 173 [O III] fibres, against 279 in the text (p. 6).
@@ -128,17 +129,17 @@ The problems are in how these numbers are interpreted.
 
 | Claim (location) | Paper value | Reproduced / implied value | Verdict |
 |---|---|---|---|
-| [S II] n_e (Sect. 3.4, Fig. 7b, pp. 13–14) | median 64, up to 150 cm⁻³; background lower | Table 2 R = 1.03–1.19 (σ_R 0.03 or 0.2–0.3) → **169–400** (Eq. 5), **225–631** (5-level); P4 highest | Not supported by Table 2; unphysical for WIM (EM, sightline LDL) |
+| [S II] n_e (Sect. 3.4, Fig. 7b, pp. 13–14) | mean 64 (107 per-fibre values), up to 150 cm⁻³; background lower | Regional Table 2 R = 1.03–1.19 (σ_R 0.03 or 0.2–0.3), at face value → **169–400** (Eq. 5), **225–631** (5-level); P4 highest | Not supported by Table 2, which constrains no density within its ±0.02 intensity errors; unphysical for WIM (EM, sightline LDL) |
 | R for 64 / 150 cm⁻³; low-density limit (p. 14) | LDL ~1.42 | 64 → R 1.33 (Eq. 5) / 1.37 (5-level); 150 → 1.23 / 1.27–1.28; LDL 1.437–1.462 | Not reached by any region |
-| T_e, Eq. 2 (Sect. 3.4, p. 12) | ≈ 9000 K; 1–2×10⁴ K on filament vs 7.5×10³ K in P4 | 6780 / 6580 / 3220 / 7660 K; σ_T 7300–10 700 K; P(T<0) 18–38 % | Unconstrained; no on/off difference |
+| T_e, Eq. 2 (Sect. 3.4, p. 12) | ≈ 9000 K; 1–2×10⁴ K on filament vs 7.5×10³ K in P4 | 6780 / 6580 / 3220 / 7660 K; σ_T 7300–10 700 K; P(T<0) 18–38 % | Unconstrained; the regional widths show no on/off difference |
 | V_t, Eq. 3 (Table 4, p. 13) | 33.1 / 32.9 / 30.6 / 29.9 km s⁻¹ | 26.7 / 25.7 / 29.9 / 26.5 km s⁻¹ | Not reproduced from Table 2 widths; P4 equal (WIM) |
-| 12+log(O/H), N2, Eq. 6 (Sect. 3.5, p. 14) | 8.82, "third-order polynomial" | Linear PP04: 8.81–8.85 (cubic 9.09–9.18); N2 = −0.15…−0.10, outside calibration; P4 8.85 | Arithmetic OK; calibration invalid; WIM |
-| 12+log(O/H), N2S2Hα, Eqs. 7–8 | 8.70 | 8.64–8.75; P4 8.75 | Arithmetic OK; describes WIM |
-| V_s (Dopita 1979), Sect. 4.1 | 119 ± 5 km s⁻¹ | 119.3 km s⁻¹ (n_e 64, n₀ 1), but n_e is wrong and is WIM | Input invalid |
-| E (Boumis et al. 2022), Sect. 4.1 | (2.0 ± 0.7)×10⁵¹ erg | 2.01×10⁵¹ (160 pc); 1.2–1.7×10⁵² (280 pc, n₀ 1); 2.9–4.2×10⁵⁴ (1.6 kpc); complete-shock Balmer bound ≤ 1.4×10⁴⁹–2.9×10⁵⁰ (280 pc) | Arithmetic OK; inputs invalid |
-| R_PDS (Cioffi et al. 1988) | 18 ± 2.8 pc | 17.1 pc (18 needs E = 2.41×10⁵¹) | Minor error |
-| Age (Cioffi et al. 1988) | (6.8 ± 1.8)×10⁴ yr | 7.95×10⁴ ("+1/3"); 8.72×10⁴ (printed "+1"); 6.74–6.75×10⁴ only with "+1/3" and R_PDS = 18 | Formula misprinted; inputs invalid |
-| Intrinsic [O III] FWHM (Table 2) | 46.9 / 48.9 / 43.1 km s⁻¹ | Passing fits return 36–47 km s⁻¹ for true 5–45 km s⁻¹ (integrated S/N 6.1); 23–45 km s⁻¹ at S/N 15 | Not established; S/N undefined |
+| 12+log(O/H), N2, Eq. 6 (Sect. 3.5, p. 14) | 8.82, "third-order polynomial" | Linear PP04: 8.81–8.84 for P1–P3 (cubic 9.09–9.18); N2 = −0.15…−0.10, outside calibration; P4 8.84 | Arithmetic OK; calibration invalid; WIM |
+| 12+log(O/H), N2S2Hα, Eqs. 7–8 | 8.70 | 8.64–8.72 for P1–P3; P4 8.75 | Arithmetic OK; describes WIM |
+| V_s (Dopita 1979), Sect. 4.1 | 119 ± 5 km s⁻¹ | 119.3 km s⁻¹ (n_e 64, n₀ 1), but n_e is that of the WIM | Arithmetic OK; input unsupported |
+| E (Boumis et al. 2022), Sect. 4.1 | (2.0 ± 0.7)×10⁵¹ erg | 2.01×10⁵¹ (160 pc); 1.2–1.7×10⁵² (280 pc, n₀ 1); 2.9–4.2×10⁵⁴ (1.6 kpc); complete-shock Balmer bound ≤ 4.2×10⁴⁹–3.8×10⁵⁰ (~280 pc) | Arithmetic OK; inputs unsupported |
+| R_PDS (Cioffi et al. 1988) | 18 ± 2.8 pc | 17.1 pc (18 needs E = 2.41×10⁵¹) | Reproduced within the quoted uncertainty |
+| Age (Cioffi et al. 1988) | (6.8 ± 1.8)×10⁴ yr | 7.95×10⁴ ("+1/3"); 8.72×10⁴ (printed "+1"); 6.74–6.75×10⁴ with "+1/3" and R_PDS = 18 | Reproduced within the quoted uncertainty; "+1" is a misprint; inputs unsupported |
+| Intrinsic [O III] FWHM (Table 2) | 46.9 / 48.9 / 43.1 km s⁻¹ | Passing fits return 36–47 km s⁻¹ for true 5–45 km s⁻¹ (integrated S/N 6.1); 23–45 km s⁻¹ at S/N 15 | Not established unless the S/N is a peak value; S/N undefined |
 | [O III] λ4959 (Table 2; Sect. 4.1) | "strong λλ4959,5007"; S/N 1.8–2.3 | Expected S/N 2.05–2.21; 5007/4959 = 2.3–2.5 ± 1.2–1.3 | Below the paper's S/N > 3 cut; uninformative |
 
 **Consequence.**
@@ -147,17 +148,17 @@ The problems are in how these numbers are interpreted.
   - n_e;
   - T_e and V_t;
   - O/H.
-- The only filament-specific LAMOST observable is [O III] λ5007, at S/N ≈ 6. Its width is not established.
-- The shock velocity, explosion energy, PDS radius and age have no observational basis. With the paper's own n₀ = 1, E rises to 10⁵² erg at 280 pc and 10⁵⁴ erg at 1.6 kpc. For a complete shock, the Balmer limit allows at most ~3×10⁵⁰ erg at 280 pc.
+- The only filament-specific LAMOST observable is [O III] λ5007, at S/N ≈ 6. Its width is not established unless the tabulated S/N is a peak value.
+- The shock velocity, explosion energy, PDS radius and age have no observational basis. With the paper's own n₀ = 1, E rises to 10⁵² erg at 280 pc and 10⁵⁴ erg at 1.6 kpc. For a complete shock, the Balmer limit allows at most ~4×10⁵⁰ erg at ~280 pc.
 - The radio statement does not support an old SNR.
-- The paper's own fallback in Sect. 4.2 ("DIG or ionized bubble cannot be excluded") is correct for the red lines. A "possible SNR" interpretation must rest on other evidence, such as [O III]/Hβ or [O III]/Hα, not on the evidence presented in Sects. 3.4–4.1.
+- The paper's own fallback (Abstract and Sect. 5: a DIG or ionized-bubble origin "cannot be fully excluded") is correct for the red lines. A "possible SNR" interpretation must rest on other evidence, such as [O III]/Hβ or [O III]/Hα, not on the evidence presented in Sects. 3.4–4.1.
 
 **Requested correction.**
 1. **Shock criterion.** Delete "confirming that the ionized gas is shock-excited" (Sect. 4.1), and the threshold claim in the abstract and Sect. 5. Replace them with: *"The red-arm ratios are indistinguishable in the nebula-free region P4 and are typical of the faint WIM; they do not constrain the excitation of the [O III] filament."* Make the 0.4/0.45/0.5 threshold consistent throughout.
 2. **[S II] density.** Give the uncertainty of each Table 2 doublet ratio. Replace the density paragraph with the Table 2-implied values, or with a statement that the doublet ratios are not physically interpretable. Withdraw the [S II] density as a "post-shock" density and as the density of "the [O iii]-emitting gas" (p. 15). Correct the low-density limit to ≈ 1.45, and correct the background-density statement.
-3. **T_e and V_t.** Report T_e per region with its uncertainty and delete "1–2×10⁴ K". Recompute Table 4's V_t from Eq. 3, or state how it was derived.
+3. **T_e and V_t.** Report T_e per region with its uncertainty, and give the per-fibre uncertainty behind "1–2×10⁴ K" or withdraw it. Recompute Table 4's V_t from Eq. 3, or state how it was derived.
 4. **Abundances.** Call Eq. 6 the linear PP04 relation. State that N2 lies outside the calibrated range and that the abundances characterize the line-of-sight WIM.
-5. **Energetics.** Correct the age bracket to "+1/3" and R_PDS to 17.1 pc. Either remove E and the age, or present them as illustrative scalings with n₀ and the distance stated as unknown.
+5. **Energetics.** Correct the misprinted age bracket from "+1" to "+1/3". Either remove E and the age, or present them as illustrative scalings with n₀ and the distance stated as unknown.
 6. **[O III] widths.** Define the S/N in Table 2. Then either show by simulation that the widths survive the FWHM cut at that S/N, or replace them with "not constrained at this S/N". Flag λ4959 as below the S/N threshold, and remove "strong".
 7. **Radio.** Replace the radio sentence with *"Interferometric surveys are insensitive to smooth structures larger than ≈ 8′ (NVSS) or 10′–20′ (TGSS); they provide no constraint on smooth emission from a 17′-wide filament."*
 8. **Inconsistencies.** Correct the items listed in point 8.

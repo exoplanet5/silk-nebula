@@ -36,9 +36,10 @@ hr + h2{border-top:none;margin-top:1.2em}
 <body><div class="lang-switch" role="group" aria-label="Language / 语言"><button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button><button type="button" data-lang="zh" aria-pressed="false" lang="zh-Hans">中文</button></div><article id="doc-en" lang="en"><h1 id="en-silk-nebula-velocities-frames-corrections-and-who-is-right">Silk Nebula velocities: frames, corrections, and who is right</h1>
 <p><em>中文版：<a href="#zh" data-switch="zh">VELOCITY_zh.md</a></em></p>
 <p><em>2026-11-17. This page puts every velocity for the Silk Nebula in one place: [O III], Hα, [N II] and [S II] from Wu et al. (2026, arXiv:2610.13329; &quot;the paper&quot;), DESI, SDSS/BOSS, WHAM and GALFA-HI. It states the reference frame of each value and says which values are right. All velocities are in km/s; positive means receding. The derivations are in <a href="DISPUTE.html">DISPUTE.md</a> §1–4.</em></p>
+<p><em>Reconciled on 2026-11-18 with the journal-style manuscript <a href="paper/silk_comment.pdf">paper/silk_comment.pdf</a> (&quot;the manuscript&quot;), which is the latest and most carefully checked statement of this study.</em></p>
 <p><strong>Bottom line.</strong></p>
 <ul>
-<li>On the southern filament (P1–P3), every line in every dataset sits at <strong>V_helio ≈ +12…+14, V_LSR ≈ 0…+2</strong>, once two LAMOST errors are removed.</li>
+<li>On the southern filament (P1–P3), every line in every dataset sits at <strong>V_helio ≈ +12…+14, V_LSR ≈ 0…+2</strong>, once two LAMOST errors are removed. The one exception is DESI near P3, at +8…+9 (§5.1).</li>
 <li><strong>The paper's [O III] is 10.1 ± 1.0 km/s too high.</strong> The Gaussian fits are fine; the wavelength scale is wrong. It is in air wavelengths and in the telescope's frame, so the −8.3 km/s Earth-motion correction was never applied, and a +1.8 km/s airglow offset was added.</li>
 <li><strong>The paper's Hα is 5.5 ± 1.1 km/s too high</strong> compared with its own [N II] and [S II] and with WHAM. The frame is fine, but the line centre is biased, most plausibly by over-subtracted geocoronal Hα.</li>
 <li><strong>The paper's [N II] and [S II] are right.</strong> So are <strong>DESI, SDSS/BOSS, WHAM and GALFA-HI.</strong></li>
@@ -356,8 +357,9 @@ hr + h2{border-top:none;margin-top:1.2em}
 </tbody>
 </table>
 <p>P2 lies at the edge of the redder northern zone (§8), and its DESI value rests on only 9 fibres.</p>
+<p>The DESI row is the weighted mean of the positive-residual fibres with S/N &gt; 4, without the ±1.5 zero point. The spectra are DR1 coadds of galaxy and quasar targets minus the redshift-fitter model, not sky fibres. ON−OFF stacks, in which the petal sky mean cancels, give +12.3 ± 1.1 at P1 and +8.0 ± 0.9 at P3. P1 agrees with the adopted +13.3 ± 1.0 (§5.2); P3 lies 4–5 km/s lower. Within P3, the ON−OFF velocity is +11.2 ± 1.1 east and +5.5 ± 1.0 west of the E spine, a 3–4σ difference (manuscript Appendix A).</p>
 <h3 id="en-52-whole-filament">5.2 Whole filament</h3>
-<p>V_LSR here uses the mean southern correction, −12.2 km/s.</p>
+<p>V_LSR here uses the mean southern correction, −12.2 km/s. WHAM and GALFA-HI are observed in V_LSR and converted to V_helio position by position (mean correction −12.5 for the six WHAM beams), so their two columns do not differ by exactly 12.2.</p>
 <table>
 <thead>
 <tr>
@@ -420,7 +422,7 @@ hr + h2{border-top:none;margin-top:1.2em}
   <td><strong>Adopted: weighted mean of the three bold values</strong></td>
   <td><strong>+13.3 ± 1.0</strong></td>
   <td><strong>+1.2 ± 1.0</strong> (+1.5 with Schönrich)</td>
-  <td>χ² = 2.2 for 2 dof</td>
+  <td>χ² = 2.2 for 2 dof; a further ±1 estimator systematic. DESI and SDSS alone give +12.9 ± 1.6</td>
 </tr>
 <tr>
   <td>WHAM Hα, on-filament, south (6 beams)</td>
@@ -469,7 +471,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 </ul>
 </li>
 <li><strong>It is not a frame error.</strong> A frame error would move [N II] and [S II] as well. It does not, so no frame correction can fix Hα.</li>
-<li><strong>The likely cause is geocoronal Hα.</strong> On this night the geocoronal line sits at V_helio −10.7 to −11.4, only 22–25 km/s from the WIM, which is less than one resolution element. The sky template subtracted from it is 0.86–1.27× as bright as the published line. A model with about 30 % (24–33 %) over-subtraction reproduces both the shift and the line widths.<ul>
+<li><strong>A plausible cause is geocoronal Hα.</strong> On this night the geocoronal line sits at V_helio −10.7 to −11.4, only 22–25 km/s from the WIM, which is less than one resolution element. The sky template subtracted from it is 0.86–1.27× as bright as the published line. A joint fit to the Hα offsets and widths needs about 30 % (24–33 %) over-subtraction. It reproduces the line widths and about three-quarters of the shift, or about one-half with the template fixed at the pipeline position.<ul>
 <li>This is a model only: the spectra are unreleased.</li>
 </ul>
 </li>
@@ -489,7 +491,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 <ul>
 <li><strong>The line offset is not physical.</strong> The &quot;∼5–15 km/s (V_helio) / ∼10–16 km/s (V_LSR)&quot; offset between [O III] and the red lines is the +10.1 frame error, with Hα's +5.5 on top. Nothing physical needs explaining, so the two-layer shell and the inhomogeneous bubble fall away.</li>
 <li><strong>No usable kinematic distance.</strong> The paper's [O III] distances used V_LSR = +11…+16; corrected, V_LSR is +1…+5 (adopted +1.2).<ul>
-<li>Galactic rotation gives only ~1.6 km/s at 160 pc and ~9 km/s per kpc on this sightline, while peculiar motions are 7–10 km/s.</li>
+<li>Galactic rotation gives only ~1.6 km/s at 160 pc and ~8–9 km/s per kpc on this sightline, while peculiar motions are 5–10 km/s.</li>
 <li>The printed distances are also in kpc, not units of 100 pc (DISPUTE.md §1–2).</li>
 </ul>
 </li>
@@ -552,7 +554,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 <tr>
   <td>DESI DR1 [O III]</td>
   <td>Right</td>
-  <td>+11…+14</td>
+  <td>+11…+14 (P1 +12; P3 +8…+9)</td>
 </tr>
 <tr>
   <td>SDSS/BOSS [O III]</td>
@@ -576,26 +578,29 @@ hr + h2{border-top:none;margin-top:1.2em}
 <li><strong>The −10.1 correction is applied in aggregate.</strong> Fig. 3a, whose position is not stated, is the only published spectrum that shows the airglow, and the per-fibre MRS-N spectra are unreleased. Plate zero points (0.2–4 km/s) cannot be checked.</li>
 <li><strong>The Hα cause is a model.</strong> The geocoronal intensity on this night is unknown. The bias itself does not depend on the cause.</li>
 <li><strong>The filament's velocity changes along its length.</strong><ul>
-<li>DESI gives +10.6 (10.2–12.0) at Dec &lt; 19.5° and +20.9 (18.5–23.1) at Dec ≥ 19.5°. P2 sits at that edge.</li>
+<li>DESI's joint regression gives +10.6 (10.2–12.0) at Dec &lt; 19.5° and +20.9 (18.5–23.1) at Dec ≥ 19.5°. That pair, 10.3 km/s apart, is at the high end: across six estimators the north is redder by +4 to +9 km/s in V_helio (1.8–3.7σ; +7 to +11 in V_LSR), so the size of the shift depends on the estimator.</li>
 <li>In the north, WHAM gives +10.3 ± 1.3, so the northern [O III] is redder than the WIM there; it follows the northern HI.</li>
-<li>SDSS and DESI disagree on the W strand: +9.7 ± 2.2 against +18.5, a difference of 8.8 ± 2.5.</li>
+<li>SDSS gives a consistent north–south shift, +6.7 ± 6.5, but disagrees with DESI at Dec 17.6–21°: +10.0 ± 2.2 against +17 to +23 (2–3σ). P2 (Dec +17.7°) lies at the southern edge of that zone. The northern shift therefore rests on DESI. The E and W strands have the same DESI velocity: +12.0 (11.3–14.3) and +11.4 (8.6–15.6).</li>
+<li>Near P3, DESI lies 4–5 km/s below the adopted value (§5.1).</li>
 <li>None of this affects the +10.1 error, which belongs to the LAMOST wavelength scale.</li>
 </ul>
 </li>
 </ul>
 <h2 id="en-sources">Sources</h2>
 <ul>
+<li>Manuscript: <a href="paper/silk_comment.pdf">paper/silk_comment.pdf</a>, Sections 3.1–3.2, Table 2 and Appendix A.</li>
 <li><a href="DISPUTE.html">DISPUTE.md</a>: §1 units, §2 kinematic distance, §3 [O III] (Table C4, Figure C3), §4 Hα (Table C5, Figure C4).</li>
-<li>Notes: <code>notes/verify_velocity.md</code>, <code>notes/verify_desi.md</code>, <code>notes/verify_sdss.md</code>, <code>notes/verify_hiwham.md</code>, <code>notes/spectra_ism.md</code>, <code>notes/paper_review.md</code> (V_LSR column, item 6).</li>
+<li>Notes: <code>notes/verify_velocity.md</code>, <code>notes/verify_desi.md</code>, <code>notes/verify_sdss.md</code>, <code>notes/verify_hiwham.md</code>, <code>notes/spectra_ism.md</code>, <code>notes/paper_review.md</code> (V_LSR column, item 6), <code>notes/w3_northsouth.md</code>, <code>notes/paper_appendix_desi.md</code>.</li>
 <li>Code: <code>scripts/dispute_oiii_values.py</code>, <code>scripts/dispute_halpha_analysis.py</code>, <code>scripts/verify_velocity_desi_sdss.py</code>, <code>scripts/verify_desi_velocity.py</code>, <code>scripts/w3_figs_f2_velocity.py</code>.</li>
-<li>Values: <code>data/derived/verify_velocity_summary.json</code>, <code>data/derived/dispute_oiii_values.json</code>, <code>data/derived/dispute_halpha_results.json</code>.</li>
+<li>Values: <code>data/derived/verify_velocity_summary.json</code>, <code>data/derived/dispute_oiii_values.json</code>, <code>data/derived/dispute_halpha_results.json</code>, <code>data/derived/paper_appendix_desi_summary.json</code>.</li>
 </ul>
 </article><article id="doc-zh" lang="zh-Hans" hidden><h1 id="zh-丝绸星云速度参考系改正与孰是孰非">丝绸星云速度：参考系、改正与孰是孰非</h1>
 <p><em>English version: <a href="#en" data-switch="en">VELOCITY.md</a></em></p>
 <p><em>2026-11-17。本页把丝绸星云（Silk Nebula）的所有速度集中在一处：Wu et al.（2026，arXiv:2610.13329；下称“论文”）给出的 [O III]、Hα、[N II] 与 [S II]，以及 DESI、SDSS/BOSS、WHAM 和 GALFA-HI 的测量。本页注明每个数值的参考系（reference frame），并指出哪些数值正确。所有速度单位为 km/s，正值表示退行。推导见 <a href="DISPUTE.html">DISPUTE.md</a> 第 1–4 节。</em></p>
+<p><em>2026-11-18 已与期刊格式的稿件 <a href="paper/silk_comment.pdf">paper/silk_comment.pdf</a>（下称“稿件”）核对一致；该稿件是本研究最新、核查最仔细的表述。</em></p>
 <p><strong>结论。</strong></p>
 <ul>
-<li>在南段丝状结构（filament，P1–P3）上，去除 LAMOST 的两处错误之后，所有数据集中的所有谱线都位于 <strong>V_helio ≈ +12…+14，V_LSR ≈ 0…+2</strong>。</li>
+<li>在南段丝状结构（filament，P1–P3）上，去除 LAMOST 的两处错误之后，所有数据集中的所有谱线都位于 <strong>V_helio ≈ +12…+14，V_LSR ≈ 0…+2</strong>。唯一的例外是 P3 附近的 DESI，为 +8…+9（§5.1）。</li>
 <li><strong>论文的 [O III] 偏高 10.1 ± 1.0 km/s。</strong> 高斯拟合没有问题，错的是波长标度：它采用空气波长（air wavelength），且处于望远镜自身的参考系（站心，topocentric），因此 −8.3 km/s 的地球运动改正从未施加，另外还多出 +1.8 km/s 的气辉（airglow）偏移。</li>
 <li><strong>论文的 Hα 偏高 5.5 ± 1.1 km/s</strong>（相对于论文自身的 [N II]、[S II] 以及 WHAM）。参考系没有问题，但谱线中心有偏差，最可能的原因是地冕（geocoronal）Hα 被过度扣除。</li>
 <li><strong>论文的 [N II] 与 [S II] 是正确的。</strong> <strong>DESI、SDSS/BOSS、WHAM 和 GALFA-HI</strong> 也都正确。</li>
@@ -913,8 +918,9 @@ hr + h2{border-top:none;margin-top:1.2em}
 </tbody>
 </table>
 <p>P2 位于速度较红的北部区段边缘（§8），其 DESI 值仅基于 9 根光纤。</p>
+<p>DESI 一行是 S/N &gt; 4 的正残差光纤的加权平均，不含 ±1.5 的零点。这些光谱是 DR1 中星系与类星体目标的合并光谱（coadd）减去红移拟合模型后的残差，并非天光光纤。ON−OFF 叠加可抵消焦面花瓣（petal）的天光平均值，在 P1 给出 +12.3 ± 1.1，在 P3 给出 +8.0 ± 0.9。P1 与采用值 +13.3 ± 1.0（§5.2）一致；P3 低 4–5 km/s。在 P3 内部，ON−OFF 速度在 E 主脊线以东为 +11.2 ± 1.1，以西为 +5.5 ± 1.0，相差 3–4σ（稿件附录 A）。</p>
 <h3 id="zh-52-整条丝状结构">5.2 整条丝状结构</h3>
-<p>此处 V_LSR 采用南段的平均改正 −12.2 km/s。</p>
+<p>此处 V_LSR 采用南段的平均改正 −12.2 km/s。WHAM 与 GALFA-HI 是在 V_LSR 中观测的，并逐个位置换算为 V_helio（6 个 WHAM 波束的平均改正为 −12.5），因此它们两列之差并不恰好等于 12.2。</p>
 <table>
 <thead>
 <tr>
@@ -977,7 +983,7 @@ hr + h2{border-top:none;margin-top:1.2em}
   <td><strong>采用值：三个粗体值的加权平均</strong></td>
   <td><strong>+13.3 ± 1.0</strong></td>
   <td><strong>+1.2 ± 1.0</strong>（Schönrich 为 +1.5）</td>
-  <td>χ² = 2.2，自由度 2</td>
+  <td>χ² = 2.2，自由度 2；另有 ±1 的估计量系统误差。仅用 DESI 与 SDSS 得 +12.9 ± 1.6</td>
 </tr>
 <tr>
   <td>WHAM Hα，丝状结构上，南段（6 个波束）</td>
@@ -1026,7 +1032,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 </ul>
 </li>
 <li><strong>这不是参考系错误。</strong> 参考系错误也会移动 [N II] 和 [S II]，但它们没有移动，因此任何参考系改正都无法修正 Hα。</li>
-<li><strong>可能的原因是地冕 Hα。</strong> 当晚地冕线位于 V_helio −10.7 至 −11.4，与 WIM 仅相距 22–25 km/s，小于一个分辨单元。被扣除的天光模板亮度为论文所给谱线的 0.86–1.27 倍。约 30 %（24–33 %）的过度扣除即可同时复现该偏移和谱线宽度。<ul>
+<li><strong>一个合理的解释是地冕 Hα。</strong> 当晚地冕线位于 V_helio −10.7 至 −11.4，与 WIM 仅相距 22–25 km/s，小于一个分辨单元。被扣除的天光模板亮度为论文所给谱线的 0.86–1.27 倍。对 Hα 偏移和线宽的联合拟合需要约 30 %（24–33 %）的过度扣除。它能复现谱线宽度以及约四分之三的偏移；若把模板固定在流程给出的位置，则约为一半。<ul>
 <li>这仅是模型：光谱尚未公开。</li>
 </ul>
 </li>
@@ -1046,7 +1052,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 <ul>
 <li><strong>谱线偏移不是物理的。</strong> [O III] 与红端谱线之间“∼5–15 km/s（V_helio）/ ∼10–16 km/s（V_LSR）”的偏移，就是 +10.1 的参考系错误，再加上 Hα 的 +5.5。没有需要解释的物理现象，因此“双层壳层”（two-layer shell）与“非均匀膨胀泡”两种解释都不再成立。</li>
 <li><strong>没有可用的运动学距离。</strong> 论文的 [O III] 距离使用 V_LSR = +11…+16；改正后 V_LSR 为 +1…+5（采用值 +1.2）。<ul>
-<li>在这条视线上，银河系自转在 160 pc 处仅给出 ~1.6 km/s，梯度约为每 kpc 9 km/s，而本动速度（peculiar motion）为 7–10 km/s。</li>
+<li>在这条视线上，银河系自转在 160 pc 处仅给出 ~1.6 km/s，梯度约为每 kpc 8–9 km/s，而本动速度（peculiar motion）为 5–10 km/s。</li>
 <li>此外，印出的距离单位是 kpc，而不是 100 pc（DISPUTE.md 第 1–2 节）。</li>
 </ul>
 </li>
@@ -1109,7 +1115,7 @@ hr + h2{border-top:none;margin-top:1.2em}
 <tr>
   <td>DESI DR1 [O III]</td>
   <td>正确</td>
-  <td>+11…+14</td>
+  <td>+11…+14（P1 +12；P3 +8…+9）</td>
 </tr>
 <tr>
   <td>SDSS/BOSS [O III]</td>
@@ -1133,19 +1139,21 @@ hr + h2{border-top:none;margin-top:1.2em}
 <li><strong>−10.1 改正是整体施加的。</strong> 图 3a（位置未注明）是唯一显示气辉的已发表光谱，而逐根光纤的 MRS-N 光谱尚未公开。观测板零点（0.2–4 km/s）无法核实。</li>
 <li><strong>Hα 偏差的成因是模型推断。</strong> 当晚的地冕强度未知，但偏差本身并不取决于成因。</li>
 <li><strong>丝状结构的速度沿其长度变化。</strong><ul>
-<li>DESI 在 Dec &lt; 19.5° 给出 +10.6 (10.2–12.0)，在 Dec ≥ 19.5° 给出 +20.9 (18.5–23.1)。P2 恰在该边界上。</li>
+<li>DESI 的联合回归在 Dec &lt; 19.5° 给出 +10.6 (10.2–12.0)，在 Dec ≥ 19.5° 给出 +20.9 (18.5–23.1)。这一对数值相差 10.3 km/s，处于各估计的高端：在六种估计量中，北段在 V_helio 中偏红 +4 至 +9 km/s（1.8–3.7σ；在 V_LSR 中为 +7 至 +11），因此偏移的大小取决于估计量。</li>
 <li>在北段，WHAM 给出 +10.3 ± 1.3，因此北段 [O III] 比当地 WIM 更红；它与北段的 HI 一致。</li>
-<li>SDSS 与 DESI 对 W 分支（W strand）的结果不一致：+9.7 ± 2.2 对 +18.5，相差 8.8 ± 2.5。</li>
+<li>SDSS 给出的南北偏移为 +6.7 ± 6.5，与 DESI 一致，但在 Dec 17.6–21° 与 DESI 不一致：+10.0 ± 2.2 对 +17 至 +23（2–3σ）。P2（Dec +17.7°）位于该区段的南缘。因此北段的偏移只由 DESI 支撑。E 分支与 W 分支（strand）的 DESI 速度相同：+12.0 (11.3–14.3) 与 +11.4 (8.6–15.6)。</li>
+<li>在 P3 附近，DESI 比采用值低 4–5 km/s（§5.1）。</li>
 <li>这些都不影响 +10.1 的错误，该错误属于 LAMOST 的波长标度。</li>
 </ul>
 </li>
 </ul>
 <h2 id="zh-来源">来源</h2>
 <ul>
+<li>稿件：<a href="paper/silk_comment.pdf">paper/silk_comment.pdf</a>，第 3.1–3.2 节、表 2 与附录 A。</li>
 <li><a href="DISPUTE.html">DISPUTE.md</a>：第 1 节，单位；第 2 节，运动学距离；第 3 节，[O III]（表 C4、图 C3）；第 4 节，Hα（表 C5、图 C4）。</li>
-<li>笔记：<code>notes/verify_velocity.md</code>、<code>notes/verify_desi.md</code>、<code>notes/verify_sdss.md</code>、<code>notes/verify_hiwham.md</code>、<code>notes/spectra_ism.md</code>、<code>notes/paper_review.md</code>（V_LSR 列，第 6 项）。</li>
+<li>笔记：<code>notes/verify_velocity.md</code>、<code>notes/verify_desi.md</code>、<code>notes/verify_sdss.md</code>、<code>notes/verify_hiwham.md</code>、<code>notes/spectra_ism.md</code>、<code>notes/paper_review.md</code>（V_LSR 列，第 6 项）、<code>notes/w3_northsouth.md</code>、<code>notes/paper_appendix_desi.md</code>。</li>
 <li>代码：<code>scripts/dispute_oiii_values.py</code>、<code>scripts/dispute_halpha_analysis.py</code>、<code>scripts/verify_velocity_desi_sdss.py</code>、<code>scripts/verify_desi_velocity.py</code>、<code>scripts/w3_figs_f2_velocity.py</code>。</li>
-<li>数值：<code>data/derived/verify_velocity_summary.json</code>、<code>data/derived/dispute_oiii_values.json</code>、<code>data/derived/dispute_halpha_results.json</code>。</li>
+<li>数值：<code>data/derived/verify_velocity_summary.json</code>、<code>data/derived/dispute_oiii_values.json</code>、<code>data/derived/dispute_halpha_results.json</code>、<code>data/derived/paper_appendix_desi_summary.json</code>。</li>
 </ul>
 </article><script>
 (function(){

@@ -35,13 +35,14 @@
    - *Air/vacuum mix-up.* This would produce 65–102 km s⁻¹ (Morton 2000 conversion).
    - *Solar blend.* It biases the centroid by only +0.4 km s⁻¹, and by at most +2.5 km s⁻¹ even for a purely solar continuum.
 6. **Independent spectra agree with the corrected value.**
-   - DESI DR1 (DESI Collaboration 2026) is vacuum and barycentric, with the correction applied to the wavelength grid before sky subtraction (desispec; Guy et al. 2023). Science-fibre residuals (flux − Redrock model) give +14.4 ± 1.9 km s⁻¹ from 390 on-ridge fibres (including a ±1.5 zero point) and +11.3 (16–84 %: 10.2–13.9) from a joint regression on both [O III] lines.
+   - DESI DR1 (DESI Collaboration 2026) is vacuum and barycentric, with the correction applied to the wavelength grid before sky subtraction (desispec; Guy et al. 2023). The spectra are DR1 coadds of galaxy and quasar targets, not sky fibres. Their residuals (flux − Redrock model) give +14.4 ± 1.9 km s⁻¹ from 390 on-ridge fibres (including a ±1.5 zero point) and +11.3 (16–84 %: 10.2–13.9) from a joint regression on both [O III] lines.
    - SDSS sky fibres (Abdurro'uf et al. 2022) give +9.6 ± 2.8 km s⁻¹ (all strands). A second re-analysis gives +12.3 ± 2.5 (all) and +10.0 ± 1.8 ± 0.8 km s⁻¹ at Dec < 20°, which contains P1–P3.
    - DESI and SDSS alone give **+12.9 ± 1.6 km s⁻¹**. The calibration-free Fig. 3a value lies +0.7 ± 2.0 above this. The paper's P1–P3 weighted mean (+25.5 ± 2.2) lies +12.6 ± 2.7 above it (4.6σ), and +2.5 ± 2.8 above it after correction.
    - Per region (Table 4), the paper minus DESI within 0.5° is +14.0 ± 2.4 km s⁻¹ (5.7σ), and +3.9 ± 2.5 (1.5σ) after correction.
+   - Region by region, DESI agrees with the adopted value at P1 and is lower at P3 (`notes/paper_appendix_desi.md`). At P1 it gives +11.9 ± 1.9 km s⁻¹ (61 fibres; ON−OFF stack +12.3 ± 1.1), which agrees with the adopted +13.3 ± 1.0. At P3 it gives +9.2 ± 1.0 (128 fibres; ON−OFF +8.0 ± 0.9), which lies 4–5 km s⁻¹ lower. Within P3 the ON−OFF velocity is +11.2 ± 1.1 east and +5.5 ± 1.0 west of the E spine (3–4σ). The ±1.5 km s⁻¹ zero point is additional.
    - The weighted mean of DESI, Fig. 3a and SDSS is **+13.3 ± 1.0 km s⁻¹** (χ² = 2.2 for 2 dof). Other estimator choices give +12.4 ± 0.9, hence a ±1 km s⁻¹ systematic. In V_LSR this is +1.2 ± 1.0, or +1.5 with Schönrich et al. (2010).
    - The velocity varies along the filament. DESI gives +9.7…+12.2 km s⁻¹ at Dec < 17.6° and +17…+23 at Dec 17.6–21°, where SDSS gives +10.0 ± 2.2 (`w3_northsouth.md`). P1 and P3 lie in the southern zone; P2 (Dec 17.74°) is at its edge, with a region-matched DESI value of +15.2 ± 2.9 (n = 9). The 10.1 km s⁻¹ error belongs to the wavelength scale and is unaffected.
-   - The corrected [O III] agrees with the paper's own [N II] (P1–P4 mean +12.2 ± 0.9) and with WIM Hα from WHAM (Haffner et al. 2003). WHAM gives +11.5…+13.4 in the nearest beams, and V_LSR +1.3 on the southern filament against +1.2 ± 1.0 for [O III] (`verify_hiwham.md`).
+   - The corrected [O III] agrees with the paper's own [N II] (P1–P4 mean +12.2 ± 0.9) and with WIM Hα from WHAM (Haffner et al. 2003). WHAM gives +11.6…+13.4 in the nearest beams, and V_LSR +1.3 on the southern filament against +1.2 ± 1.0 for [O III] (`verify_hiwham.md`).
    - [O III] − [N II] becomes **+1.1 ± 1.3 km s⁻¹** (+1.4 ± 1.5 from Fig. 3a alone), against +13.7 ± 2.4 from the paper's P1–P3 values.
 
 ![Three panels. (a) The [N I] 5198/5200 airglow doublet from the paper's Fig. 3a spectrum, with markers for the doublet positions on air or vacuum and topocentric or heliocentric scales; the data sit on the air-topocentric markers. (b) [O III] 5007 from Fig. 3a and the Fig. 3b P1-P3 spectra, with air and vacuum rest wavelengths and the plotted-scale positions of lines with true heliocentric velocity +13.3 and +25 km/s; the line peaks at the +13.3 position. (c) Velocity ladder: the paper's published Table 4 [O III], the paper's plotted-scale values, corrected values, DESI, SDSS, the paper's red lines, WHAM H-alpha and the paper's H-alpha, with the adopted +13.3 +- 1.0 km/s band.](figures/dispute_oiii_fig3.png)
@@ -59,19 +60,19 @@
 
 **Table 4.** [O III] velocities by region (km s⁻¹): the paper's Table 4, the paper's Fig. 3b re-measured, corrected, and compared with DESI, the red lines and WHAM.
 - "Corrected" = published − 10.1 ± 1.0. The solar-blend bias (+0.4 km s⁻¹ in Fig. 3a; it depends on each spectrum's continuum) is not removed. V_LSR uses our per-region astropy correction with the paper's solar motion (−12.10/−11.87/−12.58 for P1–P3).
-- DESI = weighted mean of positive-residual science fibres with S/N > 4 within 0.5°, without the ±1.5 km s⁻¹ zero point. P2 has only 9 fibres.
-- WHAM = main Hα component of the nearest 1° beam (0.27–0.48° away; wave-1 fits, fit errors only).
+- DESI = weighted mean of positive-residual science fibres with S/N > 4 within 0.5°, without the ±1.5 km s⁻¹ zero point. P2 has only 9 fibres. ON−OFF stacks give +12.3 ± 1.1 (P1) and +8.0 ± 0.9 (P3).
+- WHAM = main Hα component of the nearest 1° beam (0.27–0.48° away), as in Section 4; the error is the beam-to-beam scatter within 1°. Panel (c) of the figure above plots an earlier fit of the same beams, which differs by ≤ 0.3 km s⁻¹.
 - Differences are published → corrected, with errors added in quadrature. The "P1–P3 weighted" row treats the common ±1.0 correction as independent, so its errors are slightly understated.
 
 | Region | Paper Table 4 V_helio | Paper Fig. 3b, as plotted | Corrected V_helio (V_LSR) | DESI ≤ 0.5° (n) | Paper − DESI: published → corrected | Paper [N II] | [O III] − [N II]: published → corrected | WHAM Hα V_helio |
 |---|---|---|---|---|---|---|---|---|
-| P1 | +26.8 ± 4.3 | +24.9 ± 2.5 | +16.7 ± 4.4 (+4.6) | +11.9 ± 1.9 (61) | +14.9 ± 4.7 (3.2σ) → +4.8 ± 4.8 (1.0σ) | +11.8 ± 1.6 | +15.0 ± 4.6 → +4.9 ± 4.7 | +13.1 ± 0.2 |
-| P2 | +26.8 ± 4.1 | +28.6 ± 1.5 | +16.7 ± 4.2 (+4.8) | +15.2 ± 2.9 (9) | +11.6 ± 5.0 (2.3σ) → +1.5 ± 5.1 (0.3σ) | +12.0 ± 1.6 | +14.8 ± 4.4 → +4.7 ± 4.5 | +11.5 ± 0.1 |
-| P3 | +23.8 ± 3.3 | +20.3 ± 1.3 | +13.7 ± 3.5 (+1.1) | +9.2 ± 1.0 (128) | +14.6 ± 3.5 (4.2σ) → +4.5 ± 3.6 (1.2σ) | +11.7 ± 1.9 | +12.1 ± 3.8 → +2.0 ± 3.9 | +13.4 ± 0.4 |
-| P4 (background) | — | — | — | — | — | +13.3 ± 2.3 | — | +12.7 ± 0.2 |
+| P1 | +26.8 ± 4.3 | +24.9 ± 2.5 | +16.7 ± 4.4 (+4.6) | +11.9 ± 1.9 (61) | +14.9 ± 4.7 (3.2σ) → +4.8 ± 4.8 (1.0σ) | +11.8 ± 1.6 | +15.0 ± 4.6 → +4.9 ± 4.7 | +13.4 ± 0.4 |
+| P2 | +26.8 ± 4.1 | +28.6 ± 1.5 | +16.7 ± 4.2 (+4.8) | +15.2 ± 2.9 (9) | +11.6 ± 5.0 (2.3σ) → +1.5 ± 5.1 (0.3σ) | +12.0 ± 1.6 | +14.8 ± 4.4 → +4.7 ± 4.5 | +11.6 ± 1.1 |
+| P3 | +23.8 ± 3.3 | +20.3 ± 1.3 | +13.7 ± 3.5 (+1.1) | +9.2 ± 1.0 (128) | +14.6 ± 3.5 (4.2σ) → +4.5 ± 3.6 (1.2σ) | +11.7 ± 1.9 | +12.1 ± 3.8 → +2.0 ± 3.9 | +13.4 ± 0.3 |
+| P4 (background) | — | — | — | — | — | +13.3 ± 2.3 | — | +12.9 ± 0.5 |
 | P1–P3 weighted | +25.5 ± 2.2 | — | +15.4 ± 2.3 | — | +14.0 ± 2.4 (5.7σ) → +3.9 ± 2.5 (1.5σ) | — | +13.7 ± 2.4 → +3.7 ± 2.5 | — |
 | Fig. 3a (position not given) | — | +24.1 ± 0.9 | **+13.6 ± 1.2** (vs own [N I]) | — | — | +12.2 ± 0.9 (P1–P4 mean) | → +1.4 ± 1.5 | — |
-| All data, adopted | — | — | **+13.3 ± 1.0** (+1.2) | — | — | +12.2 ± 0.9 | → +1.1 ± 1.3 | +12.7 (mean) |
+| All data, adopted | — | — | **+13.3 ± 1.0** (+1.2) | — | — | +12.2 ± 0.9 | → +1.1 ± 1.3 | +12.8 (mean) |
 
 **Consequence.**
 - The corrected [O III] moves with the paper's own [N II]/[S II] and with the local WIM. The "∼5–15" (V_helio) and "10–16 km s⁻¹" (V_LSR) offsets are therefore not properties of the nebula. This removes the 100–150 pc blue/red distance discrepancy (Sect. 4.2, p. 16) and the motivation for the two-layer-shell and inhomogeneous-bubble scenarios (p. 17).

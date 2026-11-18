@@ -17,10 +17,12 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 
    Over these choices Table 3 spans 5.7–16.3 R [calc]. Even a 30 Å band gives 5.0–6.4 R. The paper does not say which instrument produced Table 3. With the 5 nm filter that QHYCCD (2024) reports for the f/2.8 follow-up, the values are 8.3–10.6 R.
 2. **Independent measurements give 1.4–2.5 R** (Table 6, Fig. 5b). Like Table 3, these are excesses over the local background; the SDSS P-region means are absolute, but the off-strand level is only 0.07 R.
-   - DESI DR1 (DESI Collaboration 2026): 1.62 R.
+   - DESI DR1 (DESI Collaboration 2026): 1.62 R (southern-ridge median; calibration uncertain by about 20 %, see below).
    - SDSS/BOSS sky fibres (DR17, DR19; Abdurro'uf et al. 2022; SDSS Collaboration 2026): 1.49 / 1.78 / 1.87 R at P1 / P2 / P3.
    - SDSS imaging sky levels (DR18; Almeida et al. 2023): 2.31 ± 0.38 R on 17′ scales (3.9σ against coherent nulls).
    - NSNS DR0.2 maps (Ziegenbalg 2025; calibration not re-verified), measured here: 2.04 / 2.06 / 2.18 R, at a 51.5″ pixel scale.
+
+   The DESI calibration is less certain than the ±8 % of the measured fibre acceptances. DR1 has no guide-camera fibre acceptance for the two survey-validation tiles 80644 and 80683, which supply 85 % of the fibres within 0.5° of P1, all of those near P3 and 46 % of the usable fibres at Dec < 19.5°; programme medians were used instead (`notes/paper_appendix_desi.md`). The DESI brightness near P1 and P3, and the 1.62 R southern median, are therefore uncertain by about 20 %. The factor to Table 3 is unaffected: Table 3 is 6.2 and 6.6 times the DESI model sky brightness at P1 and P3 (2.07 ± 0.06 and 1.54 ± 0.04 R).
 
    Over the same regions Table 3 is **4.6–8.6× higher** [calc]. That is 1.7–2.3 mag, or 43–83 times its quoted errors. Without the star-affected P1 the factor is 4.6–6.2×.
 3. **Angular scale does not explain the gap.** The Table 3 subregion averages are 2.6–4.3× above even the brightest single measurements [calc]: the brightest SDSS fibre (3.65 R), the brightest DESI node (3.88 R) and the NSNS 1′ peaks (2.95–3.64 R).
@@ -36,7 +38,7 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
    As a deliberately generous bound we stacked the separate lowering extremes: 50 Å, +0.1 mag and full λ4959. No single filter satisfies these together, and the filter model already contains the width and λ4959 terms. We added ~0.3 mag of P1 starlight. The result, 5.5–5.8 R, is still **2.6–3.7×** above the independent values. Matching them needs a factor of 0.12–0.22.
 
    A common factor would also keep the regions in order, but they are not in order.
-   - Table 3 ranks P1 brightest, by 0.25–0.27 mag.
+   - Table 3 ranks P1 brightest, by 0.25–0.27 mag, which Sect. 3.1 attributes to starlight.
    - SDSS ranks P1 faintest, by 0.29–0.38 R (errors ≤ 0.09 R).
    - NSNS finds the three regions equal within 0.14 R.
    - The paper's own image shows P1 faintest.
@@ -58,7 +60,7 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 
 *Data: the paper's Sects. 2.1, 3.1, 4.1 and Table 3; DESI DR1; SDSS DR17/DR19 sky fibres and DR18 imaging-sky levels; NSNS DR0.2; Gaia DR3. Computed by `scripts/dispute_brightness_calc.py` and plotted by `scripts/dispute_brightness_fig.py`.*
 
-**Table 6.** [O III] λ5007 brightness of the southern Silk Nebula by method. The last column is the Table 3 value divided by the measurement, region-matched where possible. Values for P1 / P2 / P3 are separated by "/". Sources: the paper; `data/derived/dispute_brightness_calc.json`; the project notes `verify_desi.md`, `verify_sdss.md`, `verify_precovery.md`, `imaging_optical.md` and `spectra_sdss_lamost.md`.
+**Table 6.** [O III] λ5007 brightness of the southern Silk Nebula by method. The last column is the Table 3 value divided by the measurement, region-matched where possible. Values for P1 / P2 / P3 are separated by "/". Sources: the paper; `data/derived/dispute_brightness_calc.json`; the project notes `verify_desi.md`, `paper_appendix_desi.md`, `verify_sdss.md`, `verify_precovery.md`, `imaging_optical.md` and `spectra_sdss_lamost.md`.
 
 | Measurement | Method | Scale | I(5007) (R) | Table 3 / value |
 |---|---|---|---|---|
@@ -70,16 +72,16 @@ Sect. 4.1 (p. 15) converts the values to "∼10–13 Rayleigh — well above the
 | SDSS imaging sky, g (19 runs, 2002–07) | ridge-template fit to field sky levels; 3.9σ vs coherent nulls | 17′ | 2.31 ± 0.38 (2.39, 2.55 other estimators) | 3.9–5.5 |
 | SDSS/BOSS sky fibres | total sky, fibre-acceptance corrected, mean within 0.3° | 2–3″ fibres | 1.49 / 1.78 / 1.87 (±0.05–0.09; ±0.2 zero point); brightest 3.65 | 8.6 / 5.6 / 5.4 |
 | SDSS/BOSS south ON−OFF | strand vs 0.45–2° background | r_on 0.15° | 1.39 ± 0.10 | 7.2–9.2 |
-| DESI DR1 south ridge | flux-calibrated, GFA fibre acceptance | 1.5″ fibres | 1.62 (±8 % sys; nodes 1.4–2.3; W node 3.88) | 6.1–7.9 |
+| DESI DR1 south ridge | flux-calibrated, GFA fibre acceptance (programme medians for two tiles) | 1.5″ fibres | 1.62 (±20 % sys; nodes 1.4–2.3; W node 3.88) | 6.1–7.9 |
 | Fesen et al. 2024 limits (as quoted) | — | — | 0.5–5 | — |
 
 **Consequence.**
 - **The Sect. 4.1 comparison fails.** At 1.4–2.5 R the Silk Nebula lies *inside* the quoted 0.5–5 R range of Fesen et al. (2024), near its logarithmic midpoint of 1.6 R. It is not "well above" that range. Its appearance in Fesen et al. (2026) is consistent with this brightness and does not require a bright filament.
 - **Downstream quantities.** The paper's energy uses an adopted n₀ = 1.0 ± 0.3 cm⁻³, not Table 3. Anything scaled from Table 3 would be inflated [calc]: emission measure and [O III] luminosity by 4.6–8.6×, an emission-measure density by 2.2–2.9×, and the Sect. 4.1 energy (E ∝ n₀^1.16) by 6–12× if n₀ were tied to I. The "tenuous" of Sect. 3.1 is, if anything, strengthened.
-- **Under the paper's own shock interpretation, Table 3 conflicts with the GALEX FUV.**
+- **Under the paper's own shock interpretation, published shock models make Table 3 inconsistent with the GALEX FUV.**
   - Regressing GALEX FUV (Martin et al. 2005; Morrissey et al. 2007) on NSNS gives 92 ± 10 CU (photons s⁻¹ cm⁻² sr⁻¹ Å⁻¹) per NSNS rayleigh in the south (`verify_xrayfuv_galex_measure.json`).
   - If Table 3 were right, that would be 15–20 CU per true rayleigh [calc]. This is 2.9–3.8× below (2.6× at +1σ) the lowest non-resonant FUV floor of the tabulated shock models at E(B−V) = 0.03.
-  - That floor is 57 CU R⁻¹ for the incomplete shocks of Raymond et al. (1988). For the complete shocks of Raymond (1979), Cox & Raymond (1985) and Dopita & Sutherland (1996) it is 85–281 CU R⁻¹.
+  - That floor is 57 CU R⁻¹ for the incomplete shocks of Raymond et al. (1988). For the complete shocks of Raymond (1979), Cox & Raymond (1985) and Dopita & Sutherland (1996) it is 85–277 CU R⁻¹ (up to 281 with the magnetised Dopita & Sutherland runs).
   - Resonance scattering cannot remove non-resonant lines. Closing the gap would need E(B−V) ≳ 0.17–0.21 (a model-only extrapolation that ignores the [O III] attenuation, so the true requirement is higher). Schlegel et al. (1998) give 0.03–0.04.
 
 **Requested correction.**
