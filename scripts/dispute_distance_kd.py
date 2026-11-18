@@ -326,101 +326,174 @@ def main():
 
 # ------------------------------------------------------------------------------------------------ figure
 def make_figure(res):
+    """Default: the original dark figure (figures/dispute_distance_fig1.png).
+    SILK_THEME=light / SILK_PAPER=1: light palette and the journal layout (7.1 in wide, >= 6.5 pt text,
+    no figure title or credit), written by silk_style to paper/figures/ as PNG + PDF."""
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
+    import silk_style as ss
     from silk_style import new_sky_figure, finish, label, FG, FGDIM, OK, WARN, DANGER, BG2
+    P, L = ss.PAPER, ss.LIGHT
 
-    REGC = {'P1': '#4fc3f7', 'P2': '#7ad97a', 'P3': '#c792ea', 'P4': '#ffb84f'}
+    if L:
+        REGC = {'P1': ss.ACCENT, 'P2': ss.OK, 'P3': ss.NII_C, 'P4': ss.WARN}
+        MEC, ENV_C, ENV_A, ENV_LA = 'white', FGDIM, 0.15, 0.28
+        LINE0, PT_C, INS_BG = ss.EDGE, ss.TITLE, ss.BG2
+        BAR_C, BAR_A = ss.OIII_C, 0.42
+    else:
+        REGC = {'P1': '#4fc3f7', 'P2': '#7ad97a', 'P3': '#c792ea', 'P4': '#ffb84f'}
+        MEC, ENV_C, ENV_A, ENV_LA = '#05070a', '#9aa4ae', 0.13, 0.3
+        LINE0, PT_C, INS_BG = '#2a323c', '#cfd6dd', '#0b0f14'
+        BAR_C, BAR_A = '#4fc3f7', 0.55
     MK = {'OIII': 'o', 'Ha': 's', 'SII': '^', 'NII': 'v'}
     rows = res['rows']
     tests = res['unit_tests_velocity_space']
+    # text sizes (pt) and mark sizes: original dark figure | journal layout printed at 7.1 in
+    if P:
+        plt.rcParams.update({'font.size': 7, 'axes.labelsize': 7.2, 'xtick.labelsize': 6.8, 'ytick.labelsize': 6.8,
+                             'legend.fontsize': 6.6, 'axes.labelpad': 2.5, 'xtick.major.pad': 2.0,
+                             'ytick.major.pad': 2.0, 'xtick.major.size': 2.5, 'ytick.major.size': 2.5,
+                             'xtick.minor.size': 1.5, 'ytick.minor.size': 1.5, 'legend.borderpad': 0.4,
+                             'legend.handlelength': 1.8, 'legend.labelspacing': 0.35})
+        FS = dict(ann=6.7, ins_tick=6.6, ins_lab=6.7, ins_ann=6.6, leg=6.6, sec_tick=6.8, sec_lab=7.2, dtick=6.7,
+                  reg=7.0, faded=6.6)
+        MS, MSC, MEW_O, LW_C, ELW, ELW_O, LW_DOT = 4.6, 4.2, 0.9, 1.15, 0.8, 0.7, 0.6
+    else:
+        FS = dict(ann=8.3, ins_tick=7, ins_lab=7.5, ins_ann=7.5, leg=7.6, sec_tick=7.5, sec_lab=8.5, dtick=7.3,
+                  reg=8.5, faded=7.2)
+        MS, MSC, MEW_O, LW_C, ELW, ELW_O, LW_DOT = 7, 6.5, 1.3, 1.6, 1.1, 0.9, 0.8
 
-    fig, ax0 = new_sky_figure(13.2, 10.6, 'Wu+2026 Table 4: the distances are in kpc',
-                              "Table 4 and Fig. 5b of the paper vs the Reid+14 rotation curve it names "
-                              "(kd form), P1–P4 sightlines")
-    ax0.remove()
-    gs = fig.add_gridspec(2, 12, left=0.06, right=0.948, top=0.905, bottom=0.075, hspace=0.30, wspace=1.7)
-    axa = fig.add_subplot(gs[0, :8])
-    axb = fig.add_subplot(gs[0, 8:])
-    axc = fig.add_subplot(gs[1, :5])
-    axd = fig.add_subplot(gs[1, 5:])
+    if P:
+        fig, ax0 = new_sky_figure(7.1, 6.8, '', '')
+        ax0.remove()
+        top = fig.add_gridspec(1, 2, width_ratios=[4.2, 1.6], left=0.058, right=0.935, top=0.962, bottom=0.555,
+                               wspace=0.235)
+        bot = fig.add_gridspec(1, 2, width_ratios=[2.5, 3.6], left=0.072, right=0.988, top=0.452, bottom=0.075,
+                               wspace=0.19)
+        axa, axb = fig.add_subplot(top[0, 0]), fig.add_subplot(top[0, 1])
+        axc, axd = fig.add_subplot(bot[0, 0]), fig.add_subplot(bot[0, 1])
+    else:
+        fig, ax0 = new_sky_figure(13.2, 10.6, 'Wu+2026 Table 4: the distances are in kpc',
+                                  "Table 4 and Fig. 5b of the paper vs the Reid+14 rotation curve it names "
+                                  "(kd form), P1–P4 sightlines")
+        ax0.remove()
+        gs = fig.add_gridspec(2, 12, left=0.06, right=0.948, top=0.905, bottom=0.075, hspace=0.30, wspace=1.7)
+        axa = fig.add_subplot(gs[0, :8])
+        axb = fig.add_subplot(gs[0, 8:])
+        axc = fig.add_subplot(gs[1, :5])
+        axd = fig.add_subplot(gs[1, 5:])
 
     def ptitle(ax, letter, text):
+        if P:
+            # journal style "(a) Title": the title starts 4 pt right of the rendered tag, bottoms aligned
+            tag = ax.annotate(f'({letter})', xy=(0, 1), xycoords='axes fraction', xytext=(0, 2.5),
+                              textcoords='offset points', color=FG, fontsize=9, fontweight='bold', va='bottom',
+                              ha='left')
+            ax.annotate(text, xy=(1, 0), xycoords=tag, xytext=(4.0, 0), textcoords='offset points',
+                        color=PT_C, fontsize=7.4, va='bottom', ha='left')
+            return
         ax.text(0.0, 1.015, letter, transform=ax.transAxes, color=FG, fontsize=12, fontweight='bold', va='bottom')
-        ax.text(0.04 if ax is not axb else 0.075, 1.015, text, transform=ax.transAxes, color='#cfd6dd', fontsize=9.5, va='bottom')
+        ax.text(0.04 if ax is not axb else 0.075, 1.015, text, transform=ax.transAxes, color=PT_C, fontsize=9.5, va='bottom')
 
     # ---------------- (a) V_LSR(d) along P1-P3 with Table 4 values placed under both readings
     ax = axa
     d = np.linspace(0, 2.6, 800)
     env = np.array([[vrot(k, d, m) for m in MODELS] for k in ['P1', 'P2', 'P3']]).reshape(-1, d.size)
-    ax.fill_between(d, env.min(0), env.max(0), color='#9aa4ae', alpha=0.13, lw=0)
+    ax.fill_between(d, env.min(0), env.max(0), color=ENV_C, alpha=ENV_A, lw=0)
     for k, ls in [('P1', '-'), ('P2', '--'), ('P3', '-.')]:
-        ax.plot(d, vrot(k, d), color=REGC[k], lw=1.6, ls=ls)
+        ax.plot(d, vrot(k, d), color=REGC[k], lw=LW_C, ls=ls)
     for r in rows:
         if r['region'] == 'P4' or r['line'] not in ('OIII', 'Ha'):
             continue
         c, mk = REGC[r['region']], MK[r['line']]
-        ax.errorbar(r['trad'], r['V_LSR'], yerr=r['sigma_v'], fmt=mk, color=c, ms=7, mec='#05070a', mew=0.6,
-                    capsize=0, elinewidth=1.1, zorder=5)
+        ax.errorbar(r['trad'], r['V_LSR'], yerr=r['sigma_v'], fmt=mk, color=c, ms=MS, mec=MEC, mew=0.6,
+                    capsize=0, elinewidth=ELW, zorder=5)
         x1 = r['trad'] / 10
-        ax.errorbar(x1, r['V_LSR'], yerr=r['sigma_v'], fmt=mk, mfc='none', mec=c, color=c, ms=7, mew=1.3,
-                    capsize=0, elinewidth=0.9, alpha=0.95, zorder=5)
-        ax.plot([x1, x1], [float(vrot(r['region'], x1)), r['V_LSR'] - r['sigma_v']], color=c, lw=0.8, ls=':', zorder=3)
+        ax.errorbar(x1, r['V_LSR'], yerr=r['sigma_v'], fmt=mk, mfc='none', mec=c, color=c, ms=MS, mew=MEW_O,
+                    capsize=0, elinewidth=ELW_O, alpha=0.95, zorder=5)
+        ax.plot([x1, x1], [float(vrot(r['region'], x1)), r['V_LSR'] - r['sigma_v']], color=c, lw=LW_DOT, ls=':', zorder=3)
     ax.set_xlim(0, 2.6)
-    ax.set_ylim(-3, 24.5)
-    ax.axhline(0, color='#2a323c', lw=0.8)
+    ax.set_ylim(-3, 28 if P else 24.5)
+    ax.axhline(0, color=LINE0, lw=0.8)
     ax.set_xlabel('heliocentric distance (kpc)')
     ax.set_ylabel('V_LSR (km/s)')
     ax.grid(alpha=0.25)
     t = tests['OIII']
     gaps = [r['V_LSR'] - r['V_rot_at_trad_as_100pc'] for r in rows if r['line'] == 'OIII']
-    label(ax, 0.245, 21.4, f"open: Table 4 read as ×100 pc\n[O III] {min(gaps):.0f}–{max(gaps):.0f} km/s above rotation\n"
-          f"χ² = {t['x100pc']['chi2']:.1f} (3 dof), p = {t['x100pc']['p']:.0e}".replace('e-0', 'e-'), color=WARN, size=8.3, va='top')
-    label(ax, 1.93, 12.6, f"filled: read as kpc\non the curves\n[O III] χ² = {t['kpc']['chi2']:.2f} (3 dof)", color=OK, size=8.3, va='top')
-    hand = [Line2D([], [], color=REGC['P1'], ls='-', lw=1.6, label='P1 l 203.8 b 19.5'),
-            Line2D([], [], color=REGC['P2'], ls='--', lw=1.6, label='P2 l 202.5 b 19.6'),
-            Line2D([], [], color=REGC['P3'], ls='-.', lw=1.6, label='P3 l 205.5 b 18.5'),
-            Line2D([], [], color='#9aa4ae', lw=6, alpha=0.3, label='7 curve variants'),
-            Line2D([], [], color=FG, marker='o', ls='none', ms=6, label='[O III] trad.'),
-            Line2D([], [], color=FG, marker='s', ls='none', ms=6, label='Hα trad.')]
-    ax.legend(handles=hand, loc='upper left', bbox_to_anchor=(0.375, 0.995), ncol=2, fontsize=7.6, framealpha=0.9)
+    txt_open = (f"open: Table 4 read as ×100 pc\n[O III] {min(gaps):.0f}–{max(gaps):.0f} km/s above rotation\n"
+                f"χ² = {t['x100pc']['chi2']:.1f} (3 dof), p = {t['x100pc']['p']:.0e}".replace('e-0', 'e-'))
+    txt_kpc = f"filled: read as kpc\non the curves\n[O III] χ² = {t['kpc']['chi2']:.2f} (3 dof)"
+    hand = [Line2D([], [], color=REGC['P1'], ls='-', lw=LW_C, label='P1 l 203.8 b 19.5'),
+            Line2D([], [], color=REGC['P2'], ls='--', lw=LW_C, label='P2 l 202.5 b 19.6'),
+            Line2D([], [], color=REGC['P3'], ls='-.', lw=LW_C, label='P3 l 205.5 b 18.5'),
+            Line2D([], [], color=ENV_C, lw=5 if P else 6, alpha=ENV_LA, label='7 curve variants'),
+            Line2D([], [], color=FG, marker='o', ls='none', ms=MS - (0.3 if P else 1), label='[O III] trad.'),
+            Line2D([], [], color=FG, marker='s', ls='none', ms=MS - (0.3 if P else 1), label='Hα trad.')]
+    if P:
+        # legend and both readings stacked in the empty upper-left wedge above the curves
+        ax.legend(handles=hand, loc='upper left', bbox_to_anchor=(0.09, 0.995), ncol=2, fontsize=FS['leg'],
+                  framealpha=0.92, columnspacing=1.2, handletextpad=0.7)
+        label(ax, 0.262, 22.75, txt_open, color=WARN, size=FS['ann'], va='top', linespacing=1.15)
+        label(ax, 0.262, 18.55, txt_kpc, color=OK, size=FS['ann'], va='top', linespacing=1.15)
+    else:
+        label(ax, 0.245, 21.4, txt_open, color=WARN, size=FS['ann'], va='top')
+        label(ax, 1.93, 12.6, txt_kpc, color=OK, size=FS['ann'], va='top')
+        ax.legend(handles=hand, loc='upper left', bbox_to_anchor=(0.375, 0.995), ncol=2, fontsize=FS['leg'], framealpha=0.9)
     # inset 0-300 pc
-    ins = ax.inset_axes([0.585, 0.10, 0.39, 0.36])
+    ins = ax.inset_axes([0.548, 0.105, 0.425, 0.29] if P else [0.585, 0.10, 0.39, 0.36])
     di = np.linspace(0, 0.3, 300)
     for k, ls in [('P1', '-'), ('P2', '--'), ('P3', '-.')]:
-        ins.plot(di * 1000, vrot(k, di), color=REGC[k], lw=1.4, ls=ls)
-    ins.axvline(160, color=WARN, lw=1.0, ls=':')
+        ins.plot(di * 1000, vrot(k, di), color=REGC[k], lw=LW_C * 0.875, ls=ls)
+    ins.axvline(160, color=WARN, lw=1.0 if not P else 0.8, ls=':')
     v16 = res['summary_near']['V160_main_P1P2P3']
     ins.set_xlim(0, 300)
     ins.set_ylim(0, 4.2)
-    ins.set_facecolor('#0b0f14')
-    ins.tick_params(labelsize=7)
-    ins.set_xlabel('d (pc)', fontsize=7.5, labelpad=1)
-    ins.set_ylabel('V_rot (km/s)', fontsize=7.5, labelpad=1)
+    ins.set_facecolor(INS_BG)
+    ins.tick_params(labelsize=FS['ins_tick'])
+    ins.set_xlabel('d (pc)', fontsize=FS['ins_lab'], labelpad=1)
+    ins.set_ylabel('V_rot (km/s)', fontsize=FS['ins_lab'], labelpad=1)
     ins.grid(alpha=0.25)
-    label(ins, 168, 0.35, f"160 pc: {min(v16):.1f}–{max(v16):.1f} km/s", color=WARN, size=7.5)
-    label(ins, 8, 3.55, '≤ 300 pc: ≤ %.1f km/s' % res['summary_near']['V300_main_max_P1P2P3'], color=FG, size=7.5)
-    ins.annotate('', xy=(160, 4.15), xytext=(160, 3.35), arrowprops=dict(arrowstyle='->', color=WARN, lw=1.0))
-    label(ins, 168, 3.0, '[O III] 11–16\noff scale', color=WARN, size=7, va='bottom')
-    ptitle(ax, 'a', 'Rotation V_LSR(d) vs Table 4 [O III] and Hα')
+    s300 = res['summary_near']['V300_main_max_P1P2P3']
+    if P:
+        ins.set_xticks([0, 100, 200, 300])
+        # the main panel's V = 0 line runs 1.6 pt below the inset frame and would cut the inset's "0" y-tick
+        # label: seat that label on its tick instead of centring it
+        ins.set_yticks([0, 2, 4])
+        ins.get_yticklabels()[0].set_va('bottom')
+        label(ins, 172, 0.3, f"160 pc:\n{min(v16):.1f}–{max(v16):.1f} km/s", color=WARN, size=FS['ins_ann'], linespacing=1.1)
+        label(ins, 8, 3.95, '≤ 300 pc:\n≤ %.1f km/s' % s300, color=FG, size=FS['ins_ann'], va='top', linespacing=1.1)
+        ins.annotate('', xy=(160, 4.15), xytext=(160, 3.2), arrowprops=dict(arrowstyle='->', color=WARN, lw=0.8))
+        label(ins, 166, 2.95, '[O III] 11–16\noff scale', color=WARN, size=FS['ins_ann'], va='bottom', linespacing=1.1)
+    else:
+        label(ins, 168, 0.35, f"160 pc: {min(v16):.1f}–{max(v16):.1f} km/s", color=WARN, size=FS['ins_ann'])
+        label(ins, 8, 3.55, '≤ 300 pc: ≤ %.1f km/s' % s300, color=FG, size=FS['ins_ann'])
+        ins.annotate('', xy=(160, 4.15), xytext=(160, 3.35), arrowprops=dict(arrowstyle='->', color=WARN, lw=1.0))
+        label(ins, 168, 3.0, '[O III] 11–16\noff scale', color=WARN, size=7, va='bottom')
+    ptitle(ax, 'a', 'Rotation curve vs W26 Table 4 [O III] and Hα' if P else 'Rotation V_LSR(d) vs Table 4 [O III] and Hα')
 
     # ---------------- (b) the paper's Fig. 5b [O III] histogram on the same velocity scale
     ax = axb
     f5 = res['fig5b_OIII']
     e = np.array(f5['edges_kms'])
     pct = np.array(f5['percent'])
-    ax.barh(0.5 * (e[1:] + e[:-1]), pct, height=np.diff(e) * 0.96, color='#4fc3f7', alpha=0.55, edgecolor='#4fc3f7', lw=0.8)
+    ax.barh(0.5 * (e[1:] + e[:-1]), pct, height=np.diff(e) * 0.96, color=BAR_C, alpha=BAR_A, edgecolor=BAR_C,
+            lw=0.8 if not P else 0.6)
     vmax300 = res['summary_near']['V300_main_max_P1P2P3']
     ax.axhspan(-5, vmax300, color=WARN, alpha=0.18, lw=0)
-    ax.axhline(np.mean(v16), color=WARN, lw=1.0, ls=':')
+    ax.axhline(np.mean(v16), color=WARN, lw=1.0 if not P else 0.8, ls=':')
     ax.set_ylim(-5, 39)
     ax.set_xlim(0, 26)
     ax.set_xlabel('share of [O III] fibres (%)')
     ax.set_ylabel('[O III] V_LSR (km/s)')
     ax.grid(alpha=0.25)
-    label(ax, 10.5, -3.8, 'rotation at d ≤ 300 pc', color=WARN, size=7.8)
-    label(ax, 5.0, 33.0, f"{100 * f5['frac_above_first_bin']:.1f} % above {e[1]:.1f} km/s\n"
-          f"{100 * f5['frac_above_second_bin']:.0f} % above {e[2]:.1f} km/s", color=FG, size=8.3)
+    txt_frac = (f"{100 * f5['frac_above_first_bin']:.1f} % above {e[1]:.1f} km/s\n"
+                f"{100 * f5['frac_above_second_bin']:.0f} % above {e[2]:.1f} km/s")
+    if P:
+        label(ax, 25.5, -3.9, 'rotation at d ≤ 300 pc', color=WARN, size=FS['ann'], ha='right')
+        label(ax, 4.0, 37.6, txt_frac, color=FG, size=FS['ann'], va='top', linespacing=1.15)
+    else:
+        label(ax, 10.5, -3.8, 'rotation at d ≤ 300 pc', color=WARN, size=7.8)
+        label(ax, 5.0, 33.0, txt_frac, color=FG, size=8.3)
     # secondary axis: P1 kinematic distance for each velocity
     vg = vrot('P1', D)
 
@@ -436,74 +509,97 @@ def make_figure(res):
     sec = ax.secondary_yaxis('right', functions=(v2d, d2v))
     sec.set_yticks([0.16, 0.5, 1, 2, 3, 4])
     sec.set_yticklabels(['0.16', '0.5', '1', '2', '3', '4'])
-    sec.tick_params(labelsize=7.5, colors=FGDIM)
-    sec.set_ylabel('P1 kinematic distance (kpc)', fontsize=8.5, color=FGDIM)
-    ptitle(ax, 'b', "Paper's Fig. 5b [O III]")
+    sec.tick_params(labelsize=FS['sec_tick'], colors=FG if L else FGDIM)
+    sec.set_ylabel('P1 kinematic distance (kpc)', fontsize=FS['sec_lab'], color=FG if L else FGDIM)
+    ptitle(ax, 'b', 'W26 Fig. 5 [O III]' if P else "Paper's Fig. 5b [O III]")
 
     # ---------------- (c) velocity-space parity: V_rot at the printed distance vs printed V_LSR
     ax = axc
-    ax.plot([-6, 20], [-6, 20], color=FGDIM, lw=1.0, zorder=1)
+    ax.plot([-6, 20], [-6, 20], color=FGDIM, lw=1.0 if not P else 0.8, zorder=1)
     for r in rows:
         c, mk = REGC[r['region']], MK[r['line']]
         dim = r['line'] in ('SII', 'NII')
         al = 0.55 if dim else 1.0
-        ax.errorbar(r['V_LSR'], r['V_rot_at_trad_as_kpc'], xerr=r['sigma_v'], fmt=mk, color=c, ms=6.5, mec='#05070a', mew=0.5,
-                    capsize=0, elinewidth=0.9, alpha=al, zorder=4)
-        ax.errorbar(r['V_LSR'], r['V_rot_at_trad_as_100pc'], xerr=r['sigma_v'], fmt=mk, mfc='none', mec=c, color=c, ms=6.5,
-                    mew=1.2, capsize=0, elinewidth=0.6, alpha=al * 0.9, zorder=3)
+        ax.errorbar(r['V_LSR'], r['V_rot_at_trad_as_kpc'], xerr=r['sigma_v'], fmt=mk, color=c, ms=MSC, mec=MEC, mew=0.5,
+                    capsize=0, elinewidth=0.9 if not P else 0.75, alpha=al, zorder=4)
+        ax.errorbar(r['V_LSR'], r['V_rot_at_trad_as_100pc'], xerr=r['sigma_v'], fmt=mk, mfc='none', mec=c, color=c, ms=MSC,
+                    mew=1.2 if not P else 0.85, capsize=0, elinewidth=0.6, alpha=al * 0.9, zorder=3)
     ax.set_xlim(-5, 20)
     ax.set_ylim(-2, 18)
-    ax.set_xlabel('Table 4 V_LSR (km/s)')
-    ax.set_ylabel('rotation V_LSR at the Table 4 distance (km/s)')
+    ax.set_xlabel('W26 Table 4 V_LSR (km/s)' if P else 'Table 4 V_LSR (km/s)')
+    ax.set_ylabel('rotation V_LSR at Table 4 distance (km/s)' if P else 'rotation V_LSR at the Table 4 distance (km/s)')
     ax.grid(alpha=0.25)
     ta, th, tr = tests['all15'], tests['Ha'], tests['red']
-    label(ax, -4.4, 16.9, f"filled = kpc: all 15 rows χ² = {ta['kpc']['chi2']:.1f}, p = {ta['kpc']['p']:.2f}", color=OK, size=7.8, va='top')
-    label(ax, -4.4, 15.6, f"open = ×100 pc: χ² = {ta['x100pc']['chi2']:.0f}, p = {ta['x100pc']['p']:.0e}".replace('e-0', 'e-'),
-          color=WARN, size=7.8, va='top')
-    label(ax, 11.0, -1.55, 'open: all ≤ 1.9 km/s', color=WARN, size=7.6)
-    label(ax, 7.3, 8.5, '1:1', color=FGDIM, size=7.6, rotation=44)
-    label(ax, -4.4, 8.4, '[S II]/[N II] (faded):\nV ≈ 0, not\ndiscriminating', color=FGDIM, size=7.2, va='top')
-    hand = [Line2D([], [], color=REGC[k], marker='o', ls='none', ms=6, label=k) for k in ['P1', 'P2', 'P3', 'P4']]
-    hand += [Line2D([], [], color=FG, marker=MK[ln], ls='none', ms=6, mfc='none' if False else FG, label=LNAME[ln]) for ln in LINES]
-    ax.legend(handles=hand, loc='lower right', bbox_to_anchor=(1.0, 0.25), ncol=2, fontsize=7.2, framealpha=0.9,
-              handletextpad=0.3, columnspacing=0.8)
+    p_open = f"{ta['x100pc']['p']:.0e}".replace('e-0', 'e-')
+    hand = [Line2D([], [], color=REGC[k], marker='o', ls='none', ms=MSC - (0.2 if P else 0.5), label=k)
+            for k in ['P1', 'P2', 'P3', 'P4']]
+    hand += [Line2D([], [], color=FG, marker=MK[ln], ls='none', ms=MSC - (0.2 if P else 0.5), mfc=FG, label=LNAME[ln])
+             for ln in LINES]
+    if P:
+        label(ax, -4.4, 17.3, f"filled = kpc, all 15 rows:\nχ² = {ta['kpc']['chi2']:.1f}, p = {ta['kpc']['p']:.2f}",
+              color=OK, size=FS['ann'], va='top', linespacing=1.15)
+        label(ax, -4.4, 14.75, f"open = ×100 pc:\nχ² = {ta['x100pc']['chi2']:.0f}, p = {p_open}",
+              color=WARN, size=FS['ann'], va='top', linespacing=1.15)
+        label(ax, 19.6, -1.6, 'open: all ≤ 1.9 km/s', color=WARN, size=FS['ann'], ha='right')
+        label(ax, -4.4, 12.1, '[S II], [N II] faded:\nV ≈ 0, not\ndiscriminating', color=FGDIM, size=FS['faded'],
+              va='top', linespacing=1.1)
+        fig.canvas.draw()
+        p0, p1 = ax.transData.transform([(0, 0), (10, 10)])
+        ang = float(np.degrees(np.arctan2(p1[1] - p0[1], p1[0] - p0[0])))
+        label(ax, 16.05, 17.2, '1:1', color=FGDIM, size=FS['ann'], rotation=ang, ha='center', va='center',
+              rotation_mode='anchor')
+        ax.legend(handles=hand, loc='lower right', bbox_to_anchor=(1.0, 0.2), ncol=2, fontsize=FS['leg'], framealpha=0.92,
+                  handletextpad=0.25, columnspacing=0.8, borderpad=0.35)
+    else:
+        label(ax, -4.4, 16.9, f"filled = kpc: all 15 rows χ² = {ta['kpc']['chi2']:.1f}, p = {ta['kpc']['p']:.2f}", color=OK, size=7.8, va='top')
+        label(ax, -4.4, 15.6, f"open = ×100 pc: χ² = {ta['x100pc']['chi2']:.0f}, p = {p_open}", color=WARN, size=7.8, va='top')
+        label(ax, 11.0, -1.55, 'open: all ≤ 1.9 km/s', color=WARN, size=7.6)
+        label(ax, 7.3, 8.5, '1:1', color=FGDIM, size=7.6, rotation=44)
+        label(ax, -4.4, 8.4, '[S II]/[N II] (faded):\nV ≈ 0, not\ndiscriminating', color=FGDIM, size=FS['faded'], va='top')
+        ax.legend(handles=hand, loc='lower right', bbox_to_anchor=(1.0, 0.25), ncol=2, fontsize=7.2, framealpha=0.9,
+                  handletextpad=0.3, columnspacing=0.8)
     ptitle(ax, 'c', 'Parity in velocity, both readings')
 
     # ---------------- (d) implied gradient from the printed MC widths
     ax = axd
     glo, ghi = res['implied_gradient_summary']['physical_band']
     ax.axhspan(glo, ghi, color=OK, alpha=0.20, lw=0)
-    ax.axhspan(ghi, 1000, color=DANGER, alpha=0.09, lw=0)
+    ax.axhspan(ghi, 1000, color=DANGER, alpha=0.09 if not L else 0.07, lw=0)
     x = np.arange(len(rows))
     for i, r in enumerate(rows):
         c, mk = REGC[r['region']], MK[r['line']]
-        ax.plot(i, r['g_implied_kpc'], mk, color=c, ms=7, mec='#05070a', mew=0.5, zorder=4)
-        ax.plot(i, r['g_implied_100pc'], mk, mfc='none', mec=c, ms=7, mew=1.3, zorder=4)
-        ax.plot([i, i], [r['g_implied_kpc'], r['g_implied_100pc']], color=c, lw=0.6, alpha=0.5, zorder=2)
+        ax.plot(i, r['g_implied_kpc'], mk, color=c, ms=MS, mec=MEC, mew=0.5, zorder=4)
+        ax.plot(i, r['g_implied_100pc'], mk, mfc='none', mec=c, ms=MS, mew=MEW_O, zorder=4)
+        ax.plot([i, i], [r['g_implied_kpc'], r['g_implied_100pc']], color=c, lw=0.6, alpha=0.5 if not L else 0.6, zorder=2)
     ax.set_yscale('log')
     ax.set_ylim(0.6, 330)
     ax.set_xlim(-0.7, len(rows) - 0.3)
     ax.set_xticks(x)
-    ax.set_xticklabels([LNAME[r['line']] for r in rows], rotation=60, fontsize=7.3, ha='right', rotation_mode='anchor')
+    ax.set_xticklabels([LNAME[r['line']] for r in rows], rotation=60, fontsize=FS['dtick'], ha='right', rotation_mode='anchor')
     for j, k in enumerate(['P1', 'P2', 'P3', 'P4']):
         idx = [i for i, r in enumerate(rows) if r['region'] == k]
-        ax.text(np.mean(idx), 0.64, k, color=REGC[k], fontsize=8.5, ha='center', va='bottom', fontweight='bold')
+        ax.text(np.mean(idx), 0.64, k, color=REGC[k], fontsize=FS['reg'], ha='center', va='bottom', fontweight='bold')
         if j:
-            ax.axvline(idx[0] - 0.5, color='#2a323c', lw=0.8)
+            ax.axvline(idx[0] - 0.5, color=LINE0, lw=0.8)
     ax.set_ylabel('implied dV/dd = W_V / W_d (km/s/kpc)')
     ax.grid(alpha=0.25, axis='y')
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f'{v:g}'))
     from matplotlib.patches import Patch
     hand = [Patch(facecolor=OK, alpha=0.35, edgecolor=OK, lw=0.8, label=f'rotation dV/dd, {glo:.1f}–{ghi:.1f}'),
             Patch(facecolor=DANGER, alpha=0.30, edgecolor=DANGER, lw=0.8, label='forbidden: narrower than σ_v allows'),
-            Line2D([], [], color=FG, marker='o', ls='none', ms=6, mfc='none', mew=1.3, label='Table 4 read as ×100 pc'),
-            Line2D([], [], color=FG, marker='o', ls='none', ms=6, label='Table 4 read as kpc')]
-    ax.legend(handles=hand, loc='upper center', ncol=2, fontsize=7.6, framealpha=0.92, handletextpad=0.5,
-              columnspacing=1.4, borderpad=0.5)
+            Line2D([], [], color=FG, marker='o', ls='none', ms=MS - (0.3 if P else 1), mfc='none', mew=MEW_O,
+                   label='Table 4 read as ×100 pc'),
+            Line2D([], [], color=FG, marker='o', ls='none', ms=MS - (0.3 if P else 1), label='Table 4 read as kpc')]
+    if P:
+        ax.legend(handles=hand, loc='upper right', ncol=1, fontsize=FS['leg'], framealpha=0.92, handletextpad=0.5,
+                  borderpad=0.4)
+    else:
+        ax.legend(handles=hand, loc='upper center', ncol=2, fontsize=7.6, framealpha=0.92, handletextpad=0.5,
+                  columnspacing=1.4, borderpad=0.5)
     ptitle(ax, 'd', 'Gradient implied by the Monte-Carlo widths')
 
-    finish(fig, str(OUT_FIG), dpi=200, tight=False)
-    print('wrote', OUT_FIG)
+    out = finish(fig, str(OUT_FIG), dpi=200, tight=False)
+    print('wrote', out)
 
 
 if __name__ == '__main__':

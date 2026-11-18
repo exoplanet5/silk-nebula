@@ -15,12 +15,24 @@ Observed (energy units; wave-2): DESI south [O II]/[O III] 1.11-1.16 (+-0.08), a
   > 7.3 (2 sigma with placebo); [O II]/[O III] 1.84 (1.46-2.37); 4363/5007 0.038 +- 0.035.
   SDSS north: [O III]/Hb 6.2 (3.1-12.0), [O II]/[O III] 7.3 (6.1-8.8). Ha patch (SDSS 30 % contour): 1.73 / 11.8.
 Output: figures/w3_figs_f5_diagnostics.png
+
+Paper mode (SILK_THEME=light SILK_PAPER=1, see silk_style.py): main_paper() draws a light, 7.1-in-wide version
+with panel letters, no figure title or credit, legend below; PNG (300 dpi) + PDF go to paper/figures/ via
+ss.save_paper. Content updates in paper mode only:
+  * truncated-shock tracks: the refit grid (w4_refit_tracks.npz, w4_refit_fit.json variant A; notes/w4_refit.md)
+    replaces the superseded verify_shockmodel runs. Shown: the best-fit run (native Hb, min chi2 over X(H0), b) at
+    v_s = 80, 100, 120, 160 km/s with its best truncation (diamond); the best truncations of all spectrally
+    acceptable runs (Delta chi2 < 4; grey dots); complete-shock end points of the refit grid (triangles).
+  * SDSS south [O II]/[O III]: 1.17 (95 %: 0.91-1.47; w3_northsouth_sdss.json zone Dec < 17.6, notes/w3_northsouth.md)
+    replaces the superseded Dec < 20 value 1.84. Its [O III]/Hb (22.8, Dec < 20) is unchanged, as adopted in REPORT.
+The default (dark) run is unchanged; this script writes no data files in either mode.
 """
 import sys
 import json
 import numpy as np
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch, Rectangle
+from matplotlib.colors import to_rgba
 sys.path.insert(0, '/Users/mickey/astronomy/silk-nebula/scripts')
 from w3_figs_common import *  # noqa: F401,F403
 from w3_figs_common import DER, FIG, panel_tag
@@ -40,6 +52,8 @@ def T_of_r(r):
 
 
 def main():
+    if ss.PAPER:
+        return main_paper()
     TR = np.load(DER / 'verify_shockmodel_tracks.npz')
     fit = json.loads((DER / 'verify_shockmodel_fit.json').read_text())
     runs = {r['tag']: r for r in fit['runs']}
@@ -210,6 +224,239 @@ def main():
     plt.close(fig)
     print('saved; SDSS S [O III]/Hb energy %.1f (%.1f-%.1f); patch %.2f / %.1f; north %.1f / %.1f'
           % (yS, yS16, yS84, yP, xP, yN, xN['value']))
+
+
+# ------------------------------------------------------------------------------------------------ paper version
+# Print size 7.1 in (two-column figure*): figsize is the print size, every font >= 6.5 pt, every line >= 0.5 pt.
+P_FS = dict(tick=7.0, axlab=7.5, note=6.5, tag=8.0, leg=6.5)
+P_V = (80, 100, 120, 160)                    # refit tracks shown (flat-sheet survivors 80-160; FUV prefers 80-120)
+if ss.LIGHT:
+    P_SHOCK = {80: '#2e8b3a', 100: '#7b3fa0', 120: '#c2185b', 160: '#d17a00'}
+    P_PIE, P_DIG, P_NEI, P_CIE, P_NORTH, P_ACC, P_SDSS = '#59636e', '#8a949e', '#795548', FG, '#00838f', '#59636e', FG
+    P_SUN_TXT = '#8a6400'                    # darker goldenrod for small text on white
+else:
+    P_SHOCK = {80: '#7ad97a', 100: OIII_C, 120: '#c792ea', 160: WARN}
+    P_PIE, P_DIG, P_NEI, P_CIE, P_NORTH, P_ACC, P_SDSS = '#9aa4ae', '#6b7480', '#ff9e80', FG, '#b8ecff', '#9aa4ae', '#ffffff'
+    P_SUN_TXT = SUN
+P_MEC = 'k'
+
+
+def _track(TR, tag):
+    pre = tag + '__'
+    return {k[len(pre):]: TR[k] for k in TR.files if k.startswith(pre)}
+
+
+def main_paper():
+    TR = np.load(DER / 'w4_refit_tracks.npz')
+    fit = json.loads((DER / 'w4_refit_fit.json').read_text())
+    runs = {r['tag']: r for r in fit['runs']}
+    VA = fit['variants']['A']
+    pio = json.loads((DER / 'verify_altmodel_photoion.json').read_text())
+    coo = json.loads((DER / 'verify_altmodel_cooling.json').read_text())
+    scn = json.loads((DER / 'verify_altmodel_scenarios.json').read_text())['scenarios']
+    sd = json.loads((DER / 'verify_sdss_results_base_r0.15.json').read_text())['regions']
+    ns = json.loads((DER / 'w3_northsouth_sdss.json').read_text())['regions']
+
+    FW, FH = 7.1, 4.85                       # print size (in)
+    fig = plt.figure(figsize=(FW, FH))
+    axA = fig.add_axes([0.56 / FW, 1.22 / FH, 3.00 / FW, 3.42 / FH])
+    axB = fig.add_axes([4.18 / FW, 1.22 / FH, 2.25 / FW, 3.42 / FH])
+    ms = dict(trk=1.15, dia=4.3, tri=3.6, sq=4.3, x=4.6, star=8.0, obs=4.6)
+
+    # ---------------- refit truncated shocks (variant A, native Hb)
+    acc = VA['acceptable']
+    q = np.array([[runs[t]['A_nat']['ratios'][k] for k in ('O2_O3', 'O3_Hb', 'O4363')] for t in acc])
+    axA.plot(q[:, 0], q[:, 1], 'o', color=P_ACC, ms=1.6, mew=0, alpha=0.75, zorder=4)
+    axB.plot(q[:, 1], q[:, 2], 'o', color=P_ACC, ms=1.6, mew=0, alpha=0.75, zorder=4)
+    best = {}
+    for v in P_V:
+        cand = [r for r in fit['runs'] if r['v'] == v and not r['complete']]
+        r = min(cand, key=lambda r_: r_['A_nat']['chi2'])
+        t = _track(TR, r['tag'])
+        i = r['A_nat']['i']
+        m = t['F_O3'] >= 0.2 * t['F_O3'][-1]     # show the track once >= 20 % of the final [O III] has formed
+        o3hb = t['F_O3'] / t['F_Hb']; o2o3 = t['F_O2'] / t['F_O3']; r4363 = t['F_O4363'] / t['F_O3']
+        c = P_SHOCK[v]
+        axA.plot(o2o3[m], o3hb[m], color=c, lw=ms['trk'], zorder=3)
+        axB.plot(o3hb[m], r4363[m], color=c, lw=ms['trk'], zorder=3)
+        # best truncations drawn above the SDSS S error bar (zorder 9), which runs through them at x = 1.17;
+        # the 100 and 120 km/s best truncations nearly coincide, so they are drawn nested (larger one behind)
+        dms = ms['dia'] * {100: 1.3, 120: 0.85}.get(v, 1.0)
+        dz = 10 - 0.1 * {100: 1, 120: -1}.get(v, 0)
+        axA.plot(o2o3[i], o3hb[i], 'D', color=c, ms=dms, mec=P_MEC, mew=0.5, zorder=dz)
+        axB.plot(o3hb[i], r4363[i], 'D', color=c, ms=dms, mec=P_MEC, mew=0.5, zorder=dz)
+        best[v] = (r['tag'], r['A_nat']['chi2'], o2o3[i], o3hb[i], r4363[i])
+    # R88-calibrated Hb (x2.3) shifts the shock [O III]/Hb down (scored as a variant in the refit)
+    _, _, xx, yy, _ = best[100]
+    xa = 0.80                                  # arrow column, left of the DESI box and the SDSS S error bar
+    axA.annotate('', xy=(xa, yy / 2.3), xytext=(xa, yy * 0.95),
+                 arrowprops=dict(arrowstyle='-|>', color=FGDIM, lw=0.8, mutation_scale=7), zorder=5)
+    label(axA, xa * 0.95, 22.0, 'Hβ ×2.3 (R88 cal.)', color=FGDIM, size=P_FS['note'], ha='right',
+          va='center', zorder=10)
+    # complete-shock end points of the refit grid
+    for tag, rr in runs.items():
+        if not rr['complete']:
+            continue
+        e = {k: TR[tag + '__' + k][-1] for k in ('F_O3', 'F_Hb', 'F_O2', 'F_O4363')}
+        c = P_SHOCK.get(rr['v'], FGDIM)
+        axA.plot(e['F_O2'] / e['F_O3'], e['F_O3'] / e['F_Hb'], '^', color=c, ms=ms['tri'], mec=P_MEC, mew=0.4,
+                 zorder=5)
+        axB.plot(e['F_O3'] / e['F_Hb'], e['F_O4363'] / e['F_O3'], '^', color=c, ms=ms['tri'], mec=P_MEC, mew=0.4,
+                 zorder=5)
+    axA.axhspan(1.2, 4.5, color=DANGER, alpha=0.07, lw=0, zorder=0)
+    label(axA, 0.058, 1.55, 'published complete shocks:\n[O III]/Hβ 1.2–4.5', color=DANGER, size=P_FS['note'],
+          ha='left', va='bottom', linespacing=1.1)
+    # Raymond+88 incomplete
+    for nm, x_, y_, r_ in (('R88 SE', 1.341, 12.9, 0.071), ('R88 M', 1.638, 10.5, None)):
+        axA.plot(x_, y_, 's', color=SUN, ms=ms['sq'], mec=P_MEC, mew=0.5, zorder=6)
+        if r_ is not None:
+            axB.plot(y_, r_, 's', color=SUN, ms=ms['sq'], mec=P_MEC, mew=0.5, zorder=6)
+            label(axB, y_ * 0.82, r_ * 0.86, nm, color=P_SUN_TXT, size=P_FS['note'], ha='right', va='top')
+    label(axA, 1.82, 10.8, 'R88\nSE, M', color=P_SUN_TXT, size=P_FS['note'], ha='left', va='center',
+          linespacing=1.05)
+    # photoionisation curves
+    pcols = {'BB81kK_WDJ0736': (P_PIE, '-'), 'BB150kK': (P_PIE, '--'), 'hotgas_kT140eV': (P_PIE, ':'),
+             'BB35kK_DIG': (P_DIG, '-.')}
+    for k, (c, ls) in pcols.items():
+        rows = pio['models'][k]
+        o3hb = np.array([r['OIII_Hb'] for r in rows]); o2o3 = np.array([r['OII_OIII'] for r in rows])
+        r43_ = np.array([r['O4363_5007'] for r in rows])
+        ok = (o3hb > 0.05) & (o2o3 < 200)
+        axA.plot(o2o3[ok], o3hb[ok], color=c, lw=0.9, ls=ls, zorder=2)
+        axB.plot(o3hb[ok], r43_[ok], color=c, lw=0.9, ls=ls, zorder=2)
+    # GS07 NEI cooling flows truncated at decreasing T (connected), plus the complete (tail) point
+    for fam, mk in (('isobaric_Z1', 'o'), ('isochoric_Z1', 's')):
+        F = coo['cooling_flows'][fam]
+        seq = ['T1.6e+06-5e+04', 'T1.6e+06-3e+04', 'T1.6e+06-2e+04', 'T1.6e+06-1e+04', 'T1.6e+06-1e+04+tail']
+        xs = [F[k]['OII_OIII'] for k in seq]; ys = [F[k]['OIII_Hb'] for k in seq]; zs = [F[k]['O4363_5007'] for k in seq]
+        axA.plot(xs, ys, color=P_NEI, lw=0.8, ls='--', marker=mk, ms=2.8, zorder=3)
+        axB.plot(ys, zs, color=P_NEI, lw=0.8, ls='--', marker=mk, ms=2.8, zorder=3)
+    # warm CIE vs T
+    W = coo['warm_CIE']['own'][:len(coo['warm_CIE']['T'])]
+    wx = np.array([r['OII_OIII'] for r in W]); wy = np.array([r['OIII_Hb'] for r in W]); wz = np.array([r['O4363_5007'] for r in W])
+    ok = np.isfinite(wx) & np.isfinite(wy) & (wy > 0.3) & (wx < 100) & (wx > 0.02)
+    axA.plot(wx[ok], wy[ok], color=P_CIE, lw=0.8, ls=(0, (1, 1.5)), zorder=2)
+    axB.plot(wy[ok], wz[ok], color=P_CIE, lw=0.8, ls=(0, (1, 1.5)), zorder=2)
+    # conduction fronts, PIE + heating, fossil
+    cf = [coo['static_fronts']['P1.5e+04']] + [coo['evaporation']['runs'][k] for k in coo['evaporation']['runs']]
+    axA.plot([c['OII_OIII'] for c in cf], [c['OIII_Hb'] for c in cf], 'X', color=DANGER, ms=ms['x'], mec=P_MEC,
+             mew=0.4, zorder=6)
+    axB.plot([c['OIII_Hb'] for c in cf], [c['O4363_5007'] for c in cf], 'X', color=DANGER, ms=ms['x'], mec=P_MEC,
+             mew=0.4, zorder=6)
+    for k_, mk_ in (('4d PIE + extra heating to 4e4 K', 'P'), ('6 fossil, recombining (hot start 4e4 K, n_H = 100)', 'v')):
+        p = scn[k_]['pred']
+        axA.plot(p['OII_OIII'], p['OIII_Hb'], mk_, color=P_PIE, ms=5.2, mec=P_MEC, mew=0.5, zorder=10.5)
+        axB.plot(p['OIII_Hb'], p['O4363'], mk_, color=P_PIE, ms=5.2, mec=P_MEC, mew=0.5, zorder=10.5)
+
+    # ---------------- observations
+    def obsbox(ax, x0, x1, y0, y1, c, alpha):
+        ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, facecolor=c, alpha=alpha, lw=0, zorder=7))
+        ax.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, facecolor='none', edgecolor=c, lw=0.9, zorder=7))
+    # DESI south: [O II]/[O III] 1.11-1.16 (+-0.08); [O III]/Hb lower limits > 11 (box) / > 18 (Gaussian)
+    obsbox(axA, 1.03, 1.24, 11, 300, OIII_C, 0.16 if ss.LIGHT else 0.30)
+    axA.plot([1.13, 1.13], [18, 18], '_', color=OIII_C, ms=9, mew=1.6, zorder=8)
+    axA.errorbar(1.39, 8.2, xerr=[[1.39 - 1.21], [2.07 - 1.39]], fmt='|', color=OIII_C, ms=6, lw=0.9, zorder=7)
+    label(axA, 1.17, 8.6, 'DESI all', color=OIII_C, size=P_FS['note'], ha='right', va='center')
+    label(axA, 1.32, 280, 'DESI S\n[O III]/Hβ > 11–18', color=OIII_C, size=P_FS['note'], ha='left', va='top',
+          linespacing=1.1)
+    # SDSS south: [O III]/Hb from Dec < 20 (verify_sdss), [O II]/[O III] from Dec < 17.6 (w3_northsouth)
+    s_ = sd['south_dec_lt20']['ratios_photon']
+    yS = s_['OIII5007/Hb']['value'] * PH2E_HB
+    yS16, yS84 = s_['OIII5007/Hb']['p16'] * PH2E_HB, s_['OIII5007/Hb']['p84'] * PH2E_HB
+    xS = ns['zone_dec<17.6']['ratios']['OII/OIII5007_energy_BOSS']
+    xSv, xS_lo, xS_hi = xS['value'], xS['p2p5'], xS['p97p5']
+    axA.errorbar(xSv, yS, xerr=[[xSv - xS_lo], [xS_hi - xSv]], yerr=[[yS - yS16], [yS84 - yS]], fmt='o',
+                 color=P_SDSS, mfc=P_SDSS, ms=ms['obs'], mec=P_MEC, lw=0.9, capsize=1.6, capthick=0.8, zorder=9)
+    label(axA, 1.82, 17.5, 'SDSS S', color=P_SDSS, size=P_FS['note'], ha='left', va='center', zorder=10)
+    # north: SDSS point (Dec >= 20) and DESI [O II]/[O III] drawn at the SDSS-north [O III]/Hb range
+    n_ = sd['north_dec_ge20']['ratios_photon']
+    yN = n_['OIII5007/Hb']['value'] * PH2E_HB
+    yN16, yN84 = n_['OIII5007/Hb']['p16'] * PH2E_HB, n_['OIII5007/Hb']['p84'] * PH2E_HB
+    xN = n_['OII/OIII5007_energy_BOSS']
+    obsbox(axA, 3.5, 5.2, yN16, yN84, P_NORTH, 0.13 if ss.LIGHT else 0.18)
+    axA.errorbar(xN['value'], yN, xerr=[[xN['value'] - xN['p2.5']], [xN['p97.5'] - xN['value']]],
+                 yerr=[[yN - yN16], [yN84 - yN]], fmt='o', color=P_NORTH, mfc=BG, mec=P_NORTH, mew=1.0,
+                 ms=ms['obs'], lw=0.9, capsize=1.6, capthick=0.8, zorder=9)
+    label(axA, xN['value'] * 1.06, yN * 0.70, 'SDSS N', color=P_NORTH, size=P_FS['note'], ha='left', va='top')
+    p_ = sd['halpha_patch_30pct']['ratios_photon']
+    yP = p_['OIII5007/Hb']['value'] * PH2E_HB
+    xP = p_['OII/OIII5007_energy_BOSS']['value']
+    axA.plot(xP, yP, '*', color=HA_C, ms=ms['star'], mec=P_MEC, mew=0.5, zorder=9)
+    label(axA, xP * 1.07, yP * 1.15, 'Hα\npatch', color=HA_C, size=P_FS['note'], ha='left', va='bottom',
+          linespacing=1.05)
+
+    # panel B observations: DESI south 4363/5007 0.06-0.09 (0.083), SDSS south 0.038 +- 0.035
+    obsbox(axB, 11, 300, 0.057, 0.091, OIII_C, 0.16 if ss.LIGHT else 0.30)
+    axB.plot([11, 300], [0.083, 0.083], color=OIII_C, lw=0.9, zorder=8)
+    axB.plot([18, 18], [0.054, 0.112], color=OIII_C, lw=0.9, ls=':', zorder=8)
+    label(axB, 290, 0.053, 'DESI S:\n0.06–0.09\n(2–3σ)', color=OIII_C, size=P_FS['note'], ha='right', va='top',
+          linespacing=1.05)
+    y43 = 0.038
+    axB.errorbar(yS, y43, xerr=[[yS - yS16], [yS84 - yS]], yerr=0.035 * 0.97, fmt='o', color=P_SDSS, ms=ms['obs'],
+                 mec=P_MEC, lw=0.9, capsize=1.6, capthick=0.8, zorder=9)
+    label(axB, yS * 1.08, y43 * 0.80, 'SDSS S', color=P_SDSS, size=P_FS['note'], ha='left', va='top')
+
+    # ---------------- axes
+    axA.set_xscale('log'); axA.set_yscale('log')
+    axA.set_xlim(0.05, 30); axA.set_ylim(0.3, 300)
+    axA.set_xlabel('[O II] 3726+29 / [O III] 5007', fontsize=P_FS['axlab'], labelpad=2)
+    axA.set_ylabel('[O III] 5007 / Hβ', fontsize=P_FS['axlab'], labelpad=2)
+    axB.set_xscale('log'); axB.set_yscale('log')
+    axB.set_xlim(0.5, 300); axB.set_ylim(0.001, 0.25)
+    axB.set_xlabel('[O III] 5007 / Hβ', fontsize=P_FS['axlab'], labelpad=2)
+    axB.set_ylabel('[O III] 4363 / 5007', fontsize=P_FS['axlab'], labelpad=2)
+    for ax in (axA, axB):
+        ax.grid(alpha=0.9 if ss.LIGHT else 0.22, which='major', lw=0.5)
+        ax.tick_params(labelsize=P_FS['tick'], width=0.6, length=3, pad=2)
+        ax.tick_params(which='minor', width=0.5, length=1.8)
+        for s in ax.spines.values():
+            s.set_linewidth(0.7)
+    sec = axB.twinx(); sec.set_yscale('log'); sec.set_ylim(axB.get_ylim())
+    Ts = np.array([8e3, 1e4, 1.5e4, 2e4, 3e4, 5e4, 1e5])
+    sec.set_yticks(r43(Ts)); sec.set_yticklabels(['8k', '10k', '15k', '20k', '30k', '50k', '100k'])
+    sec.minorticks_off()
+    sec.set_ylabel('Tₑ[O III] (K, low density)', color=FGDIM, fontsize=P_FS['axlab'], labelpad=3)
+    sec.tick_params(labelsize=P_FS['tick'], colors=FGDIM, width=0.6, length=3, pad=2)
+    for s in sec.spines.values():
+        s.set_linewidth(0.7)
+    for ax, tg in ((axA, '(a)'), (axB, '(b)')):
+        ax.text(0.0, 1.012, tg, transform=ax.transAxes, ha='left', va='bottom', fontsize=P_FS['tag'],
+                fontweight='bold', color=TITLE)
+
+    blank = Line2D([], [], ls='', marker='')
+    hand = [Line2D([], [], color=P_SHOCK[v], lw=1.3, label=f'trunc. shock {v} km/s') for v in P_V] + \
+           [Line2D([], [], marker='D', ls='', color=FGDIM, mec=P_MEC, mew=0.5, ms=4, label='best truncation'),
+            Line2D([], [], marker='o', ls='', color=P_ACC, mew=0, ms=2.5, label='acceptable (Δχ² < 4)'),
+            Line2D([], [], marker='^', ls='', color=FGDIM, mec=P_MEC, mew=0.4, ms=4, label='complete shock'),
+            Line2D([], [], marker='s', ls='', color=SUN, mec=P_MEC, mew=0.5, ms=4, label='Raymond+88 incompl.'),
+            Line2D([], [], marker='X', ls='', color=DANGER, mec=P_MEC, mew=0.4, ms=4.5, label='conduction fronts'),
+            Line2D([], [], color=P_NEI, lw=0.8, ls='--', marker='o', ms=2.5, label='NEI cooling (GS07)'),
+            Line2D([], [], color=P_PIE, lw=0.9, ls='-', label='PIE WD 81 kK (vs U)'),
+            Line2D([], [], color=P_PIE, lw=0.9, ls='--', label='PIE 150 kK'),
+            Line2D([], [], color=P_PIE, lw=0.9, ls=':', label='PIE 0.14 keV gas'),
+            Line2D([], [], color=P_DIG, lw=0.9, ls='-.', label='PIE DIG 35 kK'),
+            Line2D([], [], marker='P', ls='', color=P_PIE, mec=P_MEC, mew=0.5, ms=4.5, label='PIE + heating'),
+            Line2D([], [], color=P_CIE, lw=0.8, ls=(0, (1, 1.5)), label='warm CIE layer (vs T)'),
+            Line2D([], [], marker='v', ls='', color=P_PIE, mec=P_MEC, mew=0.5, ms=4.5, label='recombining fossil'),
+            blank,
+            Patch(facecolor=to_rgba(P_NORTH, 0.13 if ss.LIGHT else 0.18), edgecolor=P_NORTH, lw=0.9,
+                  label='DESI N [O II] range'),
+            blank]
+    hand = [h if h is not blank else Line2D([], [], ls='', marker='', label=' ') for h in hand]
+    fig.legend(handles=hand, loc='lower center', ncol=4, fontsize=P_FS['leg'], frameon=False,
+               bbox_to_anchor=(0.5, 0.0), columnspacing=1.2, handlelength=2.0, handletextpad=0.5,
+               labelspacing=0.45, borderaxespad=0.3)
+    out = ss.save_paper(fig, FIG / 'w3_figs_f5_diagnostics.png', dpi=300)
+    plt.close(fig)
+    print('paper figure:', out)
+    for v in P_V:
+        tag, chi2, x_, y_, z_ = best[v]
+        print('  refit best %3d km/s: %-22s chi2 %.2f  [O II]/[O III] %.2f  [O III]/Hb %.1f  4363/5007 %.3f'
+              % (v, tag, chi2, x_, y_, z_))
+    print('  acceptable runs: %d (Delta chi2 < 4, variant A)' % len(acc))
+    print('  SDSS S [O II]/[O III] %.2f (95 %%: %.2f-%.2f; Dec < 17.6); [O III]/Hb %.1f (%.1f-%.1f; Dec < 20)'
+          % (xSv, xS_lo, xS_hi, yS, yS16, yS84))
+    print('  SDSS N %.1f / %.1f; patch %.2f / %.1f' % (yN, xN['value'], yP, xP))
 
 
 if __name__ == '__main__':

@@ -48,9 +48,41 @@ What the paper gets right: the [O III] detection is real, the Gaussian line fits
 
 *All velocities, in V_helio (bottom axis) and V_LSR (top axis) (REPORT Figure 5). Table 4's [O III] sits ~10 km/s above everything else. Once corrected, and when re-measured against the paper's own airglow, it joins DESI, SDSS, the paper's [N II]/[S II], WHAM Hα and local HI at +13.3 ± 1.0 km/s. The paper's Hα sits ~5 km/s high.*
 
+## The comment paper (manuscript)
+
+[paper/silk_comment.pdf](paper/silk_comment.pdf) is a journal-style comment on Wu et al. 2026, written in AASTeX 6.31 (27 pages, 10 figures, 4 tables, plus an appendix). Author, affiliation and repository URL are placeholders. It covers:
+- **Six points on the paper:** the [O III] wavelength-reference artifact, the Hα velocity bias, the Table 4 units and the absence of kinematic distance information, the surface-brightness overestimate, the red-line shock classification, and the other remnant diagnostics.
+- **New constraints:** the filament's own DESI DR1 and SDSS spectrum (Balmer-dark, [O II]-strong), its ultraviolet counterpart and the lack of Hα, H I, dust and X-ray counterparts, the excitation mechanism, and the location.
+- **Decisive observations:** far-ultraviolet and deep optical spectroscopy, a two-epoch proper motion, and high-ion absorption toward bracketing white dwarfs.
+- **Appendix A:** detection and line fitting in the individual DESI DR1 spectra within 0.5° of regions P1 and P3 (velocities, line strengths, line ratios). These are coadded spectra of galaxy and quasar targets with the redshift model subtracted, not DESI sky fibers.
+
+Where the paper and the earlier write-ups (`DISPUTE.md`, `REPORT.md`) differ, the paper is the later version. The main differences:
+- The Hβ limit behind the bound on a complete shock is 0.15 R (2σ), not 0.057 R.
+- The "+1" in the paper's printed age formula is treated as a misprint that does not affect its quoted age.
+- The DESI brightness near P1 and P3 carries about 20% calibration uncertainty, because two survey-validation tiles have no guide-camera fiber acceptance in DR1.
+- Near P3 the DESI [O III] velocity is 4–5 km/s below the adopted +13.3 ± 1.0 km/s.
+
+![Appendix figure: DESI DR1 fibers, single-fiber fits, fiber velocities, stacks and line ratios near P1 and P3](paper/figures/paper_appendix_desi.png)
+
+*Paper Figure A1. DESI DR1 coadds within 0.5° of P1 (top row) and P3 (middle row): fibers on the ridge, single-fiber [O III] fits, fiber velocities against S/N, and stacked spectra; bottom row: the cross-ridge profile, [O II] and Hα/[N II] stacks, and line ratios.*
+
+Build and regenerate:
+
+```bash
+cd ~/astronomy/silk-nebula/paper
+latexmk -pdf silk_comment.tex                       # sections/*.tex + references.bib -> silk_comment.pdf
+tools/check_section.sh sections/s2_velocity.tex     # compile one section on its own
+
+cd ~/astronomy/silk-nebula                          # paper figures: light theme, no title or credit line
+SILK_THEME=light SILK_PAPER=1 ~/.venvs/astro313/bin/python -I scripts/dispute_oiii_figure.py
+SILK_THEME=light SILK_PAPER=1 ~/.venvs/astro313/bin/python -I scripts/paper_appendix_desi.py   # Appendix A analysis and figure
+```
+
+The paper figures come from the same scripts as the report figures. With `SILK_THEME=light SILK_PAPER=1`, `scripts/silk_style.py` switches to a light palette, drops titles and credit lines, embeds TrueType fonts, uses American spelling and writes PNG and PDF to `paper/figures/`. Without those variables the scripts reproduce the dark figures in `figures/` unchanged. The Appendix A method and numbers are documented in [notes/paper_appendix_desi.md](notes/paper_appendix_desi.md).
+
 ## Comment on Wu et al. 2026
 
-[DISPUTE.md](DISPUTE.md) and [DISPUTE.html](DISPUTE.html) form a formal comment on the paper. Its Summary is bilingual (English and 中文, with an EN | 中文 switch in the HTML); the rest is in English. It covers six disputed claims, each with dedicated figures (Figures C1–C6), tables (Tables C1–C7), requested corrections and a verified reference list. The claims are:
+[DISPUTE.md](DISPUTE.md) and [DISPUTE.html](DISPUTE.html) are the earlier, longer working version of the comment, superseded by the manuscript above where they differ. Its Summary is bilingual (English and 中文, with an EN | 中文 switch in the HTML); the rest is in English. It covers six disputed claims, each with dedicated figures (Figures C1–C6), tables (Tables C1–C7), requested corrections and a verified reference list. The claims are:
 1. the Table 4 kpc/100-pc unit misreading;
 2. why no kinematic distance is possible;
 3. the [O III] wavelength-reference artefact;
@@ -103,7 +135,8 @@ Read [REPORT.md](REPORT.md) (English) or [REPORT_zh.md](REPORT_zh.md) (简体中
 |---|---|
 | `notes/` | Per-topic working notes, in four waves: `discovery`…`spectra_ism` (wave 1), `verify_*` (wave 2), `w3_*` (wave 3), `w4_*` (wave 4). The canonical values are in `w3_canon.md`. Later waves supersede earlier ones. The comment's section drafts are in `notes/dispute/` |
 | `figures/` | All figures. The report uses `w3_figs_f1…f7`; the comment uses `dispute_*` |
-| `scripts/` | Analysis code. Shared helpers: `silk_geometry.py`, `silk_style.py` |
+| `paper/` | The comment manuscript: `silk_comment.tex`, `sections/`, `references.bib`, `figures/` (light theme, PDF and PNG) and the compiled `silk_comment.pdf` |
+| `scripts/` | Analysis code. Shared helpers: `silk_geometry.py`, `silk_style.py` (dark by default; light paper mode by environment variable). `paper_appendix_desi.py` makes the paper's Appendix A |
 | `data/raw/` | Downloads, one folder per source (**local only, not in git**) |
 | `data/derived/` | Measurements, `silk_trace.json`, `w3_canon_values.json`, per-wave agent results, `report_factcheck.json` (**local only, not in git**) |
 | `sources/` | Web captures. The paper itself (`sources/arxiv/`) is **local only, not in git**; see below |

@@ -64,7 +64,7 @@ def json_dump(obj, path):
     Path(path).write_text(json.dumps(obj, indent=1, default=conv))
 
 
-def panel_tag(ax, text, x=0.012, y=0.985, size=9.5, color='#cfd6dd'):
+def panel_tag(ax, text, x=0.012, y=0.985, size=9.5, color=None):
     """Short bold panel label at the upper left inside an axes."""
     return ax.text(x, y, text, transform=ax.transAxes, ha='left', va='top', fontsize=size,
-                   fontweight='bold', color=color, path_effects=[ss.HALO])
+                   fontweight='bold', color=ss.TITLE if color is None else color, path_effects=[ss.HALO])

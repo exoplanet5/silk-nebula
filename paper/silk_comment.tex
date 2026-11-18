@@ -1,0 +1,52 @@
+%% Comment on Wu et al. (2026, AJ 172, 298): the Silk Nebula
+%% AASTeX 6.31, two-column. Build: latexmk -pdf silk_comment.tex
+\documentclass[twocolumn]{aastex631}
+
+\usepackage{amsmath}
+\input{macros.tex}
+\graphicspath{{./}}
+
+\shorttitle{The Silk Nebula revisited}
+\shortauthors{[Author Name]}
+
+\begin{document}
+
+\title{The Silk Nebula Revisited: A Comment on Wu et al.\ (2026) and New Constraints from Archival Survey Spectroscopy}
+
+\author[0000-0000-0000-0000]{[Author Name]}
+\affiliation{[Affiliation, Address, City, Postal Code, Country]}
+\email{[author email]}
+
+\begin{abstract}
+\citet{Wu2026} used one LAMOST MRS-N plate to suggest that the Silk Nebula, a $17^\circ$-long \Oiii~$\lambda$5007 filament in Gemini, is possibly associated with a supernova remnant at a fiducial distance of $\sim$160\,pc. We test this against their published values and independent archival data. The \Ni\ airglow in their blue-arm spectrum lies at air, topocentric rest wavelengths, so their \Oiii\ velocities omit the heliocentric correction and are $10.1\pm1.0$\,\kms\ too high. Corrected and combined with DESI DR1 and SDSS spectra, \Oiii\ lies at \vhel\ $=+13.3\pm1.0$\,\kms, the velocity of \Nii\ and of the local warm ionized medium (WIM). Their \Ha\ velocities are 4.5--6.7\,\kms\ redder than \Nii. Their tabulated distances are in kpc, not units of 100\,pc, and kinematic distances carry no information in this direction. Their surface brightness exceeds independent measurements (1.4--2.5 rayleighs) by factors of 4.6--8.6. Their red-line shock criteria are met equally in their nebula-free background region and describe the WIM; their other remnant diagnostics do not constrain the filament. DESI and SDSS spectra show that the filament is Balmer-dark (\Oiii/\Hb\ $>11$) and \Oii-strong, with \ion{He}{2}/\Oiii\ $<0.026$; GALEX shows a coincident ultraviolet ridge, with no \Ha, \ion{H}{1}, dust or X-ray counterpart. These properties, and the lack of an ionizing source, exclude photoionization equilibrium and complete radiative shocks and match a column-truncated radiative shock of $\sim$80--120\,\kms\ seen edge-on, plausibly on the limb of the Monogem Ring at $\sim$250--320\,pc. Far-ultraviolet and deep optical spectroscopy, a two-epoch proper motion and high-ion absorption toward bracketing white dwarfs would be decisive.
+\end{abstract}
+
+\keywords{Supernova remnants (1667) --- Emission nebulae (461) --- Interstellar medium (847) --- Spectroscopy (1558)}
+
+\input{sections/s1_intro_data.tex}
+\input{sections/s2_velocity.tex}
+\input{sections/s3_distance_brightness.tex}
+\input{sections/s4_diagnostics.tex}
+\input{sections/s5_new.tex}
+\input{sections/s6_future_conclusions.tex}
+
+% AASTeX 6.31 numbers the lines of the acknowledgments even without the linenumbers option; switch that off.
+\expandafter\let\csname internallinenumbers\endcsname\relax
+\begin{acknowledgments}
+This work uses the NSNS DR0.2 [\ion{O}{3}] survey of S.~Ziegenbalg. Funding for the Sloan Digital Sky Survey has been provided by the Alfred P. Sloan Foundation and the participating institutions (\url{https://www.sdss.org}). This research uses data obtained with the Dark Energy Spectroscopic Instrument (DESI); DESI is supported by the U.S. Department of Energy Office of Science and the participating institutions (\url{https://www.desi.lbl.gov/collaborating-institutions}). Guoshoujing Telescope (LAMOST) is a National Major Scientific Project built by the Chinese Academy of Sciences. This work is based on data from eROSITA, the soft X-ray instrument aboard SRG. The Wisconsin H-Alpha Mapper and its H$\alpha$ Sky Survey have been funded primarily by the National Science Foundation. This research used the NASA Astrophysics Data System, MAST, IRSA, the NOIRLab Astro Data Lab, SkyView and VizieR.
+
+The author used the AI models Claude Fable~5.2 and Claude Opus~5.5 (Anthropic) for data analysis, programming, figure preparation and drafting of the text. The author takes full responsibility for the results and the content of this paper.
+\end{acknowledgments}
+
+\facilities{Sloan, Mayall (DESI), LAMOST, GALEX, eROSITA, WHAM, Arecibo, IRAS, Gaia, Planck}
+
+\software{Astropy \citep{Astropy2022}, NumPy \citep{Harris2020}, SciPy \citep{Virtanen2020}, Matplotlib \citep{Hunter2007}}
+
+\appendix
+\restartappendixnumbering
+\input{sections/a1_desi_appendix.tex}
+
+\bibliography{references}{}
+\bibliographystyle{aasjournal}
+
+\end{document}

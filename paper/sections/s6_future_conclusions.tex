@@ -1,0 +1,63 @@
+% Section 5: decisive observations; Section 6: conclusions
+\section{Decisive observations}\label{sec:future}
+
+Two questions remain open: whether the filament is a moving shock or a statically heated layer, and how distant it is. Table~\ref{tab:predictions} compares the measurements with the scenario predictions of Section~\ref{sec:excitation}. In order of priority, the observations that address these questions are:
+
+\begin{table*}[t]
+\caption{Discriminating observables: measured values and model predictions\label{tab:predictions}}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+{\centering
+\begin{tabular}{llllll}
+\hline\hline
+Observable & Observed & Truncated shock & Warm layer & Conduction & Photoionized \\
+ & & (flat sheet) & (PIE + heating) & front & gas \\
+\hline
+\ion{C}{4}~$\lambda1548/\lambda1551$ & \nodata & 1.0--1.3 & $\approx2$ & \nodata & \nodata \\
+\ion{C}{4}/\Oiii{} (photons) & 0.15--0.4\tablenotemark{a} & 0.04--0.18 & 0.03--0.04 & 1.6--16 & $\approx0$ \\
+\Oiii{}/\Hb{} & $>11$ ($2\sigma$) & 17--61 & $\approx97$ (45) & 22--52 & $\lesssim10$--14\tablenotemark{b} \\
+\Oiii~$\lambda4363/\lambda5007$ & 0.06--0.09 & 0.082--0.087 & $\approx0.098$ (0.075) & 0.11--0.14 & $\lesssim0.012$--0.034 \\
+\Oii~$\lambda7325/\lambda3727$ & 0.060 (0.055--0.073)\tablenotemark{c} & 0.056--0.067 & $\approx0.082$ (0.076) & $\approx0.07$ & \nodata \\
+\Oii~$\lambda3729/\lambda3726$ & $1.31\pm0.07$ & \multicolumn{4}{c}{1.455--1.50 in every scenario\tablenotemark{d}} \\
+\Oiii{} $\mu$ at 282\,pc (mas\,yr$^{-1}$) & \nodata & 60--120\tablenotemark{e} & $\approx0$ & \nodata & $\approx0$ \\
+\Oiii{} FWHM (\kms) & \nodata & 11--13; 20--50\tablenotemark{f} & $\approx13$ & \nodata & $\approx6$ \\
+\hline
+\end{tabular}\par}
+\tablecomments{Energy ratios unless marked; $\lambda7325$ denotes \Oii~$\lambda\lambda7320,7330$. Observed values are DESI DR1 measurements (Table~\ref{tab:ratios}) unless noted; $\lambda4363/\lambda5007$ is a 2--3$\sigma$ measurement. Predictions are model results. Truncated shock: the flat-sheet subset of the acceptable edge-on, column-truncated radiative shock models of Section~\ref{sec:excitation}. Warm layer: collisional-equilibrium layer held at $6\times10^{4}$\,K by unspecified heating; in parentheses, photoionization equilibrium (PIE) plus extra heating to $4\times10^{4}$\,K. Conduction front: static and evaporating planar fronts. Photoionized gas: PIE for hot-star and hot-gas spectra. ``\nodata'': no measurement or no prediction.}
+\tablenotetext{a}{Implied by our digitization of the FIMS/SPEAR \ion{C}{4} map of \citet{Kim2007} if the whole excess of its region R1 arises in the Silk (an a~posteriori, $\sim$2$\sigma$ spatial association).}
+\tablenotetext{b}{Diffuse ionized gas reaches $\le1.3$.}
+\tablenotetext{c}{Plus a $\pm0.015$ systematic from OH residuals.}
+\tablenotetext{d}{Low-density limit; the range reflects the atomic data. This row tests the measurement, not the scenarios.}
+\tablenotetext{e}{Outward proper motion $\mu=v_s/(4.74\,d)$ for all acceptable flat-sheet models; 60--90 for $v_s=80$--120\,\kms.}
+\tablenotetext{f}{Second range: rippled sheet.}
+\end{table*}
+
+\begin{enumerate}
+\item \textit{Far-ultraviolet spectroscopy} of the southern ridge, from the FIMS/SPEAR archive \citep{Kim2007} or a future mission, separates a shock from static gas independently of the distance. \ion{C}{4} is optically thick in the truncated sheet, so $\lambda1548/\lambda1551=1.0$--1.3, against $\approx2$ for an optically thin warm layer. The \ion{C}{4}/\Oiii{} ratio also differs among the scenarios (Table~\ref{tab:predictions}).
+
+\item \textit{Deep optical spectroscopy} ($R\approx4000$--10000) of the bright southern strand. \Hb/\Oiii{} measured to $\pm0.005$ separates the truncated shock (\Oiii/\Hb{} $=17$--61) from the warm layer ($\approx97$), but not from photoionization plus heating ($\approx45$). \Oiii~$\lambda4363/\lambda5007$ and \Oii~$\lambda\lambda7320,7330/\lambda3727$, the latter to $\pm0.007$ with OH-clean sky subtraction, measure the \Oiii{} and \Oii{} temperatures. The resolved \Oii~$\lambda\lambda3726,3729$ doublet tests the 2.1--2.7$\sigma$ density tension (Section~\ref{sec:excitation}) but cannot rank the scenarios, which all predict the low-density limit.
+
+\item \textit{Two-epoch \Oiii{} proper motion.} At 282\,pc a shock of $v_s=80$--120\,\kms{} moves outward by 60--90\,mas\,yr$^{-1}$; the motion is $\sim$1.8 times larger at 160\,pc, $\sim$3.5 times smaller at 1\,kpc, and zero for a static layer. The SWONS follow-up frames ($\sim$1\farcs55\,pixel$^{-1}$; W26 Sect.~2.1), which date from the discovery period (2023--2024), can provide a first epoch, supplemented by imaging at $\le1''$\,pixel$^{-1}$ in 2026--2027. A second epoch in 2034--2036 detects the motion at 282\,pc if the per-epoch edge precision reaches $\lesssim0\farcs1$--$0\farcs15$. With $v_s$ from the \Hb{} depth or the far-ultraviolet spectrum, the motion gives the distance, $d=v_s/(4.74\,\mu)$.
+
+\item \textit{High-ion absorption bracket.} HST/COS \citep{Green2012} \ion{C}{4} and \ion{Si}{4} absorption toward hot stars at known distances can bracket the filament distance; a Monogem-limb location predicts \ion{C}{4} at the Silk velocity only beyond $\sim$250--320\,pc. From Gaia DR3 \citep{Gaia2023} we select 52 hot stars at 120--800\,pc within $0\fdg3$ of a strand; none has an archival ultraviolet spectrum. By our estimate, a southern bracket of white dwarfs at 234, 294, 445 and 594\,pc costs about 10 orbits. The archival COS G130M spectrum of the background AGN 2MASS~J07452815+1919525, $0\fdg34$ from the W strand, covers \ion{Si}{4} and \ion{N}{5} (not \ion{C}{4}) and is an immediate test for high ions at the Silk velocity.
+
+\item \textit{Spectroscopy of the southern Monogem limb.} Its \Oiii{} arc \citep[here S1;][]{Fesen2026}, e.g.\ at $(\alpha,\delta)=(106\fdg0,+3\fdg47)$ or $(112\fdg5,+4\fdg05)$, lies on the same circle about the two-remnant center of \citet{Knies2024} as the southern Silk. If the southern Silk is the Monogem limb, S1 should show a similar Balmer-dark spectrum at \vlsr{} $\approx0\pm5$\,\kms; a different driver imposes no such requirement. No public DESI or SDSS spectrum constrains S1.
+
+\item \textit{An \Oiii{} profile at $R\ge30000$} tests the geometry rather than the excitation: a flat edge-on sheet gives a thermal FWHM of 11--13\,\kms{} and a static warm layer 13\,\kms, whereas a rippled sheet gives 20--50\,\kms.
+
+\item \textit{Data release.} The per-fiber MRS-N spectra of the W26 plate \citep[not public;][]{Zhang2025}, with their sky templates and wavelength-frame metadata, would allow per-fiber checks of the velocity corrections of Sections~\ref{sec:oiii} and~\ref{sec:halpha}; the SWONS photometric inputs (filter curve, apertures, zero points) would allow a check of Section~\ref{sec:brightness}.
+\end{enumerate}
+
+\section{Conclusions}\label{sec:conclusions}
+
+\begin{enumerate}
+\item \textit{What stands.} The \Oiii{} filament is real line emission, confirmed by DESI DR1, SDSS and NSNS, and absent from P4. The red-arm lines trace foreground and background WIM, and their \Nii{} and \Sii{} velocities agree with WHAM.
+
+\item \textit{Corrected quantities.} The W26 \Oiii{} velocities require a correction of $-10.1\pm1.0$\,\kms; the combined \vhel{} $=+13.3\pm1.0$\,\kms{} (\vlsr{} $=+1.2\pm1.0$\,\kms) agrees with the red-line, WHAM and local \ion{H}{1} velocities, so the two-layer shell is not supported. The W26 \Ha{} velocities are red-biased by $+4.5$ to $+6.7$\,\kms. The W26 Table~4 distances are in kpc (fiducial $\sim$1.6\,kpc), and kinematics carry no distance information in this direction. The southern \Oiii{} brightness is 1.4--2.5\,R, a factor of 4.6--8.6 below W26 Table~3. The red-line ratios are the same in P4 and describe the WIM. Taken at face value, the W26 Table~2 \Sii{} ratios correspond to 225--631\,cm$^{-3}$, not 64--150\,cm$^{-3}$, but within their tabulated intensity errors they constrain no density, and independent spectra place the WIM doublet at the low-density limit. Like the temperatures, turbulence, abundances and radio non-detection, they do not constrain the filament; the \Oiii{} widths are not established unless the tabulated S/N is a peak value, and the energy and age rest on unsupported inputs.
+
+\item \textit{New constraints.} The filament spectrum is Balmer-dark (\Oiii/\Hb{} $>11$, $2\sigma$) and \Oii-strong (\Oii/\Oiii{} $\approx1.1$--1.2 in the south, 4--8 in the north), with \ion{He}{2}/\Oiii{} $<0.026$ and a 2--3$\sigma$ indication of $T_e\approx(3$--$6)\times10^{4}$\,K. GALEX shows an ultraviolet ridge on the southern spine; no \Ha, \ion{H}{1}, dust or X-ray counterpart is detected. SDSS data show the filament from 2002.
+
+\item \textit{Physical picture.} The spectrum excludes complete radiative shocks and, with the ionizing-photon budget, photoionization equilibrium; X-ray and ultraviolet data exclude mixing layers, hot-gas cooling and conduction fronts; a statically heated warm layer is disfavored but not excluded. A column-truncated radiative shock of $\sim$80--120\,\kms, seen edge-on as a flat or gently curved sheet, reproduces the line ratios and the FUV level; the \Oii--\Oiii{} ridge offset, the \Oii{} doublet ratio and the NUV level remain in tension with it (Section~\ref{sec:excitation}). The southern spine lies at the Monogem shell radius (chance-coincidence probability 0.09; Section~\ref{sec:location}) and on the outer edge of its soft X-ray emission, so the Monogem limb at 252--318\,pc (68\%) is a plausible location. The distance is not measured.
+
+\item \textit{Decisive observations.} Far-ultraviolet and deep optical spectroscopy can separate a shock from a static layer; a two-epoch proper motion and bracketing high-ion absorption can measure the distance (Section~\ref{sec:future}).
+\end{enumerate}

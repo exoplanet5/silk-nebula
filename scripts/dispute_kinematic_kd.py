@@ -23,6 +23,9 @@ Computes
 
 Outputs data/derived/dispute_kinematic_kd.json and figures/dispute_kinematic_fig2.png.
 Run: ~/.venvs/astro313/bin/python -I scripts/dispute_kinematic_kd.py
+Journal version (light theme, drawn at the 7.1-in figure* print width, no title/credit, PNG 300 dpi + PDF in
+paper/figures/; the analysis and the JSON are unchanged):
+  SILK_THEME=light SILK_PAPER=1 ~/.venvs/astro313/bin/python -I scripts/dispute_kinematic_kd.py
 """
 import sys
 import json
@@ -293,53 +296,119 @@ def main():
 # ---------------- figure ----------------
 def make_fig(LL, BB, G, curves, res):
     import matplotlib.pyplot as plt
+    from matplotlib import patheffects as pe
     from matplotlib.colors import LinearSegmentedColormap
+    import silk_style as ss
     from silk_style import new_sky_figure, finish, label, FG, FGDIM, WARN, NII_C, ACCENT, BG2, HALO
 
-    RAMP = ['#cde2fb', '#86b6ef', '#3987e5', '#1c5cab']   # ordinal ramp, validated (dataviz validator, --ordinal, dark)
-    LS = ['-', (0, (6, 2)), (0, (3, 1.5)), (0, (1, 1.2))]
-    SPINE_C = '#ff8a50'
+    LIGHT, PAPER = ss.LIGHT, ss.PAPER
 
-    fig, axs = new_sky_figure(13.0, 9.8, 'Kinematic distance toward the Silk Nebula',
+    def fs(dark, paper):
+        """Font size: original value, or the print value (figure drawn at its 7.1-in print width)."""
+        return paper if PAPER else dark
+
+    def wl(dark, paper):
+        """Line width / marker size: original value, or the value for the 7.1-in paper figure."""
+        return paper if PAPER else dark
+
+    if LIGHT:
+        # ordinal ramp, dark (sigma_pec = 0) -> light (10); validated (dataviz validator, --ordinal, light, #ffffff)
+        RAMP = ['#0a2f63', '#1a5bb0', '#3a80d2', '#69a3e6']
+        SPINE_C = '#e65100'                       # deep orange: clear on the light-blue gradient map
+        GRAD_CM = ['#ffffff', '#e3eef9', '#b9d4ef', '#7fb0e2', '#3f82c8']   # sequential, low = white
+        CONT_C, CLAB_C = '#3a4550', FG
+        ZONE_C, ZONE_A = FG, 0.06
+        MARK_FC, MARK_EC = '#ffffff', FG          # P1-P4 and the LIC/Gem diamonds
+        LISM_C = FG                               # LIC/Gem dotted line, open circle and labels
+        BAND_C, BAND_A = FGDIM, 0.15
+        ZERO_C = ss.EDGE
+        GRID_KW = dict(color=ss.GRID, alpha=1.0, lw=0.5)
+        # median marker: white dot with a dark rim, visible on both the dark and the light bars
+        MED_KW = dict(marker='o', ls='none', ms=wl(4.5, 3.4), mfc='#ffffff', mec=FG, mew=wl(0.9, 0.7))
+        MED_WORD = 'dot'
+        CORR_A, NORTH_A = 0.22, 0.15
+    else:
+        RAMP = ['#cde2fb', '#86b6ef', '#3987e5', '#1c5cab']   # ordinal ramp, validated (dataviz validator, --ordinal, dark)
+        SPINE_C = '#ff8a50'
+        GRAD_CM = ['#05070a', '#0d366b', '#256abf', '#5598e7', '#9ec5f4']
+        CONT_C, CLAB_C = '#cfd6dd', '#ffffff'
+        ZONE_C, ZONE_A = '#ffffff', 0.07
+        MARK_FC, MARK_EC = '#ffffff', '#05070a'
+        LISM_C = '#ffffff'
+        BAND_C, BAND_A = '#9aa4ae', 0.16
+        ZERO_C = '#2a323c'
+        GRID_KW = dict(alpha=0.25)
+        MED_KW = dict(marker='|', ls='none', color='#ffffff', ms=7, mew=1.4)
+        MED_WORD = 'tick'
+        CORR_A, NORTH_A = 0.30, 0.18
+    LINE_C = FG if LIGHT else '#e8eaed'          # exclusion-zone boundary line and circle
+    # thinner halo for the small print-size text of the paper figure
+    HALO_T = ([pe.withStroke(linewidth=1.8, foreground=(1.0, 1.0, 1.0, 0.85) if LIGHT else (5/255, 8/255, 12/255, 0.85))]
+              if PAPER else [HALO])
+
+    def lab(ax, x, y, text, **kw):
+        tx = label(ax, x, y, text, **kw)
+        tx.set_path_effects(HALO_T)
+        return tx
+    W26 = 'W26' if PAPER else 'paper'
+    LS = ['-', (0, (6, 2)), (0, (3, 1.5)), (0, (1, 1.2))]
+
+    if PAPER:
+        # drawn at the print width of a two-column figure* (7.1 in), so sizes below are final print sizes
+        plt.rcParams.update({'font.size': 7.5, 'axes.titlesize': 7.5, 'axes.labelsize': 7.5,
+                             'xtick.labelsize': 7, 'ytick.labelsize': 7, 'legend.fontsize': 6.8,
+                             'axes.linewidth': 0.6, 'xtick.major.width': 0.6, 'ytick.major.width': 0.6,
+                             'xtick.major.size': 2.5, 'ytick.major.size': 2.5,
+                             'xtick.major.pad': 2, 'ytick.major.pad': 2, 'axes.labelpad': 2.5,
+                             'axes.titlepad': 4})
+    fig, axs = new_sky_figure(*((7.1, 5.55) if PAPER else (13.0, 9.8)), 'Kinematic distance toward the Silk Nebula',
                               'Reid+14 rotation curve (kd form) · IAU standard solar motion · σ_pec = cloud peculiar velocity',
                               nrows=2, ncols=2)
     # (a) gradient map
     ax = axs[0, 0]
-    cmap = LinearSegmentedColormap.from_list('grad', ['#05070a', '#0d366b', '#256abf', '#5598e7', '#9ec5f4'])
+    cmap = LinearSegmentedColormap.from_list('grad', GRAD_CM)
     pm = ax.pcolormesh(LL, BB, G, cmap=cmap, vmin=0, vmax=14, shading='auto', rasterized=True)
-    cs = ax.contour(LL, BB, G, levels=[2, 4, 6, 8, 10, 12], colors=['#cfd6dd'], linewidths=0.6, alpha=0.7)
+    cs = ax.contour(LL, BB, G, levels=[2, 4, 6, 8, 10, 12], colors=[CONT_C], linewidths=wl(0.6, 0.5),
+                    alpha=0.55 if LIGHT else 0.7)
     lab_b = 25.0   # place contour labels at b = 25 deg, clear of the spine, P1-P4 and the 20-deg circle
     ib = int(np.argmin(np.abs(BB[:, 0] - lab_b)))
     manual = [(float(np.interp(lev, G[ib, :], LL[ib, :])), lab_b) for lev in cs.levels]   # G rises with l here
-    for tx in ax.clabel(cs, fmt='%d', fontsize=7.5, colors='#ffffff', inline_spacing=2, manual=manual):
-        tx.set_path_effects([HALO])
+    for tx in ax.clabel(cs, fmt='%d', fontsize=fs(7.5, 6.8), colors=CLAB_C, inline_spacing=2, manual=manual):
+        tx.set_path_effects(HALO_T)
+        if LIGHT:
+            tx.set_alpha(1.0)          # clabel inherits the contour alpha; keep the numbers fully opaque
     # exclusion zone: |l-180| < 20 band and 20-deg radius circle
-    ax.axvspan(180, 200, color='#ffffff', alpha=0.07, lw=0)
-    ax.axvline(200, color='#e8eaed', lw=1.0, ls=(0, (4, 2)))
+    ax.axvspan(180, 200, color=ZONE_C, alpha=ZONE_A, lw=0)
+    ax.axvline(200, color=LINE_C, lw=wl(1.0, 0.8), ls=(0, (4, 2)))
     t = np.linspace(0, 2 * np.pi, 721)
     # small circle of radius 20 deg about (180, 0) in (l, b)
     lc0, bc0, r = np.radians(180.0), 0.0, np.radians(20.0)
     bb = np.arcsin(np.sin(bc0) * np.cos(r) + np.cos(bc0) * np.sin(r) * np.cos(t))
     ll = lc0 + np.arctan2(np.sin(t) * np.sin(r) * np.cos(bc0), np.cos(r) - np.sin(bc0) * np.sin(bb))
-    ax.plot(np.degrees(ll), np.degrees(bb), color='#e8eaed', lw=1.0, ls=(0, (1, 1.5)))
-    ax.plot(SL, SB, color=SPINE_C, lw=2.4, solid_capstyle='round')
+    ax.plot(np.degrees(ll), np.degrees(bb), color=LINE_C, lw=wl(1.0, 0.9), ls=(0, (1, 1.5)))
+    ax.plot(SL, SB, color=SPINE_C, lw=wl(2.4, 1.7), solid_capstyle='round',
+            **({'path_effects': [pe.Stroke(linewidth=2.7, foreground='#ffffff'), pe.Normal()]} if LIGHT else {}))
     for k, (l, b) in REGIONS.items():
-        ax.plot(l, b, 'o', ms=4.5, mfc='#ffffff', mec='#05070a', mew=0.8, zorder=5)
-    label(ax, 211.0, 22.6, 'Silk spine', color=SPINE_C, size=8.5)
-    label(ax, 207.6, 15.2, 'P1–P4', color='#ffffff', size=8)
-    label(ax, 198.8, 28.4, '|l−180°| < 20°', color=FG, size=8, ha='left')
-    label(ax, 195.5, 9.0, '20° from GAC', color=FG, size=8, ha='left')
+        ax.plot(l, b, 'o', ms=wl(4.5, 3.6), mfc=MARK_FC, mec=MARK_EC, mew=wl(0.8, 0.7), zorder=5)
+    lab(ax, 211.0, 22.6, 'Silk spine', color=SPINE_C, size=fs(8.5, 7.2))
+    lab(ax, 207.6, 15.2, 'P1–P4', color=ss.LABEL_C, size=fs(8, 7))
+    lab(ax, 198.8, 28.4, '|l−180°| < 20°', color=FG, size=fs(8, 7), ha='left')
+    lab(ax, 195.5, 9.0, '20° from GAC', color=FG, size=fs(8, 7), ha='left')
     sp = res['spine']
-    label(ax, 229.0, 1.2, f"spine: {sp['grad_mean_0_2kpc_kd'][0]:.1f}–{sp['grad_mean_0_2kpc_kd'][1]:.1f} km/s/kpc",
-          color=FG, size=8)
+    lab(ax, 229.0, 1.2, f"spine: {sp['grad_mean_0_2kpc_kd'][0]:.1f}–{sp['grad_mean_0_2kpc_kd'][1]:.1f} km/s/kpc",
+          color=FG, size=fs(8, 7))
     ax.set_xlim(230, 180)
     ax.set_ylim(0, 30)
     ax.set_xlabel('Galactic longitude l (deg)')
     ax.set_ylabel('Galactic latitude b (deg)')
-    cb = fig.colorbar(pm, ax=ax, fraction=0.035, pad=0.02)
+    cb = fig.colorbar(pm, ax=ax, fraction=0.035 if not PAPER else 0.045, pad=0.02)
     cb.set_label('km/s/kpc', color=FG)
-    cb.ax.tick_params(colors=FGDIM)
-    ax.set_title('(a) Rotation gradient dV_LSR/dd, mean over 0–2 kpc', loc='left', color=FG)
+    cb.ax.tick_params(colors=FG if LIGHT else FGDIM)
+    if LIGHT:
+        cb.outline.set_edgecolor(ss.EDGE)
+        cb.outline.set_linewidth(0.6)
+    ax.set_title('(a) dV_LSR/dd, mean over 0–2 kpc' if PAPER else
+                 '(a) Rotation gradient dV_LSR/dd, mean over 0–2 kpc', loc='left', color=FG)
 
     # (b) V_LSR vs distance
     ax = axs[0, 1]
@@ -348,68 +417,88 @@ def make_fig(LL, BB, G, curves, res):
     d = np.linspace(0, 3.0, 400)
     v1 = vrot(l1, b1, d)
     vn = vrot(nn['l'], nn['b'], d)
-    ax.fill_between(d, v1 - 7, v1 + 7, color='#9aa4ae', alpha=0.16, lw=0, label='P1 rotation ± 7 km/s')
-    ax.plot(d, v1, color=FG, lw=1.6, label='rotation, P1 (l 203.8°, b 19.5°)')
-    ax.plot(d, vn, color=FG, lw=1.2, ls=(0, (4, 2)), label='rotation, north spine (Dec 24°)')
+    ax.fill_between(d, v1 - 7, v1 + 7, color=BAND_C, alpha=BAND_A, lw=0, label='P1 rotation ± 7 km/s')
+    ax.plot(d, v1, color=FG, lw=wl(1.6, 1.3), label='rotation, P1 (l 203.8°, b 19.5°)')
+    ax.plot(d, vn, color=FG, lw=wl(1.2, 1.0), ls=(0, (4, 2)), label='rotation, north spine (Dec 24°)')
     ax.axhspan(V_PAPER - V_PAPER_ERR, V_PAPER + V_PAPER_ERR, color=WARN, alpha=0.20, lw=0)
-    ax.axhline(V_PAPER, color=WARN, lw=1.2)
-    ax.axhspan(V_CORR - V_CORR_ERR, V_CORR + V_CORR_ERR, color=ACCENT, alpha=0.30, lw=0)
-    ax.axhline(V_CORR, color=ACCENT, lw=1.2)
-    ax.axhspan(NORTH_VLSR[0], NORTH_VLSR[1], color=NII_C, alpha=0.18, lw=0)
+    ax.axhline(V_PAPER, color=WARN, lw=wl(1.2, 1.0))
+    ax.axhspan(V_CORR - V_CORR_ERR, V_CORR + V_CORR_ERR, color=ACCENT, alpha=CORR_A, lw=0)
+    ax.axhline(V_CORR, color=ACCENT, lw=wl(1.2, 1.0))
+    ax.axhspan(NORTH_VLSR[0], NORTH_VLSR[1], color=NII_C, alpha=NORTH_A, lw=0)
     lis = res['lism_clouds_P1']
     for name in ['LIC', 'Gem']:
         vv, dk = lis[name]['V_LSR'], lis[name]['formal_traditional_kd_kpc']
-        ax.plot([0.06, dk], [vv, vv], color='#ffffff', lw=0.9, ls=(0, (1, 1.6)), zorder=5)
-        ax.plot(dk, vv, 'o', ms=5, mfc='none', mec='#ffffff', mew=1.1, zorder=6)
-        ax.plot(0.03, vv, marker='D', ms=6.5, mfc='#ffffff', mec='#05070a', mew=0.8, zorder=6, clip_on=False)
-    label(ax, 0.09, lis['LIC']['V_LSR'] + 1.5,
-          f"LIC {lis['LIC']['V_LSR']:+.1f} → {lis['LIC']['formal_traditional_kd_kpc']:.2f} kpc", color='#ffffff', size=8)
-    label(ax, 0.09, lis['Gem']['V_LSR'] - 1.9,
-          f"Gem {lis['Gem']['V_LSR']:+.1f} → {lis['Gem']['formal_traditional_kd_kpc']:.2f} kpc  (both < 15 pc)",
-          color='#ffffff', size=8)
-    label(ax, 0.30, V_PAPER + 0.8, f'paper P1 [O III] {V_PAPER:+.1f} ± {V_PAPER_ERR}', color=WARN, size=8)
-    label(ax, 0.30, V_CORR - 2.4, f'corrected [O III] {V_CORR:+.1f} ± {V_CORR_ERR}', color=ACCENT, size=8)
-    label(ax, 1.95, NORTH_VLSR[1] - 2.3, 'north [O III] +5.7…+10.4', color=NII_C, size=8)
-    ax.legend(loc='lower right', fontsize=7.5, frameon=True, facecolor=BG2)
+        ax.plot([0.06, dk], [vv, vv], color=LISM_C, lw=wl(0.9, 0.8), ls=(0, (1, 1.6)), zorder=5)
+        ax.plot(dk, vv, 'o', ms=wl(5, 4), mfc='none' if not LIGHT else '#ffffff', mec=LISM_C, mew=wl(1.1, 0.9), zorder=6)
+        ax.plot(0.03, vv, marker='D', ms=wl(6.5, 4.6), mfc=MARK_FC if not LIGHT else FG, mec=MARK_EC,
+                mew=wl(0.8, 0.6), zorder=6, clip_on=False)
+    lic_txt = f"LIC {lis['LIC']['V_LSR']:+.1f} → {lis['LIC']['formal_traditional_kd_kpc']:.2f} kpc"
+    gem_txt = f"Gem {lis['Gem']['V_LSR']:+.1f} → {lis['Gem']['formal_traditional_kd_kpc']:.2f} kpc"
+    if PAPER:
+        # at print size a full label on the LIC line would cross the P1 curve (d ~ 0.85-1.2 kpc): tag the
+        # diamonds and list the formal distances in the empty upper-left corner
+        lab(ax, 0.09, lis['LIC']['V_LSR'] + 0.9, 'LIC', color=LISM_C, size=7)
+        lab(ax, 0.09, lis['Gem']['V_LSR'] - 2.6, 'Gem', color=LISM_C, size=7)
+        lab(ax, 0.09, 31.0, f"formal kinematic distances:\n{lic_txt}\n{gem_txt}\n(both at d < 15 pc)",
+            color=LISM_C, size=6.8, va='top', linespacing=1.25)
+    else:
+        label(ax, 0.09, lis['LIC']['V_LSR'] + 1.5, lic_txt, color=LISM_C, size=8)
+        label(ax, 0.09, lis['Gem']['V_LSR'] - 1.9, gem_txt + '  (both < 15 pc)', color=LISM_C, size=8)
+    lab(ax, 0.12 if PAPER else 0.30, V_PAPER + 0.8, f'{W26} P1 [O III] {V_PAPER:+.1f} ± {V_PAPER_ERR}', color=WARN, size=fs(8, 7))
+    lab(ax, 0.30, V_CORR - 2.4, f'corrected [O III] {V_CORR:+.1f} ± {V_CORR_ERR}', color=ACCENT, size=fs(8, 7))
+    if PAPER:   # right-aligned inside the band, below the north rotation curve
+        lab(ax, 2.95, NORTH_VLSR[0] + 0.7, 'north [O III] +5.7…+10.4', color=NII_C, size=7, ha='right')
+    else:
+        label(ax, 1.95, NORTH_VLSR[1] - 2.3, 'north [O III] +5.7…+10.4', color=NII_C, size=8)
+    ax.legend(loc='lower right', fontsize=fs(7.5, 6.8), frameon=True, facecolor=BG2,
+              **(dict(framealpha=0.95, borderpad=0.4, handlelength=1.8, labelspacing=0.3) if PAPER else {}))
     ax.set_xlim(0, 3.0)
-    ax.set_ylim(-8, 32)
-    ax.axhline(0, color='#2a323c', lw=0.8)
+    ax.set_ylim(-12.5 if PAPER else -8, 32)   # paper: room for the legend below the corrected band
+    ax.axhline(0, color=ZERO_C, lw=wl(0.8, 0.6))
     ax.set_xlabel('distance d (kpc)')
     ax.set_ylabel('V_LSR (km/s)')
-    ax.grid(alpha=0.25)
-    ax.set_title('(b) Circular-rotation velocity and measured velocities', loc='left', color=FG)
+    ax.grid(**GRID_KW)
+    ax.set_title('(b) Rotation curve and measured V_LSR' if PAPER else
+                 '(b) Circular-rotation velocity and measured velocities', loc='left', color=FG)
 
     # (c), (d) posteriors
     pm_ = res['paper_table4_P1_OIII']
-    for ax, cname, ttl, vtxt in [(axs[1, 0], 'paper_P1_OIII', '(c) P(d | V_LSR = +15.5 ± 4.3), paper P1 [O III]', None),
-                                 (axs[1, 1], 'corrected_OIII', '(d) P(d | V_LSR = +1.2 ± 1.0), corrected [O III]', None)]:
+    TTL_C = ('(c) W26 P1 [O III]: V_LSR = +15.5 ± 4.3' if PAPER else
+             '(c) P(d | V_LSR = +15.5 ± 4.3), paper P1 [O III]')
+    TTL_D = ('(d) Corrected [O III]: V_LSR = +1.2 ± 1.0' if PAPER else
+             '(d) P(d | V_LSR = +1.2 ± 1.0), corrected [O III]')
+    for ax, cname, ttl, vtxt in [(axs[1, 0], 'paper_P1_OIII', TTL_C, None),
+                                 (axs[1, 1], 'corrected_OIII', TTL_D, None)]:
         post = res['posterior_flat_prior'][cname]
         for i, s in enumerate(SIG_PEC):
             dd, p = curves[f'{cname}_{s:.0f}']
-            ax.plot(dd, p / p.max(), color=RAMP[i], ls=LS[i], lw=1.8, label=f'σ_pec = {s:.0f} km/s')
+            ax.plot(dd, p / p.max(), color=RAMP[i], ls=LS[i], lw=wl(1.8, 1.3), label=f'{s:.0f} km/s' if PAPER else f'σ_pec = {s:.0f} km/s')
             q = post[f'{s:.0f}']
             y = -0.08 - 0.075 * i
-            ax.plot([q['p16'], q['p84']], [y, y], color=RAMP[i], lw=3.2, solid_capstyle='butt')
-            ax.plot(q['median'], y, '|', color='#ffffff', ms=7, mew=1.4)
-            label(ax, q['p84'] + 0.07, y - 0.022, f'{s:.0f}', color=FGDIM, size=7.5)
+            ax.plot([q['p16'], q['p84']], [y, y], color=RAMP[i], lw=wl(3.2, 2.6), solid_capstyle='butt')
+            ax.plot(q['median'], y, **MED_KW)
+            lab(ax, q['p84'] + 0.07, y - 0.022, f'{s:.0f}', color=FGDIM, size=fs(7.5, 6.8))
         if cname == 'paper_P1_OIII':
             y = -0.08 - 0.075 * 4
-            ax.plot(pm_['MC_interval'], [y, y], color=WARN, lw=3.2, solid_capstyle='butt')
-            ax.plot(pm_['MC_mode'], y, '|', color='#ffffff', ms=7, mew=1.4)
-            label(ax, pm_['MC_interval'][1] + 0.08, y - 0.025, 'paper Table 4 MC (kpc)', color=WARN, size=7.5)
+            ax.plot(pm_['MC_interval'], [y, y], color=WARN, lw=wl(3.2, 2.6), solid_capstyle='butt')
+            ax.plot(pm_['MC_mode'], y, **MED_KW)
+            lab(ax, pm_['MC_interval'][1] + 0.08, y - 0.025, f'{W26} Table 4 MC (kpc)', color=WARN, size=fs(7.5, 6.8))
         for xv, txt in [(0.16, '160 pc'), (1.6, '1.6 kpc')]:
-            ax.axvline(xv, color=FGDIM, lw=0.8, ls=(0, (2, 2)))
-            label(ax, xv + 0.05, 1.085, txt, color=FGDIM, size=7.5)
+            ax.axvline(xv, color=FGDIM, lw=wl(0.8, 0.6), ls=(0, (2, 2)))
+            lab(ax, xv + 0.05, 1.085, txt, color=FGDIM, size=fs(7.5, 6.8))
         if cname == 'corrected_OIII':
-            label(ax, 4.95, -0.10, 'bars: 16–84 % (σ_pec), tick = median', color=FGDIM, size=7.5, ha='right')
+            lab(ax, 4.95, -0.10, f'bars: 16–84 %, {MED_WORD}: median' if PAPER else f'bars: 16–84 % (σ_pec), {MED_WORD} = median',
+                color=FGDIM, size=fs(7.5, 6.8), ha='right')
         ax.set_xlim(0, 5.0)
         ax.set_ylim(-0.42, 1.16)
         ax.set_yticks([0, 0.25, 0.5, 0.75, 1.0])
-        ax.axhline(0, color='#2a323c', lw=0.8)
+        ax.axhline(0, color=ZERO_C, lw=wl(0.8, 0.6))
         ax.set_xlabel('distance d (kpc)')
         ax.set_ylabel('posterior (peak = 1)')
-        ax.grid(alpha=0.25)
-        ax.legend(loc='upper right', fontsize=8, frameon=True, facecolor=BG2)
+        ax.grid(**GRID_KW)
+        ax.legend(loc='upper right', fontsize=fs(8, 6.8), frameon=True, facecolor=BG2,
+                  **(dict(framealpha=0.95, borderpad=0.4, handlelength=2.2, labelspacing=0.3,
+                          title='σ_pec', title_fontsize=6.8) if PAPER else {}))
         ax.set_title(ttl, loc='left', color=FG)
     finish(fig, str(ROOT / 'figures/dispute_kinematic_fig2.png'))
 

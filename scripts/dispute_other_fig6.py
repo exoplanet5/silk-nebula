@@ -12,6 +12,9 @@ emission-measure path lengths.  Reuses (read-only imports / JSON reads):
 Literature reference values (Madsen, Reynolds & Haffner 2006 Table 5 and Sect. 4-5 text; Pettini & Pagel 2004;
 Marino et al. 2013; Haffner et al. 2003 EM conversion) are typed in below with their source.
 Outputs: data/derived/dispute_other_values.json, figures/dispute_other_fig6.png
+Journal version (light theme, 7.1-in print size, W26 wording; data/derived JSON unchanged):
+  SILK_THEME=light SILK_PAPER=1 ~/.venvs/astro313/bin/python -I scripts/dispute_other_fig6.py
+  -> paper/figures/dispute_other_fig6.{png,pdf}
 Run: ~/.venvs/astro313/bin/python -I scripts/dispute_other_fig6.py
 """
 import sys, json
@@ -211,19 +214,41 @@ def jdef(o):
 
 # ================================================================ Figure 6
 def make_fig():
+    import silk_style as ss
     from silk_style import new_sky_figure, finish, label, OIII_C, HA_C, SII_C, NII_C, FGDIM, FG, SUN, WARN, OK, ACCENT, DANGER
     import matplotlib.pyplot as plt
     from matplotlib.lines import Line2D
-    plt.rcParams.update({'xtick.labelsize': 9.5, 'ytick.labelsize': 9.5, 'axes.labelsize': 10})
-    fig, axs = new_sky_figure(13.0, 10.4, 'Wu+26 red-arm diagnostics, [S II] density, T$_e$ and [O III] width',
+    # ss.PAPER: journal version (printed 7.1 in wide; all text >= 6.5 pt; W26 wording; layout reworked for the
+    # small size).  ss.LIGHT: light palette.  With neither set, the original dark figure is reproduced unchanged.
+    PAP, LT = ss.PAPER, ss.LIGHT
+
+    def Z(orig, pap):                     # original value / paper-mode value
+        return pap if PAP else orig
+    LGRID = dict(alpha=1.0, lw=0.5) if LT else dict(alpha=0.3)
+    if PAP:
+        plt.rcParams.update({'xtick.labelsize': 7.0, 'ytick.labelsize': 7.0, 'axes.labelsize': 7.4,
+                             'axes.linewidth': 0.7, 'xtick.major.width': 0.7, 'ytick.major.width': 0.7,
+                             'xtick.minor.width': 0.5, 'ytick.minor.width': 0.5, 'xtick.major.size': 2.8,
+                             'ytick.major.size': 2.8, 'xtick.minor.size': 1.6, 'ytick.minor.size': 1.6,
+                             'xtick.major.pad': 2.5, 'ytick.major.pad': 2.5, 'axes.labelpad': 3.0,
+                             'legend.borderpad': 0.35, 'legend.labelspacing': 0.32, 'legend.handletextpad': 0.5,
+                             'legend.borderaxespad': 0.4, 'legend.handlelength': 1.8, 'axes.titlepad': 4.0})
+    else:
+        plt.rcParams.update({'xtick.labelsize': 9.5, 'ytick.labelsize': 9.5, 'axes.labelsize': 10})
+    fig, axs = new_sky_figure(*Z((13.0, 10.4), (7.1, 7.2)), 'Wu+26 red-arm diagnostics, [S II] density, T$_e$ and [O III] width',
                               'LAMOST values from Wu et al. 2026 Table 2 (P4 = nebula-free reference); '
-                              'models and literature as labelled', nrows=2, ncols=2)
-    cols = {'P1': ACCENT, 'P2': OK, 'P3': NII_C, 'P4': '#ffffff'}
+                              'models and literature as labelled', nrows=2, ncols=2,
+                              **Z({}, dict(gridspec_kw={'height_ratios': [1.1, 1.0]})))
+    cols = {'P1': ACCENT, 'P2': OK, 'P3': NII_C, 'P4': FG if LT else '#ffffff'}
     mk = {'P1': 'o', 'P2': 'D', 'P3': '^', 'P4': 's'}
-    LS = 8.3   # annotation size
+    LS = Z(8.3, 6.6)   # annotation size
+    LF = Z(8.0, 6.6)   # legend size
+    TF = Z(10, 7.0)    # panel-title size
+    MS = Z(7, 4.6)     # marker size
+    MEW = Z(1.5, 1.0)
 
     def pmark(k, **kw):
-        return dict(marker=mk[k], color=cols[k], mfc=cols[k] if k != 'P4' else 'none', mew=1.5, **kw)
+        return dict(marker=mk[k], color=cols[k], mfc=cols[k] if k != 'P4' else 'none', mew=MEW, **kw)
 
     # ---------------- (a) red-line ratios
     ax = axs[0, 0]
@@ -233,106 +258,142 @@ def make_fig():
              2: lit['M06_Table5_NII6583_Ha_range']}
     for i, (q, _) in enumerate(cats):
         lo, hi = bands[i]
-        ax.fill_between([i - 0.38, i + 0.38], lo, hi, color=SII_C, alpha=0.16, lw=0, zorder=1)
+        ax.fill_between([i - 0.38, i + 0.38], lo, hi, color=SII_C, alpha=Z(0.16, 0.18), lw=0, zorder=1)
         for j, k in enumerate(REG):
             v, e = rat[k][q]
-            ax.errorbar(i - 0.21 + 0.14 * j, v, yerr=e, ls='', ms=7, capsize=2.5, lw=1.2, zorder=4, **pmark(k))
-    ax.plot([0.62, 1.38], [0.11, 0.11], color=FGDIM, ls=':', lw=1.4)
-    ax.plot([1.62, 2.38], [0.27, 0.27], color=FGDIM, ls=':', lw=1.4)
-    ax.plot([1.62, 2.38], [0.70, 0.70], color=WARN, ls='--', lw=1.2)
-    ax.plot([0.62, 1.38], [0.40, 0.40], color=WARN, ls='--', lw=1.2)
-    ax.plot([-0.38, 0.38], [0.40, 0.40], color=DANGER, lw=1.4)
-    ax.fill_between([-0.38, 0.38], 0.45, 0.50, color=DANGER, alpha=0.32, lw=0)
-    label(ax, -0.37, 0.385, 'paper "SNR" cut\n0.4 / 0.45–0.5', color=DANGER, size=LS, va='top')
-    ax.set_xticks(range(3)); ax.set_xticklabels([c[1] for c in cats], fontsize=9.3)
-    ax.set_xlim(-0.5, 2.5); ax.set_ylim(0, 1.36)
+            ax.errorbar(i - 0.21 + 0.14 * j, v, yerr=e, ls='', ms=MS, capsize=Z(2.5, 1.6), lw=Z(1.2, 0.9), zorder=4, **pmark(k))
+    ax.plot([0.62, 1.38], [0.11, 0.11], color=FGDIM, ls=':', lw=Z(1.4, 1.1))
+    ax.plot([1.62, 2.38], [0.27, 0.27], color=FGDIM, ls=':', lw=Z(1.4, 1.1))
+    ax.plot([1.62, 2.38], [0.70, 0.70], color=WARN, ls='--', lw=Z(1.2, 0.9))
+    ax.plot([0.62, 1.38], [0.40, 0.40], color=WARN, ls='--', lw=Z(1.2, 0.9))
+    ax.plot([-0.38, 0.38], [0.40, 0.40], color=DANGER, lw=Z(1.4, 1.1))
+    ax.fill_between([-0.38, 0.38], 0.45, 0.50, color=DANGER, alpha=Z(0.32, 0.28), lw=0)
+    # paper mode: neutral wording matching the caption ("W26 [S II]/Hα thresholds"), no scare quotes
+    label(ax, -0.37, 0.385, Z('paper "SNR" cut\n0.4 / 0.45–0.5', 'W26 thresholds\n0.4 / 0.45–0.5'), color=DANGER, size=LS, va='top')
+    ax.set_xticks(range(3)); ax.set_xticklabels([c[1] for c in cats], fontsize=Z(9.3, 7.0))
+    ax.set_xlim(-0.5, 2.5); ax.set_ylim(0, Z(1.36, 1.42))
     ax.set_ylabel('line ratio (energy)')
-    ax.grid(axis='y', alpha=0.3)
-    h = [Line2D([], [], ls='', ms=7, label=k + (' no nebula' if k == 'P4' else ''), **pmark(k)) for k in REG]
-    h += [plt.Rectangle((0, 0), 1, 1, color=SII_C, alpha=0.35, label='high-b WIM filaments'),
-          Line2D([], [], color=WARN, ls='--', lw=1.2, label='faint WIM lower bound'),
-          Line2D([], [], color=FGDIM, ls=':', lw=1.4, label='O-star H II mean')]
-    ax.legend(handles=h, loc='upper left', fontsize=8.0, ncol=4, framealpha=0.9, handletextpad=0.35,
-              columnspacing=0.9, title='LAMOST (Wu+26)          Madsen+06', title_fontsize=7.6, alignment='left')
-    ax.set_title('(a) Red-arm ratios: filament = background = WIM', loc='left', fontsize=10, color=FG)
+    ax.grid(axis='y', **LGRID)
+    if PAP:     # two compact legends: W26 regions (left), Madsen+06 references (right)
+        h1 = [Line2D([], [], ls='', ms=MS, label=k + (' (no nebula)' if k == 'P4' else ''), **pmark(k)) for k in REG]
+        leg1 = ax.legend(handles=h1, loc='upper left', fontsize=LF, ncol=2, framealpha=0.92, handlelength=1.0,
+                         handletextpad=0.35, columnspacing=0.8, title='W26 LAMOST', title_fontsize=LF, alignment='left')
+        ax.add_artist(leg1)
+        h2 = [plt.Rectangle((0, 0), 1, 1, color=SII_C, alpha=0.35, label='high-b WIM filaments'),
+              Line2D([], [], color=WARN, ls='--', lw=0.9, label='faint WIM lower bound'),
+              Line2D([], [], color=FGDIM, ls=':', lw=1.1, label='O-star H II mean')]
+        ax.legend(handles=h2, loc='upper right', fontsize=LF, framealpha=0.92, title='Madsen+06', title_fontsize=LF,
+                  alignment='left', handlelength=1.6)
+    else:
+        h = [Line2D([], [], ls='', ms=7, label=k + (' no nebula' if k == 'P4' else ''), **pmark(k)) for k in REG]
+        h += [plt.Rectangle((0, 0), 1, 1, color=SII_C, alpha=0.35, label='high-b WIM filaments'),
+              Line2D([], [], color=WARN, ls='--', lw=1.2, label='faint WIM lower bound'),
+              Line2D([], [], color=FGDIM, ls=':', lw=1.4, label='O-star H II mean')]
+        ax.legend(handles=h, loc='upper left', fontsize=8.0, ncol=4, framealpha=0.9, handletextpad=0.35,
+                  columnspacing=0.9, title='LAMOST (Wu+26)          Madsen+06', title_fontsize=7.6, alignment='left')
+    ax.set_title(Z('(a) Red-arm ratios: filament = background = WIM', '(a) Red-arm line ratios'),
+                 loc='left', fontsize=TF, color=FG)
 
     # ---------------- (b) [S II] density
     ax = axs[0, 1]
-    ne = np.logspace(0, 4.5, 260)
-    curves = [('TZ10', 'TZ10', 1e4, ACCENT, '-', '5-level Ω TZ10, A TZ10, 10⁴ K'),
-              ('TZ10', 'TZ10', 8000.0, ACCENT, '--', '5-level Ω TZ10, A TZ10, 8000 K'),
-              ('TZ10', 'RGJ19', 1e4, OK, ':', '5-level Ω TZ10, A RGJ19, 10⁴ K'),
-              ('RBS96', 'MZ82', 8000.0, WARN, '-.', '5-level Ω RBS96, A MZ82, 8000 K')]
+    XL = Z(1, 0.02)    # paper: wider low-density margin so the key clears the W26 band
+    ne = np.logspace(np.log10(XL), 4.5, 260)
+    curves = [('TZ10', 'TZ10', 1e4, ACCENT, '-', Z('5-level Ω TZ10, A TZ10, 10⁴ K', 'Ω TZ10, A TZ10, 10⁴ K')),
+              ('TZ10', 'TZ10', 8000.0, ACCENT, '--', Z('5-level Ω TZ10, A TZ10, 8000 K', 'Ω TZ10, A TZ10, 8000 K')),
+              ('TZ10', 'RGJ19', 1e4, OK, ':', Z('5-level Ω TZ10, A RGJ19, 10⁴ K', 'Ω TZ10, A RGJ19, 10⁴ K')),
+              ('RBS96', 'MZ82', 8000.0, WARN, '-.', Z('5-level Ω RBS96, A MZ82, 8000 K', 'Ω RBS96, A MZ82, 8000 K'))]
     hb = []
     for c, a, T, col, ls, lab in curves:
-        hb += ax.plot(ne, [S.ratio(n, T, coll=c, aval=a) for n in ne], color=col, ls=ls, lw=1.5, label=lab)
+        hb += ax.plot(ne, [S.ratio(n, T, coll=c, aval=a) for n in ne], color=col, ls=ls, lw=Z(1.5, 1.0), label=lab)
     rr2 = np.linspace(1.0, 1.435, 400)
-    hb += ax.plot(S.proxauf(rr2), rr2, color=SUN, lw=2.0, label='paper Eq. 5 (Proxauf+14), 10⁴ K')
-    ax.axvspan(64, 150, color=HA_C, alpha=0.22, lw=0)
+    hb += ax.plot(S.proxauf(rr2), rr2, color=SUN, lw=Z(2.0, 1.4), label=Z('paper Eq. 5 (Proxauf+14), 10⁴ K', 'W26 Eq. 5, 10⁴ K'))
+    ax.axvspan(64, 150, color=HA_C, alpha=Z(0.22, 0.2), lw=0)
     wl = dens['wim_sightline_SII_doublet']['SDSS_WIM_between']
     ax.axhspan(wl[1], wl[2], color=FGDIM, alpha=0.14, lw=0)
-    label(ax, 1.12, wl[2] + 0.012, 'WIM on this sightline (SDSS sky fibres, 16–84 %)', color=FGDIM, size=LS, va='bottom')
+    x0 = Z(1.12, 0.03)
+    # paper mode: two lines, so the label ends left of the vertical W26 n_e band
+    label(ax, x0, wl[2] + 0.012, Z('WIM on this sightline (SDSS sky fibres, 16–84 %)', 'sightline WIM\n(SDSS sky fibres, 16–84 %)'),
+          color=FGDIM, size=LS, va='bottom')
     for k in REG:
         R = Rtab[k]
         n5 = dens['five_level'][k]['TZ10+TZ10@10000']; nq = dens['eq5_1e4K'][k]
-        ax.plot([1, n5], [R, R], color=SII_C, lw=0.6, alpha=0.55)
-        ax.plot(n5, R, ls='', ms=7, zorder=5, **pmark(k))
-        ax.plot(nq, R, mk[k], color=SUN, mfc='none', mew=1.3, ms=7, zorder=5)
-        label(ax, 1.6, R + 0.006, f'{k} R = {R:.2f}', color=cols[k] if k != 'P4' else FG, size=LS, va='bottom')
+        ax.plot([XL, n5], [R, R], color=SII_C, lw=0.6, alpha=Z(0.55, 0.7), **Z({}, dict(zorder=3.6)))
+        ax.plot(n5, R, ls='', ms=MS, zorder=5, **pmark(k))
+        ax.plot(nq, R, mk[k], color=SUN, mfc='none', mew=Z(1.3, 1.0), ms=MS, zorder=5)
+        below = PAP and k in ('P1', 'P4')        # paper mode: P1/P4 labels under their lines (tight spacing)
+        label(ax, Z(1.6, 0.03), R + (-0.011 if below else 0.006), f'{k} R = {R:.2f}', color=cols[k] if k != 'P4' else FG,
+              size=LS, va='top' if below else 'bottom')
     sr = dens['R_uncertainty']
     s_sn = [sr[k]['sigma_R_from_SN'] for k in REG]; s_in = [sr[k]['sigma_R_from_intensity_errors'] for k in REG]
-    label(ax, 1.6, 0.985, f'σ$_R$ = {min(s_sn):.3f}–{max(s_sn):.3f} (Table 2 S/N 44–65)\n'
-          f'or {min(s_in):.2f}–{max(s_in):.2f} (±0.02 intensities)', color=FGDIM, size=LS, va='top')
-    hb += [plt.Rectangle((0, 0), 1, 1, color=HA_C, alpha=0.35, label='paper n$_e$ 64–150 cm$^{-3}$'),
-           Line2D([], [], marker='o', ls='', color=FG, ms=6.5, label='Table 2 R on 5-level 10⁴ K curve'),
-           Line2D([], [], marker='o', ls='', color=SUN, mfc='none', mew=1.3, ms=6.5, label='Table 2 R on Eq. 5')]
-    ax.set_xscale('log'); ax.set_xlim(1, 3e4); ax.set_ylim(0.38, 1.58)
+    if PAP:     # three short lines, so the annotation ends left of the vertical W26 n_e band
+        # (U+2212 in lines that contain mathtext: there U+2013 is drawn as a short hyphen, unlike in the plain lines)
+        label(ax, 0.03, 0.955, f'σ$_R$ = {min(s_sn):.3f}\u2212{max(s_sn):.3f}\n(S/N 44–65) or {min(s_in):.2f}–{max(s_in):.2f}\n'
+              '(±0.02 intensities)', color=FGDIM, size=LS, va='top')
+    else:
+        label(ax, 1.6, 0.985, f'σ$_R$ = {min(s_sn):.3f}–{max(s_sn):.3f} (Table 2 S/N 44–65)\n'
+              f'or {min(s_in):.2f}–{max(s_in):.2f} (±0.02 intensities)', color=FGDIM, size=LS, va='top')
+    if PAP:     # W26 density range labelled in place; curve/marker key at lower left
+        label(ax, 98, 0.43, 'W26 n$_e$ 64\u2212150', color=HA_C, size=LS, rotation=90, ha='center', va='bottom')
+        hb += [Line2D([], [], marker='o', ls='', color=FG, ms=MS, label='Table 2 R, TZ10 10⁴ K'),
+               Line2D([], [], marker='o', ls='', color=SUN, mfc='none', mew=1.0, ms=MS, label='Table 2 R, W26 Eq. 5')]
+    else:
+        hb += [plt.Rectangle((0, 0), 1, 1, color=HA_C, alpha=0.35, label='paper n$_e$ 64–150 cm$^{-3}$'),
+               Line2D([], [], marker='o', ls='', color=FG, ms=6.5, label='Table 2 R on 5-level 10⁴ K curve'),
+               Line2D([], [], marker='o', ls='', color=SUN, mfc='none', mew=1.3, ms=6.5, label='Table 2 R on Eq. 5')]
+    ax.set_xscale('log'); ax.set_xlim(XL, 3e4); ax.set_ylim(0.38, Z(1.58, 1.64))
     ax.set_xlabel('n$_e$ (cm$^{-3}$)'); ax.set_ylabel('I(6716)/I(6731)')
-    ax.legend(handles=hb, loc='lower left', fontsize=7.6, framealpha=0.9)
-    ax.grid(alpha=0.3)
-    ax.set_title('(b) [S II] doublet → n$_e$: Table 2 gives 170–630, not 64–150', loc='left', fontsize=10, color=FG)
+    ax.legend(handles=hb, loc='lower left', fontsize=Z(7.6, LF), framealpha=0.9)
+    ax.grid(**LGRID)
+    ax.set_title(Z('(b) [S II] doublet → n$_e$: Table 2 gives 170–630, not 64–150',
+                   '(b) [S II] doublet ratio vs n$_e$'), loc='left', fontsize=TF, color=FG)
 
     # ---------------- (c) T_e from Eq. 2
     ax = axs[1, 0]
     ax.axhspan(1e4, 2e4, color=HA_C, alpha=0.18, lw=0)
-    ax.axhspan(6000, 9000, color=SII_C, alpha=0.15, lw=0)
-    ax.plot([2.72, 3.28], [7500, 7500], color=DANGER, lw=1.8)
-    ax.legend(handles=[plt.Rectangle((0, 0), 1, 1, color=HA_C, alpha=0.4, label='paper: [O III] structure 1–2×10⁴ K'),
-                       Line2D([], [], color=DANGER, lw=1.8, label='paper: P4 7.5×10³ K'),
+    ax.axhspan(6000, 9000, color=SII_C, alpha=Z(0.15, 0.18), lw=0)
+    ax.plot([2.72, 3.28], [7500, 7500], color=DANGER, lw=Z(1.8, 1.3))
+    ax.legend(handles=[plt.Rectangle((0, 0), 1, 1, color=HA_C, alpha=0.4, label=Z('paper: [O III] structure 1–2×10⁴ K', 'W26: [O III] structure 1–2×10⁴ K')),
+                       Line2D([], [], color=DANGER, lw=Z(1.8, 1.3), label=Z('paper: P4 7.5×10³ K', 'W26: P4 7.5×10³ K')),
                        plt.Rectangle((0, 0), 1, 1, color=SII_C, alpha=0.35, label='WIM 6000–9000 K (Haffner+99)')],
-              loc='upper left', ncol=2, fontsize=8.0, framealpha=0.9, columnspacing=1.0)
+              loc='upper left', ncol=Z(2, 1), fontsize=LF, framealpha=0.9, columnspacing=1.0)
     ax.axhline(0, color=FGDIM, lw=0.8)
     for j, k in enumerate(REG):
         p16, p50, p84 = tev[k]['T_MC_p16_50_84']
-        ax.errorbar(j, tev[k]['T_eq2_K'], yerr=[[tev[k]['T_eq2_K'] - p16], [p84 - tev[k]['T_eq2_K']]], ls='', ms=7.5,
-                    capsize=3, lw=1.3, zorder=4, **pmark(k))
-        label(ax, j, p16 - 450, f"P(T<0) = {tev[k]['P_T_negative'] * 100:.0f}%", color=FGDIM, size=LS, ha='center', va='top')
+        ax.errorbar(j, tev[k]['T_eq2_K'], yerr=[[tev[k]['T_eq2_K'] - p16], [p84 - tev[k]['T_eq2_K']]], ls='', ms=Z(7.5, 5.0),
+                    capsize=Z(3, 2), lw=Z(1.3, 0.9), zorder=4, **pmark(k))
+        label(ax, j, p16 - 450, f"P(T<0){Z(' = ', '=')}{tev[k]['P_T_negative'] * 100:.0f}%", color=FGDIM, size=LS, ha='center', va='top')
     ax.set_xticks(range(4)); ax.set_xticklabels(['P1', 'P2', 'P3', 'P4\n(no nebula)'])
-    ax.set_xlim(-0.6, 3.6); ax.set_ylim(-10200, 2.75e4)
-    ax.set_ylabel('T$_e$ from Eq. 2 (K)')
-    ax.grid(axis='y', alpha=0.3)
-    ax.set_title('(c) Eq. 2 temperature from Table 2 widths (16–84 %)', loc='left', fontsize=10, color=FG)
+    ax.set_xlim(-0.6, 3.6); ax.set_ylim(-10200, Z(2.75e4, 2.95e4))
+    ax.set_ylabel(Z('T$_e$ from Eq. 2 (K)', 'T$_e$ from W26 Eq. 2 (K)'))
+    ax.grid(axis='y', **LGRID)
+    ax.set_title(Z('(c) Eq. 2 temperature from Table 2 widths (16–84 %)', '(c) T$_e$ from W26 Eq. 2'),
+                 loc='left', fontsize=TF, color=FG)
 
     # ---------------- (d) [O III] width recovery
     ax = axs[1, 1]
     tw = [5.4, 20, 30, 45]
-    ax.axhspan(43.1, 48.9, color=OIII_C, alpha=0.22, lw=0)
-    label(ax, 1.0, 49.6, 'paper Table 2: 43.1–48.9 km/s', color=OIII_C, size=LS, va='bottom')
-    hd = ax.plot([0, 52], [0, 52], color=FGDIM, lw=1.0, ls='--', label='recovered = true')
-    for sn, col, off, lab in [('6.1', ACCENT, -0.6, 'integrated S/N 6.1 (paper P1, P2)'), ('15', FGDIM, 0.6, 'S/N 15'),
-                              ('50', '#6f7b86', 1.4, 'S/N 50')]:
+    ax.axhspan(43.1, 48.9, color=OIII_C, alpha=Z(0.22, 0.2), lw=0)
+    label(ax, 1.0, Z(49.6, 50.5), Z('paper Table 2: 43.1–48.9 km/s', 'W26 Table 2: 43.1–48.9 km/s'), color=OIII_C, size=LS, va='bottom')
+    hd = ax.plot([0, 52], [0, 52], color=FGDIM, lw=Z(1.0, 0.8), ls='--', label='recovered = true')
+    for sn, col, off, lab in [('6.1', ACCENT, -0.6, Z('integrated S/N 6.1 (paper P1, P2)', 'integrated S/N 6.1 (W26 P1, P2)')),
+                              ('15', '#8a949e' if LT else FGDIM, 0.6, 'S/N 15'),
+                              ('50', '#2f353b' if LT else '#6f7b86', 1.4, 'S/N 50')]:
         med = [fm[f'SN{sn}_Wint{w}']['Wrec_pass_p16_50_84'] for w in tw]
         y = np.array([m[1] for m in med]); lo = y - np.array([m[0] for m in med]); hi = np.array([m[2] for m in med]) - y
-        hd.append(ax.errorbar(np.array(tw) + off, y, yerr=[lo, hi], fmt='o-', ms=6, lw=1.4 if sn == '6.1' else 1.0,
-                              color=col, capsize=2.5, label=lab, zorder=4 if sn == '6.1' else 3))
+        hd.append(ax.errorbar(np.array(tw) + off, y, yerr=[lo, hi], fmt='o-', ms=Z(6, 4.0),
+                              lw=(Z(1.4, 1.1) if sn == '6.1' else Z(1.0, 0.8)),
+                              color=col, capsize=Z(2.5, 1.6), label=lab, zorder=4 if sn == '6.1' else 3))
     pf = ', '.join(f"{fm[f'SN6.1_Wint{w}']['frac_pass_cut'] * 100:.0f}" for w in tw)
-    label(ax, 51, 10.8, f'S/N 6.1 pass fraction: {pf} %\n(true FWHM 5.4, 20, 30, 45 km/s)', color=ACCENT, size=LS,
+    label(ax, 51, Z(10.8, 1.5), f'S/N 6.1 pass fraction: {pf} %\n(true FWHM 5.4, 20, 30, 45 km/s)', color=ACCENT, size=LS,
           ha='right', va='bottom')
-    ax.set_xlim(0, 52); ax.set_ylim(0, 72)
+    if PAP:     # the three S/N series are plotted at true FWHM -0.6, +0.6 and +1.4 km/s
+        label(ax, 51, 10.5, 'points offset in x for clarity', color=FGDIM, size=LS, ha='right', va='bottom')
+    ax.set_xlim(0, 52); ax.set_ylim(0, Z(72, 76))
     ax.set_xlabel('true intrinsic [O III] FWHM (km/s)'); ax.set_ylabel('recovered FWHM, fits passing cut (km/s)')
-    ax.legend(handles=hd, loc='upper left', fontsize=8.0, framealpha=0.9)
-    ax.grid(alpha=0.3)
-    ax.set_title('(d) [O III] width at S/N 6: the cut selects ~36–47 km/s', loc='left', fontsize=10, color=FG)
+    ax.legend(handles=hd, loc='upper left', fontsize=LF, framealpha=0.9)
+    ax.grid(**LGRID)
+    ax.set_title(Z('(d) [O III] width at S/N 6: the cut selects ~36–47 km/s', '(d) Recovered [O III] FWHM at the W26 width cut'),
+                 loc='left', fontsize=TF, color=FG)
 
     finish(fig, str(ROOT / 'figures/dispute_other_fig6.png'), dpi=200)
 
